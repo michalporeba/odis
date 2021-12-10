@@ -40,6 +40,8 @@ The increasing amount of data, gives rise to a growing number of possible search
 
 # Possible Use Cases
 
+* [Find Me Button](./docs/usecases/findme.md) - Search for and update your personal infromation held by any department accross the Civil Service. 
+
 *(A list of possible use cases will have to be developed to better explain the problem and possible applications of the solution)*
 
 &nbsp;
@@ -51,9 +53,5 @@ The increasing amount of data, gives rise to a growing number of possible search
 * Front-end: [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [Design System](https://design-system.service.gov.uk/), [React](https://reactjs.org/)
 
 &nbsp;
-
-## Keywords or topics explored in this project
-
-[Federated Search](https://en.wikipedia.org/wiki/Federated_search), Search Results Aggregation, [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch), Decentralised Data Solutions, Hypermedia in RESTful API, [Hypermedia as the Engine of Application State (HATEOAS)](https://en.wikipedia.org/wiki/HATEOAS)
 
 *TBC*
