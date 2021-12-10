@@ -1,6 +1,6 @@
 # Progress of the Project
 
-To monitor and control the progress of the project I'm using an approach based on [*#NoEstimates*](https://www.youtube.com/watch?v=QVBlnCTu9Ms) (if you haven't heard of it, I strongly recommend watching the linked video).
+To monitor and control the progress of the project I'm using an approach based on [*#NoEstimates*](https://www.youtube.com/watch?v=QVBlnCTu9Ms) *(if you haven't heard of it, I strongly recommend watching the linked video).*
 
 [More details](#project-details) below the chart. 
 
