@@ -1,10 +1,10 @@
 # TopoSearch
 
-But first, a brief **disclaimer** before I will tell you more about the TopoSearch idea. 
+A federated search service with result aggregation, moderation and feedback mechanism to potentially update the source data. What it means I will try to explain in a moment, but first, a brief **disclaimer** before I will tell you more about the TopoSearch idea. 
 
-*The code available in this repository is part of my dissertation. I expect it will be very active until Summary 2022. What will happen next will depend on how sound the output will be. If you are interested in similar topics, I'd be [happy to chat](https://www.linkedin.com/in/michalporeba/). If you think my approach makes no sense, I'd love to hear from you - [create an issue](https://github.com/michalporeba/toposearch/issues/new/choose) and let me know where I went wrong.*
+*The code and ideas developed in this repository are part of my dissertation. I expect it will be very active until Summary 2022. What will happen next will depend on how useful the output will be. If you are interested in similar topics to those used in the project, I'd be [happy to chat](https://www.linkedin.com/in/michalporeba/). If you think my approach makes no sense, I'd love to hear from you - [create an issue](https://github.com/michalporeba/toposearch/issues/new/choose) and let me know where I went wrong.*
 
-### Keywords or topics explored in this project
+## Keywords or topics explored in this project
 
 [Federated Search](https://en.wikipedia.org/wiki/Federated_search), Search Results Aggregation, [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch), Decentralised Data Solutions, Hypermedia in RESTful API, [Hypermedia as the Engine of Application State (HATEOAS)](https://en.wikipedia.org/wiki/HATEOAS)
 
