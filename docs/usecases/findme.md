@@ -10,7 +10,11 @@ How about a search page with a 'find me' button?
 
 ![Find Me Button](./find-me-button.png)
 
+&nbsp;
+
 With a single click, all the departments' data would be interrogated and the results presented in an aggregated fashion, something like this: 
+
+&nbsp;
 
 ![Found Me Page](./found-me-page.png)
 
