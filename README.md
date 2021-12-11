@@ -46,6 +46,13 @@ The increasing amount of data, gives rise to a growing number of possible search
 
 &nbsp;
 
+# Architecture
+
+At the moment the project is in a conceptual design stage. Have a look at the [high level architecutre](./docs/architecture.md) as it is developed.
+
+&nbsp;
+
+
 # Technology 
 
 * API: [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch), [OpenAPI](https://swagger.io/specification/), [REST](https://en.wikipedia.org/wiki/Representational_state_transfer), [HAL](https://en.wikipedia.org/wiki/Hypertext_Application_Language), [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS), [JSON-LD](https://json-ld.org/), 
