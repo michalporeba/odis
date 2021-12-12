@@ -24,3 +24,25 @@ There are five **types of users** interacting with the system:
 * The **Information Asset Owner / Manager** - person responsible for the information stored in the source service and who is responsible for controlling the access to it. 
 * The **Cyber Security Person** - person responsible for maintaing the security of the solution. 
 
+## Container view
+
+![Container](./images/c4-container.png)
+
+In the container view we can look closer at the elements of the TopoSearch Network. 
+
+* **Search Node** - the service providing both the API and the basic UI to build and operate the search network. It does the query federation, result moderation and aggregation. 
+* **Standard Connector** - a plugin facilitating search services that implement the standard protocol. 
+* **3rd Party Connector** - plugins facilitating search in services that do not implment the standard protocol. For example search in SharePoint, or in ElasticSearch.
+* **Audit Producer** - a plugin that saves the data, or delivers audit data for SEIM systems. 
+
+### Software Development Kit
+
+The SDK is outside of the TopoSearch Network system. It is intended to be used by service developers to help with rapid development of endpoint implementing the agreed search protocol. 
+
+### Future improvements
+
+While the Search Node provides all the necessary UI, a reacher clients could be created for better user experience. 
+
+* **Admin Client** - 
+* **Search Client** - 
+
