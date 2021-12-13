@@ -4,7 +4,11 @@ To monitor and control the progress of the project I'm using an approach based o
 
 [More details](#project-details) below the chart. 
 
-## Week 0 - 2021-12-09 -- 2021-12-12
+## Week 1 - 2021-12-13 -- 2021-12-20
+*(Predictions are currently not very useful as there are only two incomplete data points.
+From previous experience 'scope creep' ration is 1.3 and that is what I am going to use until
+more reliable data is available).*
+
 ![Progress](progress.png)
 
 ## Project Details
