@@ -12,3 +12,16 @@ http://snap.stanford.edu/data/ - a collection of data. There are online reviews 
 
 Searching for physical locations in public datasets https://data.gov.uk/
 Could result in aggregated results, but feedback would be difficult to show. 
+
+
+## Python / Django techniques
+
+* [Reusable Django Apps](https://docs.djangoproject.com/en/4.0/intro/reusable-apps/)
+* [Extensible and reusable Django applications](https://www.philipotoole.com/reusable-django-applications/)
+* [Celery to communicate between apps?](https://docs.celeryproject.org/en/stable/getting-started/introduction.html)
+* [Reusable Apps on YouTube](https://www.youtube.com/watch?v=A-S0tqpPga4)
+
+ A pub/sub or messagebus could be used for communication between apps.
+* [PyDispatcher](http://pydispatcher.sourceforge.net/)
+* [DjangoPubSub](https://pypi.org/project/djangopubsub/)
+* [PyPubSub](https://pypubsub.readthedocs.io/en/v4.0.3/)
