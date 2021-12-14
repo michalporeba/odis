@@ -21,7 +21,7 @@ Could result in aggregated results, but feedback would be difficult to show.
 * [Celery to communicate between apps?](https://docs.celeryproject.org/en/stable/getting-started/introduction.html)
 * [Reusable Apps on YouTube](https://www.youtube.com/watch?v=A-S0tqpPga4)
 
- A pub/sub or messagebus could be used for communication between apps.
+### A pub/sub or messagebus could be used for communication between apps.
 * [PyDispatcher](http://pydispatcher.sourceforge.net/)
 * [DjangoPubSub](https://pypi.org/project/djangopubsub/)
 * [PyPubSub](https://pypubsub.readthedocs.io/en/v4.0.3/)
@@ -36,3 +36,4 @@ Could result in aggregated results, but feedback would be difficult to show.
 ## Search tools to consdier
 
 * [Apache Solr](https://solr.apache.org/features.html)
+* Windows 7+, Sharepoint, Bing

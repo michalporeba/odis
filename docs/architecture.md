@@ -45,3 +45,7 @@ While the Search Node provides all the necessary UI, reacher clients could be cr
 
 * **Admin Client** - an application for management of the search network.
 * **Search Client** - an application for searching across the network.
+
+## Protocols inside and outside of the network
+
+![Protocols](./images/c4-protocols.png)
