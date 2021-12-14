@@ -25,3 +25,14 @@ Could result in aggregated results, but feedback would be difficult to show.
 * [PyDispatcher](http://pydispatcher.sourceforge.net/)
 * [DjangoPubSub](https://pypi.org/project/djangopubsub/)
 * [PyPubSub](https://pypubsub.readthedocs.io/en/v4.0.3/)
+
+
+## Search options to consider
+
+* [Collaborative Search](https://en.wikipedia.org/wiki/Collaborative_search_engine)
+* [Enterprise Search](https://en.wikipedia.org/wiki/Enterprise_search)
+* [Semantic Search](https://en.wikipedia.org/wiki/Semantic_search)
+
+## Search tools to consdier
+
+* [Apache Solr](https://solr.apache.org/features.html)
