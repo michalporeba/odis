@@ -37,3 +37,7 @@ Could result in aggregated results, but feedback would be difficult to show.
 
 * [Apache Solr](https://solr.apache.org/features.html)
 * Windows 7+, Sharepoint, Bing
+
+## Problems that need solving
+
+* The UI has to be progressive and usable with no client side scripting. At the same time the service needs to be ReSTful. How can we return the aggregated results and allow users to drill down to the detail and send feedback? With a single page application it would be easier, as all the infromation could be returned and manipulated on the client side for display, but this cannot be the only option. 

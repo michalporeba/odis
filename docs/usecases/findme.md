@@ -1,4 +1,4 @@
-# Find Me (Use Case 1)
+# Find Me Button (Use Case 1)
 
 Under [UK GDPR](https://ico.org.uk/for-organisations/dp-at-the-end-of-the-transition-period/data-protection-and-the-eu-in-detail/the-uk-gdpr/) and the [Data Protection Act (2018)](https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted) we all have the [Right of Access](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-of-access/), and the [Right to Rectification](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/right-to-rectification/), among the [other individual rights](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/individual-rights/). 
 
