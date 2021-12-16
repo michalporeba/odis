@@ -23,4 +23,8 @@
     * [Two Scoops of Django 3.x](https://www.feldroy.com/books/two-scoops-of-django-3-x)
     * Server project create and modified to match TSD recommendations
 * **Search Standards**
-    
+    * SRW/U and OpenSearch reviewed - decision logged in #ISSUE-4
+    * [High-level architecture design](./docs/architecture.md)
+* **HATEOAS**
+    * Reviewed number of potential styles of hypermedia interfaces
+    * Chose not to choose - decision logged in #ISSUE-2
