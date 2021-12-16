@@ -41,8 +41,9 @@ The increasing amount of data, gives rise to a growing number of possible search
 # Possible Use Cases
 
 * [Find Me Button](./docs/usecases/findme.md) - Search for and update your personal infromation held by any department accross the Civil Service. 
+* [Product Search](./docs/usecases/product-overview.md) - Building the 'bigger picture' of a product through single search without the data warehouse. 
 
-*(A list of possible use cases will have to be developed to better explain the problem and possible applications of the solution)*
+*(A list of further possible use cases will have to be developed to better explain the problem and possible applications of the solution)*
 
 &nbsp;
 
