@@ -49,3 +49,7 @@ While the Search Node provides all the necessary UI, reacher clients could be cr
 ## Protocols inside and outside of the network
 
 ![Protocols](./images/c4-protocols.png)
+
+## Users and use cases
+
+![Usecases](./images/uml-usecases.png)
