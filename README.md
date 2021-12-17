@@ -42,6 +42,7 @@ The increasing amount of data, gives rise to a growing number of possible search
 
 * [Find Me Button](./docs/usecases/findme.md) - Search for and update your personal infromation held by any department accross the Civil Service. 
 * [Product Search](./docs/usecases/product-overview.md) - Building the 'bigger picture' of a product through single search without the data warehouse. 
+* [Acronym Buster](./docs/usecases/acronyms.md) - An oversimplified example of why topology as context can help improve search results. 
 
 *(A list of further possible use cases will have to be developed to better explain the problem and possible applications of the solution)*
 
