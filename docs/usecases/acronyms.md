@@ -2,14 +2,13 @@
 
 Many organisations use acronyms in communication. Joining one can be 
 a significant challenge, almost learning a new language. The bigger 
-the organisation the bigger the problem. But the bigger the organisation
-the more likely it is that colisions will arise. 
+the organisation, the bigger the problem; collisions are more likely. 
 
-It is not uncommon for individual depeartments or organisational units
+It is not uncommon for individual departments or organisational units
 to develop their own glossaries in spreadsheets or similar technologies. 
 
-Federated search could help with connecting those individual glossaries, 
-and allowing them all to be searched at once. That's simple. 
+Federated search could help connect those individual glossaries 
+and allow them all to be searched at once. That's simple. 
 
 But the topology of the search network could be used to influence 
 the search results. The hypothesis is that the results found near the person
