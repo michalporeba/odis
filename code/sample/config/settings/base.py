@@ -20,6 +20,9 @@ sys.path.append(str(BASE_DIR / 'sample'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
 ALLOWED_HOSTS = []
 
 

@@ -20,11 +20,8 @@ sys.path.append(str(BASE_DIR / 'datanode'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)#_vr^m@_mu^8qfrn@g&9*uqkmr29ubuo26euio&nt=k4a@b6_'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
