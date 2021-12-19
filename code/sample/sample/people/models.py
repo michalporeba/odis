@@ -20,3 +20,6 @@ class Person(MyBaseModel):
     
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
+
+    class Meta:
+        app_label = 'people'
