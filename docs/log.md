@@ -28,3 +28,5 @@
 * **HATEOAS**
     * Reviewed number of potential styles of hypermedia interfaces
     * Chose not to choose - decision logged in #ISSUE-2
+* **Use Cases**
+    * There are now [4 use cases](./docs/) documented
