@@ -57,6 +57,7 @@ At the moment the project is in a conceptual design stage. Have a look at the [h
 # Technology 
 
 * API: [OpenSearch](https://en.wikipedia.org/wiki/OpenSearch), [OpenAPI](https://swagger.io/specification/), [REST](https://en.wikipedia.org/wiki/Representational_state_transfer), [HAL](https://en.wikipedia.org/wiki/Hypertext_Application_Language), [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS), [JSON-LD](https://json-ld.org/), 
+* Security: [OAuth2.0](https://oauth.net/2/), [Open ID Connect (OIDC)](https://openid.net/connect/), [Json Web Tokens (JWT)](https://en.wikipedia.org/wiki/JSON_Web_Token)
 * Back-end: [Python](https://www.python.org/), [Django](https://www.djangoproject.com/)
 * Front-end: [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [Design System](https://design-system.service.gov.uk/), [React](https://reactjs.org/)
 
