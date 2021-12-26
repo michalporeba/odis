@@ -49,7 +49,8 @@ The increasing amount of data, gives rise to a growing number of possible search
 
 # Architecture
 
-At the moment the project is in a conceptual design stage. Have a look at the [high level architecutre](./docs/architecture.md) as it is developed.
+At the moment the project is in a conceptual design stage. 
+Have a look at the [solution's architecutre](./docs/architecture.md) as it is developed.
 
 &nbsp;
 
