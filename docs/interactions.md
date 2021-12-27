@@ -48,3 +48,14 @@ to data their are responsible for.
 Organisation B may make some of their resources available to anybody 
 from Organisation A (B1, B8). But that shouldn't prevent searchers in Organisation A
 to find results in Organisation B already available to the public (B2, B6).
+
+
+&nbsp;
+
+## Search from Unit 2
+
+![Unit 2](./images/interactions-f3.png)
+
+Searching from Unit 2 should result, in this example, in all data within the unit 
+being available (but it could be more selective). The public search results, 
+and those from Organisation B should not change. 
