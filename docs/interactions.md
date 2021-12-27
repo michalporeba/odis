@@ -59,3 +59,15 @@ to find results in Organisation B already available to the public (B2, B6).
 Searching from Unit 2 should result, in this example, in all data within the unit 
 being available (but it could be more selective). The public search results, 
 and those from Organisation B should not change. 
+
+
+&nbsp;
+
+## Search from Unit 3
+
+![Unit 3](./images/interactions-f4.png)
+
+Organisation B decided not to connect to the public data, but has a dedicated
+connection to Unit 2 in Organisation A. This means that any searcher in Unit 3 
+will be able to find information in A8 as well as most of services in Organisation B. 
+However, users in Organisation B outside of Unit 3 will see only the Organisation B data.
