@@ -43,8 +43,10 @@ The increasing amount of data, gives rise to a growing number of possible search
 * [Find Me Button](./docs/usecases/findme.md) - Search for and update your personal infromation held by any department accross the Civil Service. 
 * [Product Search](./docs/usecases/product-overview.md) - Building the 'bigger picture' of a product through single search without the data warehouse. 
 * [Acronym Buster](./docs/usecases/acronyms.md) - An oversimplified example of why topology as context can help improve search results. 
-
 * [No Need for Catalogs](./docs/usecases/nomorecatalogues.md) - Not really a concrete use case, but an sidea what could be possible with federated search approach in terms of data management and governance. 
+
+While I hope the use cases are of use, another way to look at what the search (or data exchange) network can offer, is to look at [possible interactions](./docs/interactions.md) within the system. 
+
 &nbsp;
 
 # Architecture

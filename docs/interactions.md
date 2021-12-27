@@ -1,8 +1,16 @@
 # Interactions
 
-An example of interactions between integrated systems. 
+I find it difficult to descrbie the possibilities of using the search topology
+as a context defining access, and perhaps scope of information available to searchers. 
+With the map below I attempt to show possible interactions between different users
+and components of the search network divided between multiple trust boundaries - 
+organisations, units or types of authentication. 
 
 ![Interactions](./images/interactions-map.png)
+
+The above map with all its elements might be confusing, but rather than explaining it
+one element at a time, let's look at the specific information flows and, hopefully, 
+the notation and its meaning will become apparent. 
 
 &nbsp; 
 
