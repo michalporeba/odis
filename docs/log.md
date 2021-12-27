@@ -2,6 +2,8 @@
 
 ## Week 0 - ending 2021-12-12
 
+*A setup week, starting with necessary learning and such.*
+
 ### Features and tasks completed: 
 
 * **Project Setup**
@@ -13,9 +15,11 @@
 * Learn Django (partial)
     * [Quick Django introduction](https://www.youtube.com/watch?v=rHux0gMZ3Eg)
 
-
+&nbsp;
 
 ## Week 1 - ending 2021-12-19
+
+*More learning*
 
 ### Features and tasks completed:
 
@@ -30,3 +34,16 @@
     * Chose not to choose - decision logged in #ISSUE-2
 * **Use Cases**
     * There are now [4 use cases](./docs/) documented
+
+&nbsp;
+
+## Week 2 - ending 2021-12-26
+
+*Final week of gentle warmup to the project - mostly reading.*
+
+### Features and tasks completed: 
+
+* Security Considerations
+    * Read [Solving Identity Management in Modern Applications](https://link.springer.com/book/10.1007/978-1-4842-5095-2)
+    * Read [Advanced API Security](https://link.springer.com/book/10.1007/978-1-4302-6817-8)
+    * Read [UK Digital Identity](https://gds.blog.gov.uk/2021/07/13/a-single-sign-on-and-digital-identity-solution-for-government/)
