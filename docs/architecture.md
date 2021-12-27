@@ -11,11 +11,11 @@ To capture the architecture I use the [C4 modelling notation](https://c4model.co
 
 * [Context View (C4)](./a-context-view.md)
 * [Container View (C4)](./a-container-view.md)
-* [Use Cases (UML)](./a-use-cases.md)
+* [Security Considerations](./security.md)
 
 ## Other Things to Consider
 
-* [Interactions Map (In Progress)](./interactions.md)
+* [Interactions Map](./interactions.md)
 
 ### Software Development Kit (SDK)
 

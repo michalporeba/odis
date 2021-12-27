@@ -29,11 +29,11 @@ requests for data, and which services support those requests.
 
 &nbsp;
 
-## Authenticated public flow
+## Authenticated flow
 
 *A flow for a user identified with a government issued digital identity.*
 
-![Authenticated public flow](./images/interactions-f1.png)
+![Authenticated flow](./images/interactions-f1.png)
 
 A person authenticated by a strong identity provider can access all 
 the publically available data, but also request their information 
