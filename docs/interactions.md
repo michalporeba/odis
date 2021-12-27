@@ -33,3 +33,18 @@ the publically available data, but also request their information
 
 Each organisation can choose which nodes in their control respond to 
 authenticated public requests and which services support those requests. 
+
+&nbsp; 
+
+## Searching from Organisation A
+
+![AtoB](./images/interactions-f2.png)
+
+The fact that the searcher is part of Organisation A doesn't mean automatically
+they have access to all of the resources within the organisation. 
+It is possible that some some organisational units restrict access
+to data their are responsible for. 
+
+Organisation B may make some of their resources available to anybody 
+from Organisation A (B1, B8). But that shouldn't prevent searchers in Organisation A
+to find results in Organisation B already available to the public (B2, B6).
