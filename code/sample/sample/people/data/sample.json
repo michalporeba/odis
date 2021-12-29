@@ -1,0 +1,15 @@
+{
+    "people" : [
+        { 
+            "name" : "",
+            "cars" : [],
+            "driving-license" : {
+                "categories" : [],
+                "address" : ""
+            },
+            "employment" : [
+                { "employer" : "", "department" : ""}
+            ]
+        },
+    ]
+}
