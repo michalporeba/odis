@@ -1,21 +1,20 @@
-import uuid
+from abc import abstractclassmethod
 from django.db import models
 
 # Create your models here.
 
-class MyBaseModel(models.Model):
-    uniqueId = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+class AddressMixin(models.Model):
+    address = models.CharField("Address", max_length=128, blank=False, null=False)
+    city = models.CharField("City", max_length=64, blank=False, null=False)
+    postcode = models.CharField("PostCode", max_length=32, blank=False, null=False)
 
-    class Meta: 
-        abstract = True
+    class Meta:
+        abstract = True 
 
-class Person(MyBaseModel):
-    serviceInstance = models.PositiveIntegerField("Service instance", blank=True, null=True)
-    firstName = models.CharField("Name", max_length=128, blank=False, null=False)
-    lastName = models.CharField("Last name", max_length=128, blank=False, null=False)
-    phone = models.CharField(max_length=20, blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
-    postcode = models.CharField(max_length=8, blank=True, null=True)
+
+class DrivingLicense(AddressMixin):
+    date = models.DateField("Date", blank=False, null=False)
+    name = models.CharField("Name", max_length=128, blank=False, null=False)
     
     def __str__(self):
         return f"{self.firstName} {self.lastName}"
@@ -24,14 +23,27 @@ class Person(MyBaseModel):
         app_label = 'people'
 
     
-class Car(Model):
-    owner = models.ForeignKey(Person)
-    number = models.CharField("Registration Number", max_length=16, blank=False, null=False)
+class CarOwnership(AddressMixin):
+    date = models.DateField("Date", blank=False, null=False)
+    owner = models.CharField("Name", max_length=128, blank=False, null=False)
     make = models.CharField("Make", max_length=32, blank=False, null=False)
     model = models.CharField("Model", max_length=32, blank=False, null=False)
 
     def __str__(self):
-        return f"{self.make} {self.model} ({self.number})"
+        return f"{self.make} {self.model} (@ {self.date})"
+
+    class Meta: 
+        app_label = 'people'
+
+
+class Employment(models.Model):
+    date = models.DateField("Date", blank=False, null=False)
+    name = models.CharField("Name", max_length=128, blank=False, null=False)
+    employer = models.CharField("Employer", max_length=32, blank=False, null=False)
+    department = models.CharField("Department", max_length=32, blank=False, null=False)
+
+    def __str__(self):
+        return f"{self.name} at {self.employer} in {self.department}"
 
     class Meta: 
         app_label = 'people'

@@ -16,6 +16,7 @@ Open the `local.py` file and enter a new random value for `SECRET_KEY`.
 
 ```shell
 pipenv shell
+pipenv install
 cd code/sample
 python3 manage.py migrate
 python3 manage.py seed

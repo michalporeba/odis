@@ -1,65 +1,97 @@
 from django.core.management.base import BaseCommand
-from people.models import Person 
+from people.models import CarOwnership, DrivingLicense, Employment, AddressMixin
+from datetime import date, timedelta
+import json 
+import os 
 
 class Command(BaseCommand):
     help = "seed data for testing and demo"
 
+    DATA_ROOT = 'sample/people/data/'
+    FIRST_DAY = date(2015,1,1)
+
+    current_car = -1
+        
     def handle(self, *args, **options):
-        self.stdout.write('seeding data...')
-        self.seed()
-        self.stdout.write('done.')
+        if (CarOwnership.objects.first() == None):
+            self.stdout.write('seeding data...')
+            self.seed()
+            self.stdout.write('done.')
+        else: 
+            self.stdout.write('Cannot seed the data as it already exists!')
+            self.stdout.write('If you want to start fresh, start with a flush by doing:')
+            self.stdout.write('  python ./manage.py flush')
+
+
+    def prepare_dictionaries(self):
+        self.addresses = self.get_data('addresses')
+        self.cars = self.get_data('cars')
+        self.employers = self.get_data('employment', 'employers')
+        self.departments = self.get_data('employment', 'departments')
+        self.names = self.get_data('names')
+        
 
     def seed(self):
-        person = Person(
-            firstName='Molli',
-            lastName='Fazan',
-            serviceInstance = 1,
-            address = '17 The Village, Powick',
-            postcode = 'WR2 4QE'
-        )
-        person.save()
+        self.prepare_dictionaries()
+        samples = self.get_data('sample', 'people')
 
-        person = Person(
-            firstName='Devinne',
-            lastName='Erni',
-            serviceInstance = 2,
-            address = '23 Hathaway Road, Lancaster',
-            postcode = 'LA1 2JW'
-        )
-        person.save()
+        for sample in samples:
+            if sample['id'] <= '0':
+                continue 
 
-        person = Person(
-            firstName='Zelma',
-            lastName='Grelka',
-            serviceInstance = 2,
-            address = 'Flat 3, 130 Earls Court Road, London',
-            postcode = 'W8 6QL'
-        )
-        person.save()
+            self.stdout.write('  creating ' + sample['name'])
+            for car_spec in sample['cars']:
+                car = self.next_car()
+                record = CarOwnership (
+                    date = self.ts_to_date(car_spec['ts']),
+                    owner = sample['name'],
+                    make = car['make'],
+                    model = car['model'],
+                )
+                self.add_address(record, car_spec['address'])
+                record.save()
+            
+            license_spec = sample['driving-license']
+            if(len(license_spec)):
+                record = DrivingLicense(
+                    date = self.ts_to_date(license_spec['ts']),
+                    name = sample['name']
+                )
+                self.add_address(record, license_spec['address'])
+                record.save()
 
-        person = Person(
-            firstName='Grant',
-            lastName='Spellard',
-            serviceInstance = 3,
-            address = 'Carreg Felin Yarrd, Llandegfan',
-            postcode = 'LL59 5UL'
-        )
-        person.save()
+            for employment_spec in sample['employment']:
+                record = Employment(
+                    date = self.ts_to_date(employment_spec['ts']),
+                    name = sample['name'],
+                    employer = self.get_by_id(self.employers, employment_spec['employer'])['name'],
+                    department = self.get_by_id(self.departments, employment_spec['department'])['name']
+                )
+                record.save()
 
-        person = Person(
-            firstName='Tonia',
-            lastName='Kleinbaum',
-            serviceInstance = 3,
-            address = '9 Crosslow Bank, Emerson Valley',
-            postcode = 'MK4 2HH'
-        )
-        person.save()
+    def get_data(self, file: str, property: str=None):
+        if property == None:
+            property = file
 
-        person = Person(
-            firstName='Anders',
-            lastName='McCobb',
-            serviceInstance = 3,
-            address = '3 Royston Court, Potton',
-            postcode = 'SG19 2NJ'
-        )
-        person.save()
+        file = open(self.DATA_ROOT + file + '.json', 'r')
+        return json.load(file)[property]
+
+
+    def next_car(self) -> dict:
+        self.current_car = (self.current_car + 1) % len(self.cars)
+        return self.cars[self.current_car]
+
+
+    def ts_to_date(self, ts) -> date:
+        return self.FIRST_DAY + timedelta(days=int(ts))
+
+    
+    def add_address(self, model: AddressMixin, id: str):
+        address = self.get_by_id(self.addresses, id)
+        model.address = address['address']
+        model.city = address['city']
+        model.postcode = address['postcode']
+    
+
+    def get_by_id(self, dictionary: dict, id: str) -> dict:
+        return next((x for x in dictionary if x['id'] == int(id)), {})
