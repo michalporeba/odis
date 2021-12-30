@@ -1,93 +1,46 @@
 {
-    "employers": [{
-        "id": 1,
-        "name": "Dynabox"
-      }, {
-        "id": 2,
-        "name": "Buzzbean"
-      }, {
-        "id": 3,
-        "name": "Dablist"
-      }, {
-        "id": 4,
-        "name": "Tazz"
-      }, {
-        "id": 5,
-        "name": "Vidoo"
-      }, {
-        "id": 6,
-        "name": "Miboo"
-      }, {
-        "id": 7,
-        "name": "Omba"
-      }, {
-        "id": 8,
-        "name": "Aimbu"
-      }, {
-        "id": 9,
-        "name": "Yombu"
-      }, {
-        "id": 10,
-        "name": "Aibox"
-      }, {
-        "id": 11,
-        "name": "Npath"
-      }, {
-        "id": 12,
-        "name": "Zoomcast"
-      }, {
-        "id": 13,
-        "name": "Browsebug"
-      }, {
-        "id": 14,
-        "name": "Eidel"
-      }, {
-        "id": 15,
-        "name": "Oloo"
-      }, {
-        "id": 16,
-        "name": "Buzzdog"
-      }, {
-        "id": 17,
-        "name": "Buzzster"
-      }, {
-        "id": 18,
-        "name": "Twinder"
-      }, {
-        "id": 19,
-        "name": "Photobean"
-      }, {
-        "id": 20,
-        "name": "Camimbo"
-      }, {
-        "id": 21,
-        "name": "Trudeo"
-      }, {
-        "id": 22,
-        "name": "Zooxo"
-      }, {
-        "id": 23,
-        "name": "Photofeed"
-      }, {
-        "id": 24,
-        "name": "Thoughtworks"
-      }, {
-        "id": 25,
-        "name": "Flipopia"
-      }, {
-        "id": 26,
-        "name": "Jabbersphere"
-      }, {
-        "id": 27,
-        "name": "Dazzlesphere"
-      }, {
-        "id": 28,
-        "name": "Topicshots"
-      }, {
-        "id": 29,
-        "name": "Plambee"
-      }, {
-        "id": 30,
-        "name": "Livetube"
-      }]
+    "departments": [
+        {"id":1,"name":"Sales"},
+        {"id":2,"name":"Marketing"},
+        {"id":3,"name":"Business Development"},
+        {"id":4,"name":"Training"},
+        {"id":5,"name":"Support"},
+        {"id":6,"name":"Services"},
+        {"id":7,"name":"Research and Development"},
+        {"id":8,"name":"Accounting"},
+        {"id":9,"name":"Legal"},
+        {"id":10,"name":"Human Resources"}
+    ],        
+    "employers": [
+        {"id":1,"name":"Kwilith"},
+        {"id":2,"name":"Oloo"},
+        {"id":3,"name":"Aimbo"},
+        {"id":4,"name":"Voolith"},
+        {"id":5,"name":"Twitterbridge"},
+        {"id":6,"name":"Quamba"},
+        {"id":7,"name":"Skynoodle"},
+        {"id":8,"name":"Shuffledrive"},
+        {"id":9,"name":"Jabbersphere"},
+        {"id":10,"name":"Teklist"},
+        {"id":11,"name":"Brainlounge"},
+        {"id":12,"name":"Skimia"},
+        {"id":13,"name":"Livefish"},
+        {"id":14,"name":"Zoomdog"},
+        {"id":15,"name":"Chatterpoint"},
+        {"id":16,"name":"Tagchat"},
+        {"id":17,"name":"Eimbee"},
+        {"id":18,"name":"Eayo"},
+        {"id":19,"name":"Divavu"},
+        {"id":20,"name":"Leenti"},
+        {"id":21,"name":"Kazu"},
+        {"id":22,"name":"Photobug"},
+        {"id":23,"name":"Twinte"},
+        {"id":24,"name":"Thoughtbridge"},
+        {"id":25,"name":"Tanoodle"},
+        {"id":26,"name":"Twitternation"},
+        {"id":27,"name":"Yozio"},
+        {"id":28,"name":"Photofeed"},
+        {"id":29,"name":"Dabtype"},
+        {"id":30,"name":"Oyoloo"}
+    ]    
 }
