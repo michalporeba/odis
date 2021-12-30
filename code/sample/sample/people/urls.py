@@ -1,9 +1,8 @@
 from django.urls import path
 
-from .views import carownership_list, drivinglicenses_list, employment_list
-
+from .views import *
 urlpatterns = [
-    path('cars/', carownership_list),
-    path('employment/', employment_list),
-    path('licenses/', drivinglicenses_list)
+    path('cars/', CarOwnershipView.as_view()),
+    path('employment/', EmploymentView.as_view()),
+    path('licenses/', DrivingLicenseView.as_view())
 ]

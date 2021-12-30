@@ -1,56 +1,40 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
+from rest_framework import generics
 
 # Create your views here.
 
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets, permissions 
 from .serializers import * 
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    permission_classess = [permissions.IsAuthenticated]
-
-
-class GroupViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-
-
-class CarOwnershipViewSet(viewsets.ModelViewSet):
-    queryset = CarOwnership.objects.all()
+class CarOwnershipView(generics.ListAPIView):
     serializer_class = CarOwnershipSerializer
 
+    def get_queryset(self):
+        queryset = CarOwnership.objects.all()
+        query = self.request.query_params.get('q', None)
+        if query is not None:
+            return queryset.filter(owner__contains=query)
+        return queryset
 
-class DrivingLicenseViewSet(viewsets.ModelViewSet):
-    queryset = DrivingLicense.objects.all()
+class DrivingLicenseView(generics.ListAPIView):
     serializer_class = DrivingLicenseSerializer
 
+    def get_queryset(self):
+        queryset = DrivingLicense.objects.all()
+        query = self.request.query_params.get('q', None)
+        if query is not None:
+            return queryset.filter(name__contains=query)
+        return queryset
 
-class EmploymentViewSet(viewsets.ModelViewSet):
-    queryset = Employment.objects.all()
+
+class EmploymentView(generics.ListAPIView):
     serializer_class = EmploymentSerializer
 
-
-def carownership_list(request):
-    if request.method == 'GET':
-        data = CarOwnership.objects.all()
-        serializer = CarOwnershipSerializer(data, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-
-def drivinglicenses_list(request):
-    if request.method == 'GET':
-        data = DrivingLicense.objects.all()
-        serializer = DrivingLicenseSerializer(data, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-
-def employment_list(request): 
-    if request.method == 'GET':
-        data = Employment.objects.all()
-        serializer = EmploymentSerializer(data, many=True)
-        return JsonResponse(serializer.data, safe=False)
+    def get_queryset(self):
+        queryset = Employment.objects.all()
+        query = self.request.query_params.get('q', None)
+        if query is not None:
+            return queryset.filter(name__contains=query)
+        return queryset
