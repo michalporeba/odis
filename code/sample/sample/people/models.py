@@ -25,7 +25,7 @@ class DrivingLicense(AddressMixin):
     
 class CarOwnership(AddressMixin):
     date = models.DateField("Date", blank=False, null=False)
-    owner = models.CharField("Name", max_length=128, blank=False, null=False)
+    owner = models.CharField("Owner", max_length=128, blank=False, null=False)
     make = models.CharField("Make", max_length=32, blank=False, null=False)
     model = models.CharField("Model", max_length=32, blank=False, null=False)
 
