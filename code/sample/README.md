@@ -26,3 +26,15 @@ python3 manage.py runserver
 open `127.0.0.1:8000` in a web browser
 
 
+## Available test data
+
+There are three endpoints seeded with static test data, so that the tests
+and demos can be easily repeated between environments. 
+
+* `http://127.0.0.1:8000/cars/` contains fake car ownership data
+* `http://127.0.0.1:8000/employment/` contains fake employment history data
+* `http://127.0.0.1:8000/licenses/` contains fake driving license records
+
+The records are constructed from [pregenerated fake data](./sample/people/data/). 
+The [sample.json](./sample/people/data/sample.json) file is a specification of how to build the data and can be 
+examined to see what records we should have about each person. 
