@@ -34,6 +34,7 @@ class Command(BaseCommand):
     def seed(self):
         self.prepare_dictionaries()
         samples = self.get_data('sample', 'people')
+        car = None
 
         for sample in samples:
             if sample['id'] <= '0':
@@ -41,7 +42,9 @@ class Command(BaseCommand):
 
             self.stdout.write('  creating ' + sample['name'])
             for car_spec in sample['cars']:
-                car = self.next_car()
+                if car == None or not car_spec.get('same', False):
+                    car = self.next_car()
+                    
                 record = CarOwnership (
                     date = self.ts_to_date(car_spec['ts']),
                     owner = sample['name'],
