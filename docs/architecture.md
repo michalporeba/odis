@@ -16,18 +16,9 @@ To capture the architecture I use the [C4 modelling notation](https://c4model.co
 ## Other Things to Consider
 
 * [Interactions Map](./interactions.md)
+* [Data Exchange Network](./den.md)
 
 ### Software Development Kit (SDK)
 
 The SDK is outside of the TopoSearch Network system. It is intended to be used by service developers to help with the rapid development of endpoint implementing the agreed search protocol. 
 
-### Future improvements
-
-While the Search Node provides all the necessary UI, reacher clients could be created for a better user experience. 
-
-* **Admin Client** - an application for management of the search network.
-* **Search Client** - an application for searching across the network.
-
-## Protocols inside and outside of the network
-
-![Protocols](./images/c4-protocols.png)
