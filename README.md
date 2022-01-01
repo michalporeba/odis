@@ -70,5 +70,7 @@ Have a look at the [solution's architecutre](./docs/architecture.md) as it is de
 * Front-end: [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [Design System](https://design-system.service.gov.uk/), [React](https://reactjs.org/)
 
 &nbsp;
+# Notes
 
+* [Mike Amundsen - Twelve Patterns for Evolvable Web APIs](https://www.youtube.com/watch?v=qolWrn7hNro) - a lot of good ideas how to design interactions
 *TBC*
