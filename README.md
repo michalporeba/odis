@@ -27,11 +27,11 @@ The increasing amount of data, gives rise to a growing number of possible search
 
 **So far there is:**
 * [Sample Data Service](./code/sample/) - to provide test and demo data for the project using a range of formats. 
+* [Data Exchange Network Node](./code/server/) - The server that can act as a node in the network doing all the federation of requests. 
 
 *Later there will be:*
 
 * A 'Standard' that allows for easy searches in data accross a distributed network of services in a range of [interactions](./docs/interactions.md).
-* A service able to act as a node in the search / data exchange network. 
 * A Demo (or two)
 
 ## How? 
