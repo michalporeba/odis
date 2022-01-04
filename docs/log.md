@@ -47,3 +47,13 @@
     * Read [Solving Identity Management in Modern Applications](https://link.springer.com/book/10.1007/978-1-4842-5095-2)
     * Read [Advanced API Security](https://link.springer.com/book/10.1007/978-1-4302-6817-8)
     * Read [UK Digital Identity](https://gds.blog.gov.uk/2021/07/13/a-single-sign-on-and-digital-identity-solution-for-government/)
+
+## Week 3 - ending 2022-01-02
+
+*Finalising the principals for API design, including security.*
+
+### Features completed: 
+
+* Security Considerations
+* API Design Considerations
+* Universal Demo Project

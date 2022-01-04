@@ -69,8 +69,3 @@ Have a look at the [solution's architecutre](./docs/architecture.md) as it is de
 * Back-end: [Python](https://www.python.org/), [Django](https://www.djangoproject.com/)
 * Front-end: [JavaScript](https://en.wikipedia.org/wiki/JavaScript), [Design System](https://design-system.service.gov.uk/), [React](https://reactjs.org/)
 
-&nbsp;
-# Notes
-
-* [Mike Amundsen - Twelve Patterns for Evolvable Web APIs](https://www.youtube.com/watch?v=qolWrn7hNro) - a lot of good ideas how to design interactions
-*TBC*
