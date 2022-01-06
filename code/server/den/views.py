@@ -1,27 +1,15 @@
+from typing import Dict
 from django.shortcuts import render
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
-
-class Wstl():
-  def __init__(self, title: str = ''):
-    self._title = title
-    self._actions = None
-    self._data = None
-
-  def to_data(self):
-    data = {}
-    if self._actions:
-      data['actions'] = self._actions
-    if self._data:
-      data['data'] = self._data
-    if self._title:
-      data['title'] = self._title
-
-    return { "wstl": data }
+from .wstl import Wstl
+from .wstl_django import DjangoWstlContextProvider
 
 class Hello(APIView):
   def get(self, request): 
     wstl = Wstl('Data Exchange Network - Hello')
+    wstl = wstl.with_get_action('sample', 'den-sample')
+    wstl = wstl.with_get_action('target', 'den-target')
 
     return Response(wstl.to_data())
 

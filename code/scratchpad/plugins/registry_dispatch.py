@@ -9,7 +9,6 @@ class PluginBase:
         results = []
         for i in PluginBase.instances:
             results.append(i.hello())
-
         return results
 
 class PluginA(PluginBase):

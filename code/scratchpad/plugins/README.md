@@ -77,3 +77,4 @@ for p in PluginBase.hello():
 The result is this output: 
 >hello from A<br />
 >hello from B
+
