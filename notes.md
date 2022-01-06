@@ -45,3 +45,8 @@ Could result in aggregated results, but feedback would be difficult to show.
 ## Problems that need solving
 
 * The UI has to be progressive and usable with no client side scripting. At the same time the service needs to be ReSTful. How can we return the aggregated results and allow users to drill down to the detail and send feedback? With a single page application it would be easier, as all the infromation could be returned and manipulated on the client side for display, but this cannot be the only option. 
+
+
+## Packaging 
+
+https://medium.com/analytics-vidhya/how-to-create-a-python-library-7d5aea80cc3f

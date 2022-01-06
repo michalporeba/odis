@@ -23,6 +23,7 @@ sys.path.append(str(BASE_DIR / "datanode"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+#DEFAULT_ROOT_URL = "https://127.0.0.1:8001/"
 ALLOWED_HOSTS = []
 
 
