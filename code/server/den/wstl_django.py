@@ -2,7 +2,14 @@ from .wstl import WstlContextProvider
 from django.urls import get_resolver
 from django_kinder_settings import settings
 
-settings.register_if_missing('WSTL_ROOT_URL', '')
+settings.register_if_missing(
+    name='WSTL_ROOT_URL',
+    default='',
+    explanation='''
+The WSTL_ROOT_URL is used to create action URLs.
+It should include protocol, host and if necessary port and path ending with /.
+For example: https://myserver.com:8000/abc/
+''')
 
 class DjangoWstlContextProvider(WstlContextProvider):
     def get_action_url(self, name: str) ->str:

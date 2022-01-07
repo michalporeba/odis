@@ -75,3 +75,25 @@ def test_if_missing_with_custom_explanation():
         explanation='a very long explanation'
     )
     assert 'a very long explanation' == settings.explain('EXPLAINED')
+    assert True == settings.has_default('EXPLAINED')
+    assert False == settings.is_throwing('EXPLAINED')
+
+def test_factory_registration_with_no_default():
+    settings.register_if_missing(
+        name='WITHOUT_DEFAULT',
+        explanation='an explanation'
+    )
+    assert 'an explanation' == settings.explain('WITHOUT_DEFAULT')
+    assert False == settings.has_default('WITHOUT_DEFAULT')
+    assert None == settings.WITHOUT_DEFAULT
+    assert False == settings.is_throwing('WITHOUT_DEFAULT')
+
+def test_factory_registration_with_none_default():
+    settings.register_if_missing(
+        name='WITH_NONE_DEFAULT',
+        explanation='xyz'
+    )
+    assert 'xyz' == settings.explain('WITH_NONE_DEFAULT')
+    assert False == settings.has_default('WITH_NONE_DEFAULT')
+    assert None == settings.WITH_NONE_DEFAULT
+    assert False == settings.is_throwing('WITH_NONE_DEFAULT')

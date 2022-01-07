@@ -7,7 +7,7 @@ def long_description():
 setup(
     name='django-kinder-settings',
     packages=find_packages(include=['django_kinder_settings']),
-    version='0.1.4',
+    version='0.1.7',
     author='Michal Poreba',
     license='MIT',
     description='A kinder sort of django settings',

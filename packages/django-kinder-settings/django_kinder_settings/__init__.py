@@ -8,9 +8,9 @@ class SettingDefinition:
         self.default = None
         self.has_explanation = False
         self.explanation = f'''
-    Looks like you registered a kinder setting for {key}
-    but forgotten to provide explanation. Find `settings.register("{key}")`
-    and change it to `settings.register("{key}").with_explanation("your explanation")`
+Looks like you registered a kinder setting for {key}
+but forgotten to provide explanation. Find `settings.register("{key}")`
+and change it to `settings.register("{key}").with_explanation("your explanation")`
 '''
 
     def with_explanation(self, explanation: str):
@@ -30,23 +30,23 @@ class SettingDefinition:
     def _to_user_message(self) -> str:
         if self.has_default:
             return f'''
-    It looks like you tried to access [{self.key}] setting but it was not configured.
-    The default value [] will be used but it might not be what your project needs.  
+It looks like you tried to access [{self.key}] setting but it was not configured.
+The default value [] will be used but it might not be what your project needs.  
 
-    {self.explanation}
+{self.explanation}
 
-    Even if the default value works for you, it is better to explicitly set it.
-    If you need more information on how to configure django projects check
-    https://docs.djangoproject.com/en/4.0/topics/settings/
+Even if the default value works for you, it is better to explicitly set it.
+If you need more information on how to configure django projects check
+https://docs.djangoproject.com/en/4.0/topics/settings/
 '''
         else:
             return f'''
-    It looks like you tried to access [{self.key}] setting but it was not configured.
+It looks like you tried to access [{self.key}] setting but it was not configured.
 
-    {self.explanation}
+{self.explanation}
 
-    If you need more information on how to configure django projects check
-    https://docs.djangoproject.com/en/4.0/topics/settings/
+If you need more information on how to configure django projects check
+https://docs.djangoproject.com/en/4.0/topics/settings/
 '''
 
 
@@ -62,6 +62,7 @@ class KinderSettings():
                 if definition.throwing:
                     raise AttributeError(definition._to_user_message())
                 elif definition.has_default:
+                    print(definition._to_user_message())
                     return definition.default
                 else:  
                     print(definition._to_user_message())
@@ -79,9 +80,11 @@ class KinderSettings():
         KinderSettings.definitions[name] = definition
         return definition
 
-    def register_if_missing(self, name: str, default: any, explanation: str = None) -> None:
+    def register_if_missing(self, name: str, default: any = None, explanation: str = None) -> None:
         if not name in KinderSettings.definitions.keys():
-            definition = self.register(name).with_default_value(default)
+            definition = self.register(name)
+            if not default is None:
+                definition.with_default_value(default)
             if not explanation is None:
                 definition.with_explanation(explanation)
 
@@ -93,6 +96,16 @@ class KinderSettings():
             else: 
                 return f'Sorry, the {name} setting is not explained!'
         return f'Sorry, the {name} setting is not defined!'
+
+    def is_throwing(self, name: str) -> bool:
+        if name in KinderSettings.definitions.keys():
+            return KinderSettings.definitions[name].throwing
+        return None
+
+    def has_default(self, name: str) -> bool: 
+        if name in KinderSettings.definitions.keys():
+            return KinderSettings.definitions[name].has_default
+        return None
 
 
 settings = KinderSettings()
