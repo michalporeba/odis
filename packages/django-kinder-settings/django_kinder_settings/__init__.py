@@ -25,11 +25,28 @@ class SettingDefinition:
         self.throwing = True
         return self
 
-    def to_user_message(self):
-        return f'''
-        It looks like you tried to access [{self.key}] setting but is not defined in the settings file.
-        {self.explanation}
-        '''
+    def _to_user_message(self) -> str:
+        if self.has_default:
+            return f'''
+            It looks like you tried to access [{self.key}] setting but it was not configured.
+            The default value [] will be used but it might not be what your project needs.  
+
+            {self.explanation}
+
+            Even if the default value works for you, it is better to explicitly set it.
+            If you need more information on how to configure django projects check
+            https://docs.djangoproject.com/en/4.0/topics/settings/
+            '''
+        else:
+            return f'''
+            It looks like you tried to access [{self.key}] setting but it was not configured.
+
+            {self.explanation}
+
+            If you need more information on how to configure django projects check
+            https://docs.djangoproject.com/en/4.0/topics/settings/
+            '''
+
 
 class KinderSettings():
     definitions = {}
@@ -38,16 +55,14 @@ class KinderSettings():
         try:
             return getattr(dsettings, name)
         except AttributeError as err:
-            print('xxxxxxxxx')
             if name in KinderSettings.definitions.keys():
                 definition = KinderSettings.definitions[name]
                 if definition.throwing:
-                    raise AttributeError(definition.to_user_message())
+                    raise AttributeError(definition._to_user_message())
                 elif definition.has_default:
                     return definition.default
                 else:  
-                    print(definition.to_user_message())
-                    print('returning default value')
+                    print(definition._to_user_message())
                     return None  
             raise err 
         
