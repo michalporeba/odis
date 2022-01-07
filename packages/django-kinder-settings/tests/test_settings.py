@@ -58,3 +58,20 @@ def test_if_missing_registrations_can_be_repeated():
     assert '1' == settings.IF_MISSING
     settings.register_if_missing('IF_MISSING', '2')
     assert '1' == settings.IF_MISSING
+
+def test_unregistered_unexplained():
+    assert 'THE_UNDEFINED' in settings.explain('THE_UNDEFINED')
+    assert 'is not defined' in settings.explain('THE_UNDEFINED')
+    
+def test_registered_unexplained():
+    settings.register('THE_UNEXPLAINED')
+    assert 'THE_UNEXPLAINED' in settings.explain('THE_UNEXPLAINED')
+    assert 'is not explained' in settings.explain('THE_UNEXPLAINED')
+
+def test_if_missing_with_custom_explanation():
+    settings.register_if_missing(
+        name='EXPLAINED',
+        default='d',
+        explanation='a very long explanation'
+    )
+    assert 'a very long explanation' == settings.explain('EXPLAINED')

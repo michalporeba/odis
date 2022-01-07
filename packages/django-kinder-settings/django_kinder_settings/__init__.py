@@ -79,9 +79,20 @@ class KinderSettings():
         KinderSettings.definitions[name] = definition
         return definition
 
-    def register_if_missing(self, name: str, value: any):
+    def register_if_missing(self, name: str, default: any, explanation: str = None) -> None:
         if not name in KinderSettings.definitions.keys():
-            return self.register(name).with_default_value(value)
+            definition = self.register(name).with_default_value(default)
+            if not explanation is None:
+                definition.with_explanation(explanation)
+
+    def explain(self, name: str) -> str:
+        if name in KinderSettings.definitions.keys():
+            definition = KinderSettings.definitions[name]
+            if definition.has_explanation:
+                return definition.explanation
+            else: 
+                return f'Sorry, the {name} setting is not explained!'
+        return f'Sorry, the {name} setting is not defined!'
 
 
 settings = KinderSettings()

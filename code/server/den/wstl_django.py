@@ -1,21 +1,17 @@
-from .wstl import Wstl, WstlContextProvider
+from .wstl import WstlContextProvider
 from django.urls import get_resolver
-
 from django_kinder_settings import settings
 
+settings.register_if_missing('WSTL_ROOT_URL', '')
 
-settings.kindly_register('hello')
-
-    # Do something
 class DjangoWstlContextProvider(WstlContextProvider):
     def get_action_url(self, name: str) ->str:
         urls = get_resolver().reverse_dict
         if name in urls.keys():
-            (data, b, c, d) = urls[name]
+            (data, _, _, _) = urls[name]
             if len(data)>0:
-                (url, pattern) = data[0]
-                return settings.kindly_get('hello')
-                #return settings.DEFAULT_ROOT_URL+url
+                (url, _) = data[0]
+                return settings.WSTL_ROOT_URL+url
         return None            
 
         

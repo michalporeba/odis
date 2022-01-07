@@ -7,7 +7,7 @@ name = "pypi"
 django = "*"
 black = "*"
 isort = "*"
-django_kinder_settings = {path = "./../packages/django_kinder_settings/dist/django_kinder_settings-0.0.7-py3-none-any.whl"}
+django-kinder-settings = {path = "./../../packages/django-kinder-settings/dist/django_kinder_settings-0.1.4-py3-none-any.whl"}
 
 [dev-packages]
 
