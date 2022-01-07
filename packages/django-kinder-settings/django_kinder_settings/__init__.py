@@ -7,10 +7,10 @@ class SettingDefinition:
         self.has_default = False
         self.default = None
         self.explanation = f'''
-        Looks like you registered a kinder setting for {key}
-        but forgotten to provide explanation. Find `kindly_register("key")`
-        and change it to `kindly_register("key").with_explanation("your explanation")`
-        '''
+    Looks like you registered a kinder setting for {key}
+    but forgotten to provide explanation. Find `settings.register("{key}")`
+    and change it to `settings.register("{key}").with_explanation("your explanation")`
+'''
 
     def with_explanation(self, explanation: str):
         self.explanation = explanation
@@ -28,24 +28,24 @@ class SettingDefinition:
     def _to_user_message(self) -> str:
         if self.has_default:
             return f'''
-            It looks like you tried to access [{self.key}] setting but it was not configured.
-            The default value [] will be used but it might not be what your project needs.  
+    It looks like you tried to access [{self.key}] setting but it was not configured.
+    The default value [] will be used but it might not be what your project needs.  
 
-            {self.explanation}
+    {self.explanation}
 
-            Even if the default value works for you, it is better to explicitly set it.
-            If you need more information on how to configure django projects check
-            https://docs.djangoproject.com/en/4.0/topics/settings/
-            '''
+    Even if the default value works for you, it is better to explicitly set it.
+    If you need more information on how to configure django projects check
+    https://docs.djangoproject.com/en/4.0/topics/settings/
+'''
         else:
             return f'''
-            It looks like you tried to access [{self.key}] setting but it was not configured.
+    It looks like you tried to access [{self.key}] setting but it was not configured.
 
-            {self.explanation}
+    {self.explanation}
 
-            If you need more information on how to configure django projects check
-            https://docs.djangoproject.com/en/4.0/topics/settings/
-            '''
+    If you need more information on how to configure django projects check
+    https://docs.djangoproject.com/en/4.0/topics/settings/
+'''
 
 
 class KinderSettings():
