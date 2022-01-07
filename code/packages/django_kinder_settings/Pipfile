@@ -8,6 +8,7 @@ wheel = "*"
 setuptools = "*"
 twine = "*"
 pytest = "*"
+django = "*"
 
 [dev-packages]
 

@@ -1,7 +1,10 @@
 from .wstl import Wstl, WstlContextProvider
 from django.urls import get_resolver
-#from django.conf import settings
+
 from django_kinder_settings import settings
+
+
+settings.kindly_register('hello')
 
     # Do something
 class DjangoWstlContextProvider(WstlContextProvider):
@@ -11,7 +14,7 @@ class DjangoWstlContextProvider(WstlContextProvider):
             (data, b, c, d) = urls[name]
             if len(data)>0:
                 (url, pattern) = data[0]
-                return settings.KinderSettings.get('hello')
+                return settings.kindly_get('hello')
                 #return settings.DEFAULT_ROOT_URL+url
         return None            
 
