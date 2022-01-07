@@ -6,6 +6,7 @@ class SettingDefinition:
         self.throwing = False
         self.has_default = False
         self.default = None
+        self.has_explanation = False
         self.explanation = f'''
     Looks like you registered a kinder setting for {key}
     but forgotten to provide explanation. Find `settings.register("{key}")`
@@ -13,6 +14,7 @@ class SettingDefinition:
 '''
 
     def with_explanation(self, explanation: str):
+        self.has_explanation = True
         self.explanation = explanation
         return self 
 
@@ -76,6 +78,10 @@ class KinderSettings():
         definition = SettingDefinition(name)
         KinderSettings.definitions[name] = definition
         return definition
+
+    def register_if_missing(self, name: str, value: any):
+        if not name in KinderSettings.definitions.keys():
+            return self.register(name).with_default_value(value)
 
 
 settings = KinderSettings()

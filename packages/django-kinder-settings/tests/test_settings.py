@@ -34,3 +34,27 @@ def test_registered_not_defined_throwing_with_custom_explanation():
     with pytest.raises(AttributeError) as err: 
         settings.THROWING_WITH_CUSTOM_EXPLANATION
     assert 'abcdef' in str(err.value)
+
+def test_multiple_registrations():
+    settings.register('MULTIPLE').with_default_value('1')
+    assert '1' == settings.MULTIPLE
+    settings.register('MULTIPLE').with_default_value('2')
+    assert '2' == settings.MULTIPLE
+
+def test_if_missing_registration():
+    settings.register('NOT_MISSING').with_default_value('i_am_here')
+    assert 'i_am_here' == settings.NOT_MISSING
+    settings.register_if_missing('NOT_MISSING', 'a_factory_default')
+    assert 'i_am_here' == settings.NOT_MISSING
+
+def test_if_missing_does_not_stop_registration():
+    settings.register_if_missing('WITH_FACTORY_DEFAULT', 'default')
+    assert 'default' == settings.WITH_FACTORY_DEFAULT
+    settings.register('WITH_FACTORY_DEFAULT').with_default_value('custom')
+    assert 'custom' == settings.WITH_FACTORY_DEFAULT
+
+def test_if_missing_registrations_can_be_repeated():
+    settings.register_if_missing('IF_MISSING', '1')
+    assert '1' == settings.IF_MISSING
+    settings.register_if_missing('IF_MISSING', '2')
+    assert '1' == settings.IF_MISSING
