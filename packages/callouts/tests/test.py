@@ -20,6 +20,11 @@ def query_first(func) -> callable:
     
 def t(c, n):
     raise Exception('xxx')
+def dispatch_wrapper(functions: list) -> list:
+    def wrapper(*args, **kwargs):
+        for f in functions: 
+            print ('would be executing ' + f.__qualname__)
+    return wrapper
 
 def base(cls):
     class CalloutsBase(cls):
@@ -31,10 +36,20 @@ def base(cls):
             if name.startswith('_'):
                 return
 
+            if f.__qualname__.startswith(cls.__name__+'.'):
+                return 
+
+            base_function = getattr(cls, name, None)
+            if base_function is None: 
+                return 
+
             print(f'adding {f.__qualname__} to {cls.__name__}')
             if f.__name__ not in cls._implementations.keys():
                 cls._implementations[f.__name__] = [f]
                 print('first registration')
+                setattr(cls, name, dispatch_wrapper(cls._implementations[f.__name__]))
+                print(getattr(cls, name, None))
+                print(getattr(getattr(cls, name, None), 'purpose', 'none'))
             else:
                 cls._implementations[f.__name__].append(f)
             
@@ -63,6 +78,7 @@ def query_test(func: callable) -> callable:
     def wrapper(*args, **kwargs):
         print()
         #return func()
+    setattr(wrapper, 'purpose', 'xxx')
     return wrapper
 
 
@@ -72,16 +88,17 @@ def query_test(func: callable) -> callable:
 
 @base
 class APlugin:
+    @query_test
     def get_name() -> list:
         pass
 
 
 class FirstA(APlugin):
-    pass 
+    def get_name(self):
+        return 'a first'
 
 class SecondA(APlugin):
-    def get_name(self):
-        return 'a second'
+    pass
 
 class ThirdA(APlugin):
     def get_name(self):
