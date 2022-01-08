@@ -20,6 +20,10 @@ class Wstl():
     })
     return self
 
+  def add_data_item(self, data):
+    self._data += [data]
+    return self
+
   def to_data(self):
     data = {}
     if self._actions:
