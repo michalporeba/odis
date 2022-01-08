@@ -14,9 +14,16 @@ class APlugin:
     def get_not_once_implemented() -> str:
         return 'default value'
 
+    @callouts.flat 
+    def get_many() -> list:
+        pass
+
 class FirstA(APlugin):
     def get_id() -> int:
         return 1
+
+    def get_many() -> list:
+        return [10, 11]
 
 class SecondA(APlugin):
     def get_id() -> int:
@@ -25,12 +32,18 @@ class SecondA(APlugin):
     def get_name() -> str:
         return 'a second'
 
+    def get_many() -> list: 
+        return 12
+
 class ThirdA(APlugin):
     def get_id() -> int:
         return 3
 
     def get_name() -> str:
         return 'a thrid'
+
+    def get_many() -> list: 
+        return 'and more'
 
 @callouts.base
 class BPlugin:
@@ -72,3 +85,6 @@ def test_return_all_in_a():
     
 def test_return_all_in_b():
     assert [None, None] == BPlugin.get_id()
+
+def test_return_many_in_a():
+    assert [10, 11, 12, 'and more'] == APlugin.get_many()

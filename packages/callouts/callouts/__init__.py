@@ -17,12 +17,25 @@ def _get_first_wrapper(functions: list) -> any:
             return functions[0]()
     return wrapper
 
+def _get_flat_wrapper(functions: list) -> any:
+    def wrapper(*args, **kwargs):
+        results = []
+        for v in [f() for f in functions]:
+            if type(v) == list: 
+                results += v
+            else:
+                results += [v]
+        return results
+    return wrapper
+
 def _wrap(cls, name):
     template = getattr(cls, name, None)
     callout_mode = getattr(template, '_callouts_mode', 'query_all')
 
     if callout_mode == 'first':
         setattr(cls, name, _get_first_wrapper(cls._implementations[name]))
+    elif callout_mode == 'flat':
+        setattr(cls, name, _get_flat_wrapper(cls._implementations[name]))
     else:
         setattr(cls, name, _query_all_wrapper(cls._implementations[name]))
         
@@ -34,6 +47,12 @@ def get_first(func: callable) -> any:
     setattr(wrapper, '_callouts_mode', 'first')
     return wrapper
     
+def flat(func: callable) -> any: 
+    def wrapper(*args, **kwargs):
+        func()
+    setattr(wrapper, '_callouts_mode', 'flat')
+    return wrapper
+
 def base(cls):
     def _private_or_internal(f: callable) -> bool:
         return f.__name__.startswith('_')
