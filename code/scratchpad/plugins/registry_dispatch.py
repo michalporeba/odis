@@ -61,3 +61,5 @@ class Third(FancyPluginBase):
 
 for p in FancyPluginBase.dispatch():
     print(p)
+
+

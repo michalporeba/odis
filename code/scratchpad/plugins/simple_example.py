@@ -37,9 +37,12 @@ class PluginBase:
 class First(PluginBase):
     def options(self) -> any:
         return 'from first'
-    
+
+
 class Second(PluginBase):
     def options(self) -> any:
         return ['from second']
 
+
+# This produces the desired output
 print(PluginBase.options())
