@@ -1,4 +1,4 @@
-from .wstl import WstlContextProvider
+from .wstl import WstlContext
 from django.urls import get_resolver
 from django_kinder_settings import settings
 
@@ -11,8 +11,8 @@ It should include protocol, host and if necessary port and path ending with /.
 For example: https://myserver.com:8000/abc/
 ''')
 
-class DjangoWstlContextProvider(WstlContextProvider):
-    def get_action_url(self, name: str) ->str:
+class DjangoWstlContext(WstlContext):
+    def get_action_url(name: str) ->str:
         urls = get_resolver().reverse_dict
         if name in urls.keys():
             (data, _, _, _) = urls[name]
@@ -20,6 +20,3 @@ class DjangoWstlContextProvider(WstlContextProvider):
                 (url, _) = data[0]
                 return settings.WSTL_ROOT_URL+url
         return None            
-
-        
-

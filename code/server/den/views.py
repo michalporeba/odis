@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
 from .wstl import Wstl
-from .wstl_django import DjangoWstlContextProvider
+from .wstl_django import DjangoWstlContext
 
 class Hello(APIView):
   def get(self, request): 

@@ -7,7 +7,9 @@ name = "pypi"
 django = "*"
 black = "*"
 isort = "*"
+callouts = {path = "./../../packages/callouts/dist/callouts-0.1.0-py3-none-any.whl"}
 django-kinder-settings = {path = "./../../packages/django-kinder-settings/dist/django_kinder_settings-0.1.7-py3-none-any.whl"}
+autologging = "*"
 
 [dev-packages]
 
