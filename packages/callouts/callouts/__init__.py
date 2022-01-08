@@ -1,5 +1,11 @@
 from types import FunctionType
-    
+
+def _always_array(value: any) -> list:
+    if type(value) == list:  
+        return value
+    else: 
+        return [value]
+            
 def _query_all_wrapper(functions: list) -> any:
     def wrapper(*args, **kwargs):
         return [f() for f in functions]
@@ -11,12 +17,6 @@ def _get_first_wrapper(functions: list) -> any:
             return functions[0]()
     return wrapper
 
-def get_first(func: callable) -> any: 
-    def wrapper(*args, **kwargs):
-        func()
-    setattr(wrapper, '_callouts_mode', 'first')
-    return wrapper
-
 def _wrap(cls, name):
     template = getattr(cls, name, None)
     callout_mode = getattr(template, '_callouts_mode', 'query_all')
@@ -26,60 +26,51 @@ def _wrap(cls, name):
     else:
         setattr(cls, name, _query_all_wrapper(cls._implementations[name]))
         
+### decorators
+
+def get_first(func: callable) -> any: 
+    def wrapper(*args, **kwargs):
+        func()
+    setattr(wrapper, '_callouts_mode', 'first')
+    return wrapper
     
 def base(cls):
+    def _private_or_internal(f: callable) -> bool:
+        return f.__name__.startswith('_')
+
+    def _is_the_template(f: callable) -> bool:
+        return f.__qualname__.startswith(cls.__name__+'.')
+
+    def _there_is_no_template(f: callable) -> bool: 
+        return getattr(cls, f.__name__, None) is None 
+
+    def _find_all_methods(obj: any) -> list: 
+        attributes = [getattr(obj, a) for a in dir(obj)]
+        return [a for a in attributes if type(a) == FunctionType]
+
     class CalloutsBase(cls):
-        cls._instances = []
         cls._implementations = {}
 
         def _register_implementation(f: callable) -> None:
-            name = f.__name__
-            if name.startswith('_'):
-                return
-
-            if f.__qualname__.startswith(cls.__name__+'.'):
+            if _private_or_internal(f) \
+                or _is_the_template(f) \
+                or _there_is_no_template(f): 
                 return 
 
-            base_function = getattr(cls, name, None)
-            if base_function is None: 
-                return 
-
-            print(f'adding {f.__qualname__} to {cls.__name__}')
             if f.__name__ not in cls._implementations.keys():
-                cls._implementations[f.__name__] = [f]
-                print('first registration')
-                _wrap(cls, name)
-                print(getattr(cls, name, None))
-                print(getattr(getattr(cls, name, None), 'purpose', 'none'))
+                template = getattr(cls, f.__name__, None)
+                # don't register methods that are not defined on plugin base
+                if template is not None: 
+                    cls._implementations[f.__name__] = [f]
+                    _wrap(cls, f.__name__)
             else:
                 cls._implementations[f.__name__].append(f)
             
         def __init_subclass__(cls, **kwargs):
             super().__init_subclass__(**kwargs)
-            cls._instances.append(cls())
-
-            print(f'------------{cls.__name__}')
-            for name in dir(cls):
-                if not name.startswith('_'):
-                    f = getattr(cls, name, None)
-                    if type(f) == FunctionType: 
-                        cls._register_implementation(f)
+            for m in _find_all_methods(cls):
+                cls._register_implementation(m)
                         
-
-        @staticmethod
-        def _always_array(value: any) -> list:
-            if type(value) == list:  
-                return value
-            else: 
-                return [value]
-        
     return CalloutsBase
-
-def query_test(func: callable) -> callable:
-    def wrapper(*args, **kwargs):
-        print()
-        #return func()
-    setattr(wrapper, 'purpose', 'xxx')
-    return wrapper
 
 
