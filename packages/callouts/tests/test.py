@@ -22,8 +22,7 @@ def t(c, n):
     raise Exception('xxx')
 def dispatch_wrapper(functions: list) -> list:
     def wrapper(*args, **kwargs):
-        for f in functions: 
-            print ('would be executing ' + f.__qualname__)
+        return functions[0]()
     return wrapper
 
 def base(cls):
@@ -94,14 +93,14 @@ class APlugin:
 
 
 class FirstA(APlugin):
-    def get_name(self):
+    def get_name():
         return 'a first'
 
 class SecondA(APlugin):
     pass
 
 class ThirdA(APlugin):
-    def get_name(self):
+    def get_name():
         return 'a thrid'
 
 @base
@@ -110,7 +109,7 @@ class BPlugin:
         pass
 
 class FirstB(BPlugin):
-    def get_name(self):
+    def get_name():
         return 'b first'
 
 
