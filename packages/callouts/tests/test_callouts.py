@@ -7,7 +7,7 @@ class APlugin:
     def get_id() -> int: 
         return 0
 
-    @callouts.get_first
+    @callouts.first
     def get_name() -> str:
         pass
 
@@ -50,8 +50,12 @@ class BPlugin:
     def get_id() -> int:
         pass 
 
-    @callouts.get_first
+    @callouts.first
     def get_name() -> str:
+        pass
+
+    @callouts.flat
+    def do_your_maths(*args) -> list:
         pass
 
 class FirstB(BPlugin):
@@ -61,12 +65,22 @@ class FirstB(BPlugin):
     def get_name() -> str:
         return 'b first'
 
+    def do_your_maths(*args):
+        result = 0
+        for a in args:
+            result += a
+        return result 
+
 class SecondB(BPlugin):
     def get_id() -> int:
         pass 
     def get_name() -> str:
         return 'b second'
-
+    def do_your_maths(*args):
+        result = 1
+        for a in args:
+            result *= a 
+        return result 
 
 
 ##### TESTS #######
@@ -88,3 +102,6 @@ def test_return_all_in_b():
 
 def test_return_many_in_a():
     assert [10, 11, 12, 'and more'] == APlugin.get_many()
+
+def test_parameter_passing():
+    assert [9, 24] == BPlugin.do_your_maths(2,3,4)

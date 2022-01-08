@@ -1,26 +1,20 @@
 from types import FunctionType
-
-def _always_array(value: any) -> list:
-    if type(value) == list:  
-        return value
-    else: 
-        return [value]
             
 def _query_all_wrapper(functions: list) -> any:
     def wrapper(*args, **kwargs):
-        return [f() for f in functions]
+        return [f(*args, **kwargs) for f in functions]
     return wrapper
 
 def _get_first_wrapper(functions: list) -> any:
     def wrapper(*args, **kwargs):
         if len(functions) > 0:
-            return functions[0]()
+            return functions[0](*args, **kwargs)
     return wrapper
 
 def _get_flat_wrapper(functions: list) -> any:
     def wrapper(*args, **kwargs):
         results = []
-        for v in [f() for f in functions]:
+        for v in [f(*args, **kwargs) for f in functions]:
             if type(v) == list: 
                 results += v
             else:
@@ -41,15 +35,15 @@ def _wrap(cls, name):
         
 ### decorators
 
-def get_first(func: callable) -> any: 
+def first(func: callable) -> any: 
     def wrapper(*args, **kwargs):
-        func()
+        func(*args, **kwargs)
     setattr(wrapper, '_callouts_mode', 'first')
     return wrapper
     
 def flat(func: callable) -> any: 
     def wrapper(*args, **kwargs):
-        func()
+        func(*args, **kwargs)
     setattr(wrapper, '_callouts_mode', 'flat')
     return wrapper
 
