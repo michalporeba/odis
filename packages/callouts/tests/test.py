@@ -1,4 +1,5 @@
 from types import FunctionType
+from typing import Type
 
 
 def query_first(func) -> callable:
@@ -9,7 +10,7 @@ def query_first(func) -> callable:
             if getattr(i, fn, None) \
                 and not getattr(__class__, fn).__qualname__==getattr(i, fn).__qualname__:
                 try:
-                    results += __class__.always_array(getattr(i, fn)())
+                    results += __class__._always_array(getattr(i, fn)())
                 except Exception as err:
                     print(err)
                     pass
@@ -23,25 +24,34 @@ def t(c, n):
 def base(cls):
     class CalloutsBase(cls):
         cls.instances = []
+        cls._implementations = {}
+
+        def _register_implementation(f: callable) -> None:
+            name = f.__name__
+            if name.startswith('_'):
+                return
+
+            print(f'adding {f.__qualname__} to {cls.__name__}')
+            if f.__name__ not in cls._implementations.keys():
+                cls._implementations[f.__name__] = [f]
+                print('first registration')
+            else:
+                cls._implementations[f.__name__].append(f)
+            
         def __init_subclass__(cls, **kwargs):
             super().__init_subclass__(**kwargs)
             cls.instances.append(cls())
 
-        def __new__(cls):
-            print('instantiating ' + str(cls.__name__))
+            print('------------')
             for name in dir(cls):
                 if not name.startswith('_'):
                     f = getattr(cls, name, None)
                     if type(f) == FunctionType: 
-                        purpose = getattr(f, 'purpose', 'none')
-                        print(f' {name} -> {purpose}')
+                        cls._register_implementation(f)
                         
-                    #print(f' {name} {getattr(cls[name], 'purpose', 'none at all'))
-                    
-            return super(CalloutsBase, cls).__new__(cls)
 
         @staticmethod
-        def always_array(value: any) -> list:
+        def _always_array(value: any) -> list:
             if type(value) == list:  
                 return value
             else: 
@@ -51,7 +61,8 @@ def base(cls):
 
 def query_test(func: callable) -> callable:
     def wrapper(*args, **kwargs):
-        func.purpose = 'just testing'
+        print()
+        #return func()
     return wrapper
 
 
@@ -61,12 +72,9 @@ def query_test(func: callable) -> callable:
 
 @base
 class APlugin:
-    @query_test
-    def get_name() -> str:
-        return ''
+    def get_name() -> list:
+        pass
 
-    def __init__(self):
-        self.a = 'x'
 
 class FirstA(APlugin):
     pass 
@@ -81,7 +89,6 @@ class ThirdA(APlugin):
 
 @base
 class BPlugin:
-    @query_test 
     def get_name() -> str:
         pass
 
@@ -90,4 +97,6 @@ class FirstB(BPlugin):
         return 'b first'
 
 
-APlugin.get_name()
+print(APlugin._implementations)
+print(APlugin.get_name())
+#print(FirstA().get_name())
