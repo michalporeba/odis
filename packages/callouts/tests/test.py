@@ -42,7 +42,7 @@ def base(cls):
             super().__init_subclass__(**kwargs)
             cls.instances.append(cls())
 
-            print('------------')
+            print(f'------------{cls.__name__}')
             for name in dir(cls):
                 if not name.startswith('_'):
                     f = getattr(cls, name, None)
