@@ -25,15 +25,21 @@ cp code/local.template code/server/cofing/settings/local.py
 Open the `local.py` file and enter a new random value for `SECRET_KEY`. 
 
 ```shell
+cd code/server
 pipenv shell
 pipenv sync
-cd code/server
-python3 manage.py migrate
-python3 manage.py runserver
+python manage.py migrate
+python manage.py runserver
 ```
 
 open `127.0.0.1:8001` in a web browser
 
+To run demo instances:
+```
+python manage.py migrate --database=demo1
+python manage.py runserver 8081 --settings=config.settings.demo1
+```
+or using make simply `make demo1` from the `code/server` folder.
 
 &nbsp;
 # Details

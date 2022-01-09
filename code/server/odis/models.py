@@ -1,5 +1,6 @@
 import uuid 
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
 MAX_URL_LENGTH = 256
@@ -46,7 +47,7 @@ class Service(DisModel):
     audience_type = models.CharField(max_length=32, blank=True, null=True)
     audience_administrative_area_name = models.CharField(max_length=64, blank=True, null=True)
     category = models.CharField(max_length=64, blank=True, null=True)
-    description = models.TextChoices()
+    description = models.TextField()
     logo = models.CharField(max_length=MAX_URL_LENGTH, blank=True, null=True)
-    provider = models.ForeignKey(Organisation)
+    provider = models.ForeignKey(Organisation, on_delete=CASCADE)
 

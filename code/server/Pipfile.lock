@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "795258f52aea73ac5c6c8e281ecbb3c23c9d52a082ffeeb3b8e03d14764a886c"
+            "sha256": "0531ebe9d6e61cda22a05b856da3434393da20a0aa2e202757409fb07495f354"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -66,10 +66,10 @@
         },
         "django-kinder-settings": {
             "hashes": [
-                "sha256:da994f9da086e6a56d7e75cb5c6a3b282166398b5c33e942582c50ac389503e1"
+                "sha256:6676630bad679f14bed05bf173787620e8f76352d4c51c9c25ed741cba8b5d16"
             ],
-            "path": "./../../packages/django-kinder-settings/dist/django_kinder_settings-0.1.7-py3-none-any.whl",
-            "version": "==0.1.7"
+            "index": "pypi",
+            "version": "==0.1.8"
         },
         "isort": {
             "hashes": [
@@ -122,7 +122,7 @@
                 "sha256:4ca091dea149f945ec56afb48dae714f21e8692ef22a395223bcd328961b6a0e",
                 "sha256:7f001e5ac290a0c0401508864c7ec868be4e701886d5b573a9528ed3973d9d3b"
             ],
-            "markers": "python_version >= '3.6'",
+            "markers": "python_version >= '3.10'",
             "version": "==4.0.1"
         }
     },
