@@ -1,8 +1,8 @@
-# TopoSearch
+# Open Distributed Information Sharing System (ODIS)
 
 A federated search service with result aggregation, moderation and feedback mechanism to potentially update the source data. I will try to explain what this means, but first, a brief **disclaimer**:
 
-> *The code and ideas developed in this repository are part of my dissertation. I expect it will be very active until Summary 2022. What will happen next will depend on how useful the output is. If you are interested in similar topics to those used in the project, I'd be [happy to chat](https://www.linkedin.com/in/michalporeba/). If you think my approach makes no sense, I'd love to hear from you - [create an issue](https://github.com/michalporeba/toposearch/issues/new/choose) and let me know where I went wrong.*
+> *The code and ideas developed in this repository are part of my dissertation. I expect it will be very active until Summary 2022. What will happen next will depend on how useful the output is. If you are interested in similar topics to those used in the project, I'd be [happy to chat](https://www.linkedin.com/in/michalporeba/). If you think my approach makes no sense, I'd love to hear from you - [create an issue](https://github.com/michalporeba/odis/issues/new/choose) and let me know where I went wrong.*
 
 Now let me tell you more about the TopoSearch idea…
 

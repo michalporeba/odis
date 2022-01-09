@@ -13,7 +13,7 @@ setup(
     description='A kinder sort of django settings',
     long_description=long_description(),
     long_description_content_type='text/markdown',
-    url='https://github.com/michalporeba/toposearch/packages/django-kinder-settings',
+    url='https://github.com/michalporeba/odis/packages/django-kinder-settings',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',

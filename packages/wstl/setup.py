@@ -13,7 +13,7 @@ setup(
     description='A WSTL library for python ReSTful services',
     long_description=long_description(),
     long_description_content_type='text/markdown',
-    url='https://github.com/michalporeba/toposearch/packages/wstl',
+    url='https://github.com/michalporeba/odis/packages/wstl',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',

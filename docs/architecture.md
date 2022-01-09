@@ -20,5 +20,5 @@ To capture the architecture I use the [C4 modelling notation](https://c4model.co
 
 ### Software Development Kit (SDK)
 
-The SDK is outside of the TopoSearch Network system. It is intended to be used by service developers to help with the rapid development of endpoint implementing the agreed search protocol. 
+The SDK is outside of the ODIS Service. It is intended to be used by service developers to help with the rapid development of endpoint implementing the agreed search protocol. 
 

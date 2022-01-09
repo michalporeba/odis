@@ -6,7 +6,7 @@ This document is part of the [architecture](./architecture.md) topic.
 
 ![Container](./images/c4-container.png)
 
-In the container view, we can look closer at the elements of the TopoSearch Network. 
+In the container view, we can look closer at the elements of the Open Distributed Information Sharing system. 
 
 * **Search Node** - the service providing the API and the basic UI to build and operate the search network. It does the query federation, response moderation and aggregation. 
 * **Standard Connector** - a plugin facilitating search services that implement the standard protocol. 
