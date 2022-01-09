@@ -5,8 +5,8 @@ def long_description():
         return readme.read()
 
 setup(
-    name='alps',
-    packages=find_packages(include=['alps']),
+    name='malps',
+    packages=find_packages(include=['malps']),
     version='0.0.1',
     author='Michal Poreba',
     license='MIT',
