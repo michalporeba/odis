@@ -8,18 +8,18 @@ from .models import Connection
 
 class Hello(APIView):
   def get(self, request): 
-    wstl = Wstl('Data Exchange Network - Hello')
-    wstl = wstl.with_get_action('self', 'den-home')
-    wstl = wstl.with_get_action('home', 'den-home')
-    wstl = wstl.with_get_action('info', 'den-info')
+    wstl = Wstl('ODIS - Hello')
+    wstl = wstl.with_get_action('self', 'odis-home')
+    wstl = wstl.with_get_action('home', 'odis-home')
+    wstl = wstl.with_get_action('service', 'odis-service')
 
     return Response(wstl.to_data())
 
 class Info(APIView):
   def get(self, request):
-    wstl = Wstl("Data Exchange Network - Node's Status")
-    wstl = wstl.with_get_action('self', 'den-info')
-    wstl = wstl.with_get_action('home', 'den-home')
+    wstl = Wstl("ODIS - Service Node Information")
+    wstl = wstl.with_get_action('self', 'odis-service')
+    wstl = wstl.with_get_action('home', 'odis-home')
     wstl = wstl.add_data_item({
       "version": '0.0.1',
       "organisation": 'Sample Organisation',
@@ -31,8 +31,8 @@ class Info(APIView):
 class Connections(APIView): 
   def get(self, request):
     wstl = Wstl("Data Exchange Network - Connections")
-    wstl = wstl.with_get_action('self', 'den-connections')
-    wstl = wstl.with_get_action('home', 'den-home')
+    wstl = wstl.with_get_action('self', 'odis-connections')
+    wstl = wstl.with_get_action('home', 'odis-home')
     
     for c in Connection.objects.all():
       wstl.add_data_item({

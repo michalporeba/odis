@@ -1,9 +1,9 @@
 import uuid 
-from django.db import connections, models
+from django.db import models
 
 # Create your models here.
 
-class DenModel(models.Model):
+class DisModel(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     cts = models.DateTimeField(auto_now_add=True)
     uts = models.DateTimeField(auto_now=True)
@@ -11,7 +11,7 @@ class DenModel(models.Model):
     class Meta: 
         abstract = True 
 
-class Connection(DenModel):
+class Connection(DisModel):
     class ConnectionStates(models.TextChoices):
         REQUESTED = ('R','Requested')
         CONNECTED = ('C','Connected')
