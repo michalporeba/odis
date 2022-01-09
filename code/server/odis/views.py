@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .wstl import Wstl
 from .wstl_django import DjangoWstlContext
 from .models import Connection
+from django_kinder_settings import settings
 
 class Hello(APIView):
   def get(self, request): 
@@ -15,12 +16,14 @@ class Hello(APIView):
 
     return Response(wstl.to_data())
 
-class Info(APIView):
+class Service(APIView):
   def get(self, request):
     wstl = Wstl("ODIS - Service Node Information")
     wstl = wstl.with_get_action('self', 'odis-service')
     wstl = wstl.with_get_action('home', 'odis-home')
     wstl = wstl.add_data_item({
+      "id": settings.ODIS_SERVICE_ID,
+      "service": settings.ODIS_SERVICE_NAME,
       "version": '0.0.1',
       "organisation": 'Sample Organisation',
       "contactPoint": 'Michal Poreba'
