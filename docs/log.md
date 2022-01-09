@@ -9,7 +9,7 @@
 * **Project Setup**
     * [Project monitoring](./progress.md) set up
     * GitHub project set up
-    * Quick review of [search](https://github.com/michalporeba/toposearch/issues/4) and [HATEOAS](https://github.com/michalporeba/toposearch/issues/2) standards
+    * Quick review of [search](https://github.com/michalporeba/odis/issues/4) and [HATEOAS](https://github.com/michalporeba/odis/issues/2) standards
 * Search Standards (partial)
     * [High-level architecture design](./docs/architecture.md)
 * Learn Django (partial)

@@ -1,4 +1,4 @@
-# Data Exchange Network - Server
+# Open Distributed Information System - Server
 
 The functionality can be split into a number of separate areas: 
 * [Administration of the netwrok](#network)

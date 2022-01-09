@@ -13,7 +13,7 @@ setup(
     description='A simple, class based dispatcher',
     long_description=long_description(),
     long_description_content_type='text/markdown',
-    url='https://github.com/michalporeba/toposearch/packages/callouts',
+    url='https://github.com/michalporeba/odis/packages/callouts',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',

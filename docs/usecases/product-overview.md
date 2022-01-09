@@ -23,13 +23,13 @@ or individuals (online). Their system consists of multiple microservices:
 * **Shop** - Individual, retail sales including presentation and description
 * **Shipment** - Deliveries to both bulk and individual purchases.
 
-## TopoSearch in the mix
+## ODIS in the mix
 
 The only way to build a broader understanding of a product is to look at 
 all services. A standard solution would be to create a data warehouse where 
 all the data comes together.
 
-TopoSearch approach could offer an alternative solution in this simple 
+Open Distributed Information Sharing approach could offer an alternative solution in this simple 
 scenario with a single node.
 
 ### Search Federation

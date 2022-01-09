@@ -24,7 +24,7 @@ If we were now able to offer the user a chance to select the current address (ou
 
 ## The Challenges
 
-This very simple to visualise use case presents significant challenges. But it does show what could be possible if the technology I want to explore with the TopoSearch worked as I hope it will. 
+This very simple to visualise use case presents significant challenges. But it does show what could be possible if the technology I want to explore with the ODIS worked as I hope it will. 
 
 ### Data Security (on read)
 Of course, to do something like this, we would need to have the ability to trust the user's identity. It really must be 'find me' not 'find anybody' button. There is ongoing work on the [UK Digital Identity and Trust Framework](https://www.gov.uk/government/publications/uk-digital-identity-attributes-trust-framework-updated-version).
