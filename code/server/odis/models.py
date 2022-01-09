@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 
 # Create your models here.
+MAX_URL_LENGTH = 256
 
 class DisModel(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
@@ -18,7 +19,7 @@ class Connection(DisModel):
         DENIED = ('D','Denied')
 
     url = models.CharField(
-        max_length=256,
+        max_length=MAX_URL_LENGTH,
         unique=True,
         editable=False,
         blank=False,
@@ -31,3 +32,21 @@ class Connection(DisModel):
         blank=False,
         null=False
     )
+
+#https://schema.org/Organization
+class Organisation(DisModel):
+    name = models.CharField(max_length=128, unique=True, blank=False, null=False)
+    url = models.CharField(max_length=MAX_URL_LENGTH, unique=True, blank=False, null=False)
+    logo = models.CharField(max_length=MAX_URL_LENGTH, blank=True, null=True)
+
+# https://schema.org/Service
+class Service(DisModel):
+    name = models.CharField(max_length=128, unique=True, blank=False, null=False)
+    url = models.CharField(max_length=MAX_URL_LENGTH, unique=True, blank=False, null=False)
+    audience_type = models.CharField(max_length=32, blank=True, null=True)
+    audience_administrative_area_name = models.CharField(max_length=64, blank=True, null=True)
+    category = models.CharField(max_length=64, blank=True, null=True)
+    description = models.TextChoices()
+    logo = models.CharField(max_length=MAX_URL_LENGTH, blank=True, null=True)
+    provider = models.ForeignKey(Organisation)
+
