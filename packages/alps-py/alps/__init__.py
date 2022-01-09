@@ -1,12 +1,5 @@
-class MarkDownDoc():
-    def __init__(self, text: str):
-        self._text = text        
-
-    def to_data(self):
-        return {
-            'type': 'markdown',
-            'value': self._text
-        }
+from .utils import dol, to_data
+from .docs import Doc
 
 class Descriptor:
     def __init__(self, id: str, text: str=None, ref: str=None):
@@ -50,7 +43,7 @@ class Alps:
     def __init__(self, title: str=None):
         self._version = '1.0'
         self._title = title
-        self._doc = None
+        self._docs = []
         self._descriptors = []
 
     def to_data(self):
@@ -61,20 +54,23 @@ class Alps:
         if self._title is not None:
             data['title'] = self._title
 
-        if self._doc is not None:
-            data['doc'] = self._doc.to_data()
+        if len(self._docs) > 0:
+            data['doc'] = to_data(dol(self._docs[0]))
 
-        if len(self._descriptors) == 1:
-            data['descriptor'] = self._descriptors[0].to_data()
-
+        if len(self._descriptors) > 0:
+            data['descriptor'] = to_data(dol(self._descriptors))
+        
         return {
             'alps': data
         }
 
-    def add(self, descriptor: Descriptor) -> None: 
-        self._descriptors.append(descriptor)
+    def add(self, element: any) -> None: 
+        if isinstance(element, Doc):
+            self.add_doc(element)
+
+        self._descriptors.append(element)
         return self
 
-    def with_markdown_doc(self, doc: MarkDownDoc):
-        self._doc = doc
+    def add_doc(self, doc: Doc):
+        self._docs.append(doc)
         return self 
