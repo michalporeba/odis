@@ -35,7 +35,7 @@ def test_markdown_documentation(text: str):
 ])
 def test_single_semantic_descriptor(id, text, ref):
     alps = Alps()
-    alps.add(Semantic(id=id, text=text))
+    alps.add(Semantic(id=id, text=text, ref=ref))
     data = alps.to_data()['alps']['descriptor']
     print(data)
     assert 'semantic' == data['type']
