@@ -1,6 +1,7 @@
 import pytest
-from alps import *
+from alps.alps import *
 from alps.docs import *
+from alps.descriptors import *
 
 def test_root_is_alps():
     root = Alps().to_data()
