@@ -57,3 +57,20 @@
 * Security Considerations
 * API Design Considerations
 * Universal Demo Project
+
+## Week 4 - ending 2022-01-09
+
+*Wrestling Python and Django internals*
+
+I have attempted to build basic interactions between ODIS nodes this week. 
+It proved more difficult than I expected, mostly due to clearly lack of knowledge 
+in finer points of Python's type system, mutliple inheritance and metaprogramming.
+
+The scope also expanded a little, as I realised testing further on will quickly 
+become too difficult/time consuming if I don't invest now in some tooling. To help 
+reduce burden further down the line, I have started a number of standalone packages:
+
+* ALPS-PY
+* Callout
+* Django-Kinder-Settings
+* WSTL-PY
