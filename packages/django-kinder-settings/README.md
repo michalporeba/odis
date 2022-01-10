@@ -1,15 +1,4 @@
-## How to build
+# Django Kinder Settings
 
-in the package root directory do the following
+Django settings which are kinder to developers and the ops people. 
 
-```
-pipenv shell
-python setup.py pytest
-python setup.py bdist_wheel
-```
-
-then in the project that needs it
-
-```
-pip install /path/to/*.whl
-```
