@@ -2,6 +2,7 @@ import pytest
 from alps.alps import *
 from alps.docs import *
 from alps.descriptors import *
+from alps.schemaorg import SchemaOrg
 
 def test_root_is_alps():
     root = Alps().to_data()
@@ -64,7 +65,7 @@ def test_multiple_descriptors():
 
 def test_nested_descriptor_with_docs():
     alps = Alps()
-    desc = Semantic(id='identifier')
+    desc = SchemaOrg.IDENTIFIER
     desc.add_doc(MarkDownDoc('test documentation'))
     alps.add_descriptor(desc)
     data = alps.to_data()['alps']['descriptor']
