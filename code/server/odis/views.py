@@ -2,7 +2,7 @@ from typing import Dict
 from django.shortcuts import render
 from rest_framework.views import APIView 
 from rest_framework.response import Response 
-from .wstl import Wstl
+from .wstl import Wstl, WstlClient
 from .wstl_django import DjangoWstlContext
 from .models import Connection
 from django_kinder_settings import settings
@@ -20,6 +20,10 @@ class Hello(APIView):
 
     return Response(wstl.to_data())
 
+class Client(APIView):
+  def get(self, request):
+    client = WstlClient('http://127.0.0.1:8001/odis/')
+    return Response(client.hello().to_data())
 
 class Connections(APIView): 
   def get(self, request):

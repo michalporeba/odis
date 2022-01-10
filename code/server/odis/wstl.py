@@ -1,4 +1,6 @@
 import callouts 
+import urllib.request as r
+import json
 
 @callouts.base 
 class WstlContext:
@@ -6,6 +8,7 @@ class WstlContext:
     def get_action_url(action: str) -> str:
       return f'ERROR: Undefined URL for action [{action}]!'
 
+# TODO: rename to WstlState? 
 class Wstl():
   def __init__(self, title: str = ''):
     self._title = title
@@ -35,3 +38,27 @@ class Wstl():
 
     return { "wstl": data }
 
+  def from_data(data: dict) -> None: 
+    if not 'wstl' in data.keys(): 
+      raise ValueError('Not a WSTL document')
+    data = data['wstl']
+    
+    wstl = Wstl()
+    return wstl
+
+class WstlClient: 
+
+  def __init__(self, url: str): 
+    self.url = url
+
+  def hello(self):
+    return self.do('')
+
+  def do(self, action: str) -> any:
+    req = r.Request(self.url + action)
+    req.add_header('Content-Type', 'application/json')
+    response = r.urlopen(req)
+
+    text = response.read()
+
+    return Wstl.from_data(json.loads(text.decode('utf-8')))
