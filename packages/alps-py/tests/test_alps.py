@@ -24,7 +24,7 @@ def test_title_from_constructor(alps_title: str):
 @pytest.mark.parametrize('text', ['abc', 'def'])
 def test_markdown_documentation(text: str):
     data = Alps().\
-        add(MarkDownDoc(text)).\
+        add_doc(MarkDownDoc(text)).\
         to_data()['alps']
     assert 'markdown' == data['doc']['format']
     assert text == data['doc']['value']
@@ -35,7 +35,7 @@ def test_markdown_documentation(text: str):
 ])
 def test_single_semantic_descriptor(id, text, ref):
     alps = Alps()
-    alps.add(Semantic(id=id, text=text, ref=ref))
+    alps.add_descriptor(Semantic(id=id, text=text, ref=ref))
     data = alps.to_data()['alps']['descriptor']
     print(data)
     assert 'semantic' == data['type']
@@ -48,16 +48,24 @@ def test_single_semantic_descriptor(id, text, ref):
     ('action2', 'Another Action', 'https://schema.org/email')
 ])
 def test_single_safe_descriptor(id, text, ref):
-    alps = Alps().add(Safe(id=id, text=text, ref=ref))
+    alps = Alps().add_descriptor(Safe(id=id, text=text, ref=ref))
     data = alps.to_data()['alps']
     assert 'safe' == data['descriptor']['type']
 
 def test_multiple_descriptors():
     alps = Alps()
-    alps.add(Semantic(id='sample1'))
-    alps.add(Semantic(id='sample2'))
-    alps.add(Safe(id='an_action'))
+    alps.add_descriptor(Semantic(id='sample1'))
+    alps.add_descriptor(Semantic(id='sample2'))
+    alps.add_descriptor(Safe(id='an_action'))
     data = alps.to_data()['alps']['descriptor']
     assert list == type(data)
     assert 'sample1' == data[0]['id']
     assert 'an_action' == data[2]['id']
+
+def test_nested_descriptor_with_docs():
+    alps = Alps()
+    desc = Semantic(id='identifier')
+    desc.add_doc(MarkDownDoc('test documentation'))
+    alps.add_descriptor(desc)
+    data = alps.to_data()['alps']['descriptor']
+    assert 'test documentation' == data['doc']['value']

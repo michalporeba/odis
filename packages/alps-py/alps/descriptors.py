@@ -1,9 +1,10 @@
 from .utils import *
+from .docs import WithDocsMixin
 
 class Descriptor: 
     pass 
 
-class DescriptorBase:
+class DescriptorBase(WithDocsMixin):
     def __init__(self):
         self.contents = {}
 

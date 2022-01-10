@@ -1,7 +1,7 @@
 from .descriptors import Descriptor, DescriptorBase
-from .docs import Doc, WithDocsMixin
+from .docs import Doc
 
-class Alps(WithDocsMixin, DescriptorBase):
+class Alps(DescriptorBase):
     def __init__(self, title: str=None, *args, **kwargs):
         super(Alps, self).__init__(*args, **kwargs)
         self.contents['version'] = '1.0'
@@ -11,10 +11,3 @@ class Alps(WithDocsMixin, DescriptorBase):
         return {
             'alps': super().to_data()
         }
-
-    def add(self, element: any) -> None: 
-        if isinstance(element, Doc):
-            self.add_doc(element)
-        if isinstance(element, Descriptor):
-            self.add_descriptor(element)
-        return self
