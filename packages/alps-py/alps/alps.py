@@ -47,7 +47,6 @@ class Alps(WithDocsMixin, DescriptorBase):
         self.contents['version'] = '1.0'
         self.contents['title'] = title
         self.contents['descriptor'] = []
-        self.init_docs()
         
     def to_data(self):
         data = super().to_data()
@@ -61,7 +60,3 @@ class Alps(WithDocsMixin, DescriptorBase):
 
         self.contents['descriptor'].append(element)
         return self
-
-    def add_doc(self, doc: Doc):
-        self.contents['doc'].append(doc)
-        return self 

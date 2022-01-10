@@ -5,8 +5,11 @@ class WithDocsMixin:
     def __init__(self, *args, **kwargs):
         super(WithDocsMixin, self).__init__(*args, **kwargs)
     
-    def init_docs(self):
-        self.contents['doc'] = []
+    def add_doc(self, doc: Doc):
+        if 'doc' not in self.contents.keys():
+            self.contents['doc'] = []
+        self.contents['doc'].append(doc)
+        return self
 
 class MarkDownDoc(Doc):
     def __init__(self, value: str):
