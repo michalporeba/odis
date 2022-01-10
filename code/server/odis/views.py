@@ -6,6 +6,10 @@ from .wstl import Wstl
 from .wstl_django import DjangoWstlContext
 from .models import Connection
 from django_kinder_settings import settings
+from .apps import Odis 
+from alps.alps import Alps
+from alps.docs import MarkDownDoc
+from alps.schemaorg import SchemaOrg
 
 class Hello(APIView):
   def get(self, request): 
@@ -16,20 +20,6 @@ class Hello(APIView):
 
     return Response(wstl.to_data())
 
-class Service(APIView):
-  def get(self, request):
-    wstl = Wstl("ODIS - Service Node Information")
-    wstl = wstl.with_get_action('self', 'odis-service')
-    wstl = wstl.with_get_action('home', 'odis-home')
-    wstl = wstl.add_data_item({
-      "id": settings.ODIS_SERVICE_ID,
-      "service": settings.ODIS_SERVICE_NAME,
-      "version": '0.0.1',
-      "organisation": 'Sample Organisation',
-      "contactPoint": 'Michal Poreba'
-    })
-
-    return Response(wstl.to_data())
 
 class Connections(APIView): 
   def get(self, request):
@@ -46,6 +36,34 @@ class Connections(APIView):
         "state": c.state 
       })
 
+    return Response(wstl.to_data())
+
+
+class Service(APIView):
+  def get(self, request):
+    wstl = Wstl("ODIS - Service Node Information")
+    wstl = wstl.with_get_action('self', 'odis-service')
+    wstl = wstl.with_get_action('home', 'odis-home')
+    wstl = wstl.with_get_action('alps', 'odis-alps')
+    wstl = wstl.add_data_item({
+      "id": settings.ODIS_SERVICE_ID,
+      "service": settings.ODIS_SERVICE_NAME,
+      "version": Odis.version,
+      "organisation": 'Sample Organisation',
+      "contactPoint": 'Michal Poreba'
+    })
+
+    return Response(wstl.to_data())
+
+class ServiceDescription(APIView):
+  def get(self, request):
+    alps = Alps()
+    alps.add_doc(MarkDownDoc('Open Distributed Information Service API'))
+    alps.add_descriptor(SchemaOrg.IDENTIFIER)
+    wstl = Wstl("Data Exchange Network - ALPS")
+    wstl = wstl.with_get_action('self', 'odis-alps')
+    wstl = wstl.with_get_action('home', 'odis-home')
+    wstl = wstl.add_data_item(alps.to_data())
     return Response(wstl.to_data())
 
 class Target(APIView):

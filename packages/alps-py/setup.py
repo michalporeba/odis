@@ -5,15 +5,15 @@ def long_description():
         return readme.read()
 
 setup(
-    name='malps',
-    packages=find_packages(include=['malps']),
-    version='0.0.1',
+    name='alps-py',
+    packages=find_packages(include=['alps']),
+    version='0.1.0',
     author='Michal Poreba',
     license='MIT',
     description='An ALPS library for python',
     long_description=long_description(),
     long_description_content_type='text/markdown',
-    url='https://github.com/michalporeba/odis/packages/alps',
+    url='https://github.com/michalporeba/odis/packages/alps/',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
