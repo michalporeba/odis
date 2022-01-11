@@ -16,6 +16,8 @@ class Wstl:
 
         actions = list(map(action, poly.actions))
         set_if_not_none(data, none_if_empty(actions), 'actions') 
+
+        set_if_not_none(data, none_if_empty(poly.data), 'data')
         
         return {
             'wstl': data

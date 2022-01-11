@@ -45,4 +45,10 @@ def test_home_and_self_actions():
 def test_get_action():
     poly = Poly()
     poly.add_action(Get('sample'))
-    
+
+
+def test_data():
+    poly = Poly()
+    poly.add_data_item(1)
+    data = poly.to(Wstl)['wstl']['data'][0]
+    assert 1 == data

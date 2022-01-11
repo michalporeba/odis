@@ -37,6 +37,7 @@ class Poly():
     def __init__(self, title: str=None):
         self.title = title 
         self.actions = []
+        self.data = []
 
     def set_title(self, title: str):
         self.title = title
@@ -44,6 +45,10 @@ class Poly():
 
     def add_action(self, action: Action):
         self.actions.append(action)
+        return self
+
+    def add_data_item(self, obj: any): 
+        self.data.append(obj)
         return self
 
     def to(self, formatter: any) -> dict: 
