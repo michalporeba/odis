@@ -5,15 +5,15 @@ def long_description():
         return readme.read()
 
 setup(
-    name='wstl',
-    packages=find_packages(include=['wstl']),
+    name='polymedia',
+    packages=find_packages(include=['polymedia']),
     version='0.0.1',
     author='Michal Poreba',
     license='MIT',
-    description='A WSTL library for python ReSTful services',
+    description='A polyglot hypermedia library for python ReSTful services',
     long_description=long_description(),
     long_description_content_type='text/markdown',
-    url='https://github.com/michalporeba/odis/packages/wstl',
+    url='https://github.com/michalporeba/odis/packages/polymedia',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',
