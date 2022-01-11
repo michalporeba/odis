@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cded4eac1969e929ff7282d713930f7a2ffe1a692d0cc111e79c6fb374a32083"
+            "sha256": "2a2a275901d3e780afa6e6257032a164590992746384e52bf4090443476e4f08"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -54,6 +54,13 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
             "version": "==0.4.4"
+        },
+        "diogi": {
+            "hashes": [
+                "sha256:fe5674a2d285e7b4ef28b8324dcff704252374d9ea0685fb81744c5288f9e116"
+            ],
+            "index": "pypi",
+            "version": "==0.0.3"
         },
         "docutils": {
             "hashes": [

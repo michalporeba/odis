@@ -1,4 +1,5 @@
-from .utils import *
+from diogi.aliases import *
+from diogi.conventions import to_data
 from .docs import WithDocsMixin
 
 class Descriptor: 
@@ -14,10 +15,10 @@ class DescriptorBase(WithDocsMixin):
         self.contents['descriptor'].append(descriptor)
         return self
 
-    def to_data(self): 
+    def as_data(self): 
         data = {}
         for k,v in self.contents.items():
-            ade(data, k, dol(v))
+            ainn(data, to_data(lio(v)), k)
 
         return data
 
