@@ -3,7 +3,7 @@ def to_data(obj: any) -> dict|list:
         return None
     if list == type(obj):
         return [to_data(e) for e in obj]
-    f = getattr(obj, 'to_data', None)
+    f = getattr(obj, 'as_data', None)
     if f is not None:
         return f()
     return obj

@@ -4,7 +4,7 @@ def test_reduce_to_data():
     class A:
         def __init__(self, v: any):
             self.v = v
-        def to_data(self):
+        def as_data(self):
             return self.v*2
 
     class X: 
