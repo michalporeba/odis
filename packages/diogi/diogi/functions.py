@@ -1,14 +1,17 @@
-def add_if_not_none(obj: any, value: any, key: str=None) -> any:
+def append_if_not_none(obj: any, value: any, key: str=None) -> any:
     if value is None: 
         return obj
-
+    
     if key is None and list == type(obj):
         obj.append(value)
 
-    if dict == type(obj):
-        obj[key] = value
-
+    if key is not None and dict == type(obj):
+        if key not in obj.keys():
+            obj[key] = []
+        obj[key].append(value)
+    
     return obj
+
 
 def always_a_list(obj: any) -> list: 
     """
@@ -34,6 +37,20 @@ def list_is_optional(obj: any) -> any:
         elif len(obj) == 1:
             return obj[0]
     return obj
-    
+
+
 def list_without_nones(lst: list) -> list:
     return [e for e in lst if e is not None]
+
+
+def set_if_not_none(obj: any, value: any, key: str=None) -> any:
+    if value is None: 
+        return obj
+
+    if key is None and list == type(obj):
+        obj.append(value)
+
+    if key is not None and dict == type(obj):
+        obj[key] = value
+
+    return obj
