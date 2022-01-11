@@ -23,9 +23,16 @@ It is also available as `@list_is_optional` decorator.
 returns copy of the list without any None values.
 It is also available as `@list_without_nones` decorator. 
 
+`none_if_empty(obj: any) -> any` with alias `nie`
+returns copy of the object unless it is an empty list or an empty directory
+
+`append_if_not_none(obj: any, value: any, key: str) -> any` with alias `ainn`
+
+`set_if_not_none(obj: any, value: any, key: str) -> any` with alias `sinn`
+
 ## Conventions
 
 **to_data** sometimes the object needs to be converted to a simpler data
 representation of dicts and lists. In those cases my objects implement 
-a public method `to_data(self)`. The `diog.conventions.to_data(obj: any)` 
+a public method `as_data(self)`. The `diog.conventions.to_data(obj: any)` 
 takes an object or a list of object, and reduces the input to data. 

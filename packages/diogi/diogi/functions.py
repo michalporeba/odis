@@ -43,6 +43,14 @@ def list_without_nones(lst: list) -> list:
     return [e for e in lst if e is not None]
 
 
+def none_if_empty(obj: any) -> any: 
+    if list == type(obj) and len(obj) == 0:
+        return None
+    if dict == type(obj) and len(obj.keys()) == 0:
+        return None
+    return obj
+
+
 def set_if_not_none(obj: any, value: any, key: str=None) -> any:
     if value is None: 
         return obj

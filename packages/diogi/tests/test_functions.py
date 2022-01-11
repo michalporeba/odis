@@ -36,6 +36,12 @@ def test_list_without_nones():
     assert [] == lwn([None,None])
     assert [2,4] == lwn([None,2,None,4,None])
 
+def test_none_if_empty():
+    assert [1] == nie([1])
+    assert [1,2] == nie([1,2])
+    assert None == nie([])
+    assert None == nie({})
+
 def test_set_if_not_none_on_dictionary():
     d = {}
     sinn(d, None, 'x')
