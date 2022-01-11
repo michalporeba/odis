@@ -1,4 +1,4 @@
-from diogi.aliases import *
+from diogi.functions import *
 from diogi.conventions import to_data
 from .docs import WithDocsMixin
 
@@ -10,15 +10,13 @@ class DescriptorBase(WithDocsMixin):
         self.contents = {}
 
     def add_descriptor(self, descriptor: Descriptor):
-        if 'descriptor' not in self.contents.keys():
-            self.contents['descriptor'] = []
-        self.contents['descriptor'].append(descriptor)
+        append_if_not_none(self.contents, descriptor, 'descriptor')
         return self
 
     def as_data(self): 
         data = {}
         for k,v in self.contents.items():
-            ainn(data, to_data(lio(v)), k)
+            set_if_not_none(data, to_data(list_is_optional(v)), k)
 
         return data
 

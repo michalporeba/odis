@@ -1,4 +1,4 @@
-from diogi.aliases import *
+from diogi.functions import *
 
 class Doc:
     pass 
@@ -8,9 +8,7 @@ class WithDocsMixin:
         super(WithDocsMixin, self).__init__(*args, **kwargs)
     
     def add_doc(self, doc: Doc):
-        if 'doc' not in self.contents.keys():
-            self.contents['doc'] = []
-        self.contents['doc'].append(doc)
+        append_if_not_none(self.contents, doc, 'doc')
         return self
 
 class MarkDownDoc(Doc):

@@ -9,5 +9,5 @@ class Alps(DescriptorBase):
         
     def as_data(self):
         return {
-            'alps': to_data(super().as_data())
+            'alps': to_data(super())
         }
