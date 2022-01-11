@@ -1,14 +1,37 @@
+import callouts
+
+@callouts.base
+class PolyContext:
+    @callouts.first
+    def get_action_url(action: str):
+        # TODO: log it too
+        return 'ERROR: There is no implementation for PolyContext.get_action_url'
+
+
 class Action:
     def __init__(self, name: str, url: str):
         self.name = name 
         self.url = url 
 
     def get_url_for(action: str) -> str:
-        return 'test://home'
+        return PolyContext.get_action_url(action)
 
-class Home(Action):
+
+class Get(Action):
+    def __init__(self, name: str, action: str = None):
+        action = name if action is None else action
+        super().__init__(name, Action.get_url_for(action))
+
+
+class Home(Get):
     def __init__(self, action: str):
-        super().__init__('home', Action.get_url_for(action))
+        super().__init__('home', action)
+
+
+class Self(Get):
+    def __init__(self, action: str):
+        super().__init__('self', action)
+
 
 class Poly():
     def __init__(self, title: str=None):
