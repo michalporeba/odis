@@ -75,4 +75,19 @@ def test_create_poly_from_wstl_with_singles():
 
 
 def test_create_poly_from_wstl_with_multiples():
-    pass 
+    poly = Wstl.parse({ 'wstl': {
+        'actions': [
+            { 'name': 'dosomething', 'url': 'a.url.com'},
+            { 'name': 'second.action', 'url': 'test://url.co.uk'},
+        ],
+        'data': [
+            { 'a': 'a', 'b': 'b' },
+            { 'a': 11, 'b': 33 }
+        ]
+    }})
+    action = poly.actions[1]
+    assert 'second.action' == action.name
+    assert 'test://url.co.uk' == action.url
+    data = poly.data[1]
+    assert 11 == data['a']
+    assert 33 == data['b']
