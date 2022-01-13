@@ -15,6 +15,8 @@ def action(action: Action) -> dict:
         } 
 
 class Wstl:
+    MIME_TYPE = 'application/prs.wstl+json'
+
     def format(poly: Poly) -> dict:
         data = {}
         set_if_not_none(data, poly.title, 'title')
