@@ -8,6 +8,8 @@ pytest = "*"
 diogi = "*"
 callouts = "*"
 flask = "*"
+requests = "*"
+responses = "*"
 
 [dev-packages]
 

@@ -22,8 +22,8 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development'
     ],
-    install_requires=[],
+    install_requires=['requests', 'diogi'],
     setup_requires=['pytest-runner'],
-    tests_require=['pytest', 'flask'],
+    tests_require=['pytest', 'responses'],
     test_suite='tests'
 )
