@@ -10,6 +10,7 @@ callouts = "*"
 flask = "*"
 requests = "*"
 responses = "*"
+twine = "*"
 
 [dev-packages]
 

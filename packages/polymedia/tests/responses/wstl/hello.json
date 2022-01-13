@@ -1,5 +1,10 @@
 { 
     "wstl": {
-        "title": "wstl home"
+        "title": "wstl home",
+        "actions": [
+            { "name": "self", "url": "https://localhost.tests/wstl/hello"},
+            { "name": "home", "url": "https://localhost.tests/wstl/hello"},
+            { "name": "test", "url": "https://localhost.tests/wstl/test"}
+        ]
     }
 }
