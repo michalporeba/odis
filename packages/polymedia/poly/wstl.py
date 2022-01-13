@@ -1,5 +1,10 @@
 from .poly import *
-from diogi.functions import *
+from diogi.functions import (
+    always_a_list,
+    get_if_exists, 
+    none_if_empty, 
+    set_if_not_none
+)
 
 def action(action: Action) -> dict:
         action_type = 'safe'
@@ -23,4 +28,21 @@ class Wstl:
             'wstl': data
         }
 
-    
+    def parse(wstl: dict) -> Poly: 
+        print (wstl)
+        wstl = wstl['wstl']
+        poly = Poly()
+        poly.set_title(get_if_exists(wstl, 'title'))
+
+        actions = always_a_list(get_if_exists(wstl, 'actions'))
+        for a in actions: 
+            poly.actions.append(Action(
+                get_if_exists(a, 'name'),
+                get_if_exists(a, 'url')
+                ))
+
+        data = always_a_list(get_if_exists(wstl, 'data'))
+        for d in data: 
+            poly.data.append(d)
+
+        return poly

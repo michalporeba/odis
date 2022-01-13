@@ -52,3 +52,27 @@ def test_data():
     poly.add_data_item(1)
     data = poly.to(Wstl)['wstl']['data'][0]
     assert 1 == data
+
+
+def test_create_empty_poly_from_empty_wstl():
+    poly = Wstl.parse({ 'wstl': {}})
+    assert None == poly.title
+
+
+def test_create_poly_from_wstl_with_singles():
+    poly = Wstl.parse({ 'wstl': {
+        'title': 'sample title',
+        'actions': { 'name': 'test.action', 'url': 'test://url.com'},
+        'data': { 'a': 1, 'b': 3 }
+    }})
+    assert 'sample title' == poly.title 
+    action = poly.actions[0]
+    assert 'test.action' == action.name
+    assert 'test://url.com' == action.url
+    data = poly.data[0]
+    assert 1 == data['a']
+    assert 3 == data['b']
+
+
+def test_create_poly_from_wstl_with_multiples():
+    pass 

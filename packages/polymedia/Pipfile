@@ -7,6 +7,7 @@ name = "pypi"
 pytest = "*"
 diogi = "*"
 callouts = "*"
+flask = "*"
 
 [dev-packages]
 

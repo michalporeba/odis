@@ -22,6 +22,20 @@ def test_always_a_list_function():
     assert [None] == aal([None])
     assert [1,2,3] == aal([1,2,3])
 
+def test_get_if_exists():
+    class T:
+        def __init__(self):
+            self.value = 123
+        property = 'abc'
+
+    assert None == gie(None, None)
+    assert None == gie({}, None) 
+    assert None == gie(None, 'test')
+    assert None == gie({'a': 1}, 'test')
+    assert 3 == gie({'test': 3}, 'test')
+    assert 'abc' == gie(T, 'property')
+    assert 123 == gie(T(), 'value')
+
 def test_list_is_optional_function():
     assert None == lio(None)
     assert None == lio([])

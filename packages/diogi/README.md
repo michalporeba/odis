@@ -28,6 +28,8 @@ returns copy of the object unless it is an empty list or an empty directory
 
 `append_if_not_none(obj: any, value: any, key: str) -> any` with alias `ainn`
 
+`get_if_exists(obj: any, key: str) -> any` with alias `gie`
+
 `set_if_not_none(obj: any, value: any, key: str) -> any` with alias `sinn`
 
 ## Conventions

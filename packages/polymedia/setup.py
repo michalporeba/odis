@@ -24,6 +24,6 @@ setup(
     ],
     install_requires=[],
     setup_requires=['pytest-runner'],
-    tests_require=['pytest'],
+    tests_require=['pytest', 'flask'],
     test_suite='tests'
 )

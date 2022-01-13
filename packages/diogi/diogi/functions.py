@@ -24,6 +24,16 @@ def always_a_list(obj: any) -> list:
     else:
         return [obj]
 
+def get_if_exists(obj: any, key: str) -> any:
+    if obj is None or key is None:
+        return None
+
+    if dict == type(obj):
+        if key in obj.keys():
+            return obj[key]
+
+    attr = getattr(obj, key, None) 
+    return attr
 
 def list_is_optional(obj: any) -> any:
     """
