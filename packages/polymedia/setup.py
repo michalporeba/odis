@@ -7,7 +7,7 @@ def long_description():
 setup(
     name='polymedia',
     packages=find_packages(include=['polymedia']),
-    version='0.1.4',
+    version='0.1.6',
     author='Michal Poreba',
     license='MIT',
     description='A polyglot hypermedia library for python ReSTful services',

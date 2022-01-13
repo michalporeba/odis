@@ -9,43 +9,35 @@ class RestClient:
         self.formatter = None
         self.format = 'json'
         self.poly = Poly()
+        self._accepted_types = ''
 
     def get(self, url: str) -> Poly:
         headers = {
             'Accept': f'{Wstl.MIME_TYPE}, {Hal.MIME_TYPE}, application/json'
         }
-
-        def set_wstl(response: Response):
-            self.formatter = Wstl
-            self.format = 'wstl'
-            self.poly = Wstl.parse(response.json())
-
+        
         response = requests.get(url, headers=headers) 
-        if 'Accept' in response.headers:
-            if Wstl.MIME_TYPE in response.headers['Accept']:
-                set_wstl(response)
-            if 'application/json' in response.headers['Accept']:
-                data = response.json()
-                if 'wstl' in data.keys(): 
-                    set_wstl(response)
-                else: 
-                    self.poly = Poly()
-                    self.poly.add_data_item(data)
+        self._accepted_types = response.headers['Content-Type']
+        data = response.json()
+
+        if 'wstl' in data.keys(): 
+            self.format = 'wstl'
+            self.formatter = Wstl
+            self.poly = Wstl.parse(response.json())
         else: 
-            data = response.json()
-            if 'wstl' in data.keys(): 
-                set_wstl(response)
-
-
+            self.poly = Poly()
+            self.poly.add_data_item(data)
+        
         return self.poly
     
     def do(self, action: str) -> Poly: 
         headers = {
-            'Accept': self.formatter.MIME_TYPE
+            'Accept': self._accepted_types
         }
 
         url = [a for a in self.poly.actions if a.name == action][0].url
         response = requests.get(url, headers=headers)
+        
         self.poly = self.formatter.parse(response.json())
 
         return self.poly 

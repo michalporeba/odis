@@ -11,6 +11,8 @@ WSTL_HELLO_PATH = 'wstl/hello'
 WSTL_HELLO_URL = 'https://localhost.tests/wstl/hello'
 WSTL_TEST_PATH = 'wstl/test'
 WSTL_TEST_URL = 'https://localhost.tests/wstl/test'
+NONE_WSTL_PATH = 'none/wstl'
+NONE_WSTL_URL = 'https://localhost.tests/none/wstl'
 
 def add_get_response(path: str): 
     with open(f'tests/responses/{path}.json') as f:
@@ -19,13 +21,15 @@ def add_get_response(path: str):
     accepted_type = 'application/json'
     if 'wstl/' in path:
         accepted_type = Wstl.MIME_TYPE 
+    if 'none/' in path: 
+        accepted_type = None
 
     responses.add(
         responses.GET, 
         f'https://localhost.tests/{path}', 
         json=data, 
         status=200,
-        headers={'Accept': accepted_type}
+        headers= None if accepted_type is None else {'Content-Type': accepted_type}
     )
 
 @responses.activate
@@ -107,3 +111,16 @@ def test_wstl_should_work_even_if_mime_time_is_json():
     assert True == rc.can_do('self')
     assert True == rc.can_do('home')
     
+@responses.activate
+def test_action_dropping_accept_header():
+    add_get_response(WSTL_HELLO_PATH)
+    add_get_response(WSTL_TEST_PATH)
+    add_get_response(NONE_WSTL_PATH)
+    rc = RestClient()
+    rc.get(WSTL_HELLO_URL)
+    rc.do('test')
+    poly = rc.do('none')
+
+    assert 'wstl with no header' == poly.title
+    poly = rc.do('home')
+    assert 'wstl home' == poly.title

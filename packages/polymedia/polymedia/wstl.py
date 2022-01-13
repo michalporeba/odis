@@ -31,7 +31,6 @@ class Wstl:
         }
 
     def parse(wstl: dict) -> Poly: 
-        print (wstl)
         wstl = wstl['wstl']
         poly = Poly()
         poly.set_title(get_if_exists(wstl, 'title'))
