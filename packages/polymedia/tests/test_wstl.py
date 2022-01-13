@@ -1,5 +1,5 @@
-from poly.poly import *
-from poly.wstl import Wstl
+from polymedia.poly import *
+from polymedia.wstl import Wstl
 
 class PolyContextForTesting(PolyContext):
     def get_action_url(action: str) -> str: 

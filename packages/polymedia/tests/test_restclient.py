@@ -1,10 +1,12 @@
-from poly.restclient import RestClient
-from poly.wstl import Wstl 
+from polymedia.restclient import RestClient
+from polymedia.wstl import Wstl 
 import responses 
 import json 
 
 JSON_BLANK_PATH = 'json/blank'
 JSON_BLANK_URL = 'https://localhost.tests/json/blank'
+JSON_WSTL_PATH = 'json/wstl-like'
+JSON_WSTL_URL = 'https://localhost.tests/json/wstl-like'
 WSTL_HELLO_PATH = 'wstl/hello'
 WSTL_HELLO_URL = 'https://localhost.tests/wstl/hello'
 WSTL_TEST_PATH = 'wstl/test'
@@ -45,6 +47,7 @@ def test_get_negotiates_content_with_json_fallback():
     poly = rc.get(WSTL_HELLO_URL)
 
     headers = responses.calls[0].request.headers
+    assert 'wstl' == rc.format
     assert 4 == len(headers)
     assert 'application/vnd.hal+json' in headers['Accept']
     assert 'application/prs.wstl+json' in headers['Accept']
@@ -70,3 +73,37 @@ def test_perform_action():
     poly = rc.do('test')
     assert 'wstl test' == poly.title
     assert 'testing wstl' == poly.data[0]['test']
+
+@responses.activate
+def test_action_checks():
+    add_get_response(WSTL_HELLO_PATH)
+    rc = RestClient()
+    rc.get(WSTL_HELLO_URL)
+
+    assert True == rc.can_do('self')
+    assert True == rc.can_do('home')
+    assert True == rc.can_do('test')
+    assert False == rc.can_do('missing')
+
+@responses.activate 
+def test_actions_list():
+    add_get_response(WSTL_HELLO_PATH)
+    rc = RestClient()
+    rc.get(WSTL_HELLO_URL)
+
+    assert 'self' in rc.actions()
+    assert 'home' in rc.actions()
+    assert 'test' in rc.actions()
+
+@responses.activate
+def test_wstl_should_work_even_if_mime_time_is_json():
+    add_get_response(JSON_WSTL_PATH)
+    rc = RestClient()
+    rc.get(JSON_WSTL_URL)
+
+    assert Wstl == rc.formatter
+    assert 'wstl' == rc.format
+    assert 'jason with wstl structure' == rc.poly.title
+    assert True == rc.can_do('self')
+    assert True == rc.can_do('home')
+    

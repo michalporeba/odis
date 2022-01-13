@@ -1,0 +1,12 @@
+{ 
+    "wstl": {
+        "title": "jason with wstl structure",
+        "actions": [
+            { "name": "self", "url": "https://localhost.tests/json/wstl-like"},
+            { "name": "home", "url": "https://localhost.tests/wstl/hello"}
+        ],
+        "data": {
+            "problem": "that should still work"
+        }
+    }
+}
