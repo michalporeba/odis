@@ -2,9 +2,9 @@
     "comment": "example from https://datatracker.ietf.org/doc/html/draft-amundsen-richardson-foster-alps-07",
     "alps" : {
       "version" : "1.0",
-      "doc" : {
-        "href" : "http://example.org/samples/full/doc.html"
-      },
+        "doc" : {
+            "href" : "http://example.org/samples/full/doc.html"
+        },
       "descriptor" : [
         {
           "id" : "search",

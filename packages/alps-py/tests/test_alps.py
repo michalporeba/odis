@@ -99,18 +99,9 @@ def test_alps_parsing_defaults_on_minimal(caplog):
     alps = Alps.parse(data)
     assert '1.0' == alps.version
     assert None == alps.title
+    assert [] == alps.docs
     # minimal, but valid, so there should be no warnings or errors 
     assert 0 == len(caplog.text)
-
-
-def test_alps_parsing_the_future(caplog):
-    with open(f'tests/data/future.json') as f:
-        data = json.load(f)
-
-    alps = Alps.parse(data)
-    assert '2.0' == alps.version
-    assert 'future, not fully supported version' == alps.title
-    assert 'unsupported ALPS version' in caplog.text
 
 
 def test_alps_parsing_on_sample_1():
@@ -120,6 +111,9 @@ def test_alps_parsing_on_sample_1():
     alps = Alps.parse(data)
     assert '1.0' == alps.version
     assert None == alps.title 
+    assert 1 == len(alps.docs)
+    assert TextDoc == type(alps.docs[0])
+    assert 'http://example.org/samples/full/doc.html' == alps.docs[0].href
 
 
 def test_alps_parsing_on_sample_2():
@@ -129,3 +123,18 @@ def test_alps_parsing_on_sample_2():
     alps = Alps.parse(data)
     assert '1.0' == alps.version
     assert None == alps.title 
+    assert 2 == len(alps.docs)
+    assert 'http://example.org/samples/full/doc.html' == alps.docs[0].href
+    assert 'http://example.org/samples/profile/doc.html' == alps.docs[1].href
+    assert 'profile' == alps.docs[1].tag
+
+def test_alps_parsing_the_future(caplog):
+    with open(f'tests/data/future.json') as f:
+        data = json.load(f)
+
+    alps = Alps.parse(data)
+    assert '2.0' == alps.version
+    assert 'future, not fully supported version' == alps.title
+    assert 'unsupported ALPS version' in caplog.text
+    assert MarkDownDoc == type(alps.docs[0])
+    assert 'some text' == alps.docs[0].value

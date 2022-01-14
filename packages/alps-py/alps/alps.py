@@ -1,7 +1,7 @@
 import logging 
 from .descriptors import DescriptorBase
 from diogi.conventions import to_data
-from diogi.functions import get_if_exists, set_if_not_none
+from diogi.functions import get_if_exists, always_a_list
 
 logger = logging.getLogger(__name__)
 
@@ -42,4 +42,8 @@ class Alps(DescriptorBase):
 
         alps = Alps(version=version)
         alps.set_title(get_if_exists(data, 'title', None))
+
+        for d in always_a_list(get_if_exists(data, 'doc', [])):
+            alps.add_doc(d)
+
         return alps

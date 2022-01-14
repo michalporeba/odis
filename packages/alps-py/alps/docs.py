@@ -1,3 +1,4 @@
+from ast import Raise
 from curses.ascii import HT
 from diogi.functions import *
 
@@ -17,7 +18,7 @@ class Doc:
         set_if_not_none(data, self.value, 'value')
         return data 
 
-    def parse(obj: dict):
+    def parse(obj: any):
         if str == type(obj):
             return TextDoc(obj)
 
@@ -25,48 +26,68 @@ class Doc:
             value = get_if_exists(obj, 'value', None)
             format = get_if_exists(obj, 'format', 'text')
             href = get_if_exists(obj, 'href', None)
+            tag = get_if_exists(obj, 'tag', None)
 
             if format == 'markdown':
-                return MarkDownDoc(default_if_none(value, ''))
+                return MarkDownDoc(
+                    value=default_if_none(value, ''), 
+                    href=href, 
+                    tag=tag
+                )
             if format == 'html':
                 return HtmlDoc(
                     href = href,
+                    tag = tag,
                     value = default_if_none(value, '')
                 )
                 
-            return TextDoc(default_if_none(value, str(obj)))
+            return TextDoc(
+                value=default_if_none(value, str(obj)), 
+                href=href, 
+                tag=tag
+            )
 
         return TextDoc()
+
 
 class WithDocsMixin:
     def __init__(self, *args, **kwargs):
         super(WithDocsMixin, self).__init__(*args, **kwargs)
     
-    def add_doc(self, doc: Doc):
+    def add_doc(self, doc: any):
+        if not isinstance(doc, Doc):
+            doc = Doc.parse(doc)
         append_if_not_none(self.contents, doc, 'doc')
         return self
 
+    @property
+    def docs(self):
+        return always_a_list(get_if_exists(self.contents, 'doc', []))
+        
 
 class HtmlDoc(Doc):
-    def __init__(self, href: str, value: str):
+    def __init__(self, href: str, value: str, *args, **kwargs):
         super(HtmlDoc, self).__init__(
             href = href,
             format = 'html',
-            value = value
+            value = value,
+            *args, **kwargs
         )
 
 
 class MarkDownDoc(Doc):
-    def __init__(self, value: str):
+    def __init__(self, value: str, *args, **kwargs):
         super(MarkDownDoc, self).__init__(
             format = 'markdown',
-            value = value 
+            value = value,
+            *args, **kwargs
         )
 
 
 class TextDoc(Doc):
-    def __init__(self, value: str=''):
+    def __init__(self, value: str='', *args, **kwargs):
         super(TextDoc, self).__init__(
             format = 'text',
-            value=value
+            value=value, 
+            *args, **kwargs
         )

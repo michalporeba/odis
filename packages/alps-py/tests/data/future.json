@@ -1,6 +1,7 @@
 {
     "alps": {
         "version": "2.0",
-        "title": "future, not fully supported version"   
+        "title": "future, not fully supported version",
+        "doc": { "format": "markdown", "value": "some text"}
     }
 }

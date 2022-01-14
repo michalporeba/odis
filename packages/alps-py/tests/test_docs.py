@@ -27,6 +27,13 @@ def test_odd_object_parses_to_text_doc():
     assert "{'a': 2}" == doc.value
 
 
+def test_href_only():
+    doc = Doc.parse({ 'href': 'abc' })
+    assert TextDoc == type(doc)
+    assert 'text' == doc.format
+    assert 'abc' == doc.href
+
+
 def test_no_format_with_value_parses_to_text_doc():
     doc = Doc.parse({ 'value': 'first'})
     assert_is_text_doc(doc)
