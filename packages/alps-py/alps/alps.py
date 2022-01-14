@@ -1,6 +1,7 @@
 import logging 
 from .descriptors import DescriptorBase
 from diogi.conventions import to_data
+from diogi.functions import get_if_exists, set_if_not_none
 
 logger = logging.getLogger(__name__)
 
@@ -27,10 +28,18 @@ class Alps(DescriptorBase):
     def as_data(self):
         return { 'alps': to_data(super()) }
 
-
     def parse(obj: dict): 
         if obj is None or \
             not dict == type(obj) or \
             not 'alps' in obj.keys():
             logger.warning('The document provided does not contain ALPS definition!')
-        return Alps(version=None)
+            return Alps(version=None)
+
+        data = obj['alps']
+        version = get_if_exists(data, 'version', '1.0')
+        if (version != '1.0'): 
+            logger.warning(f'The document is in unsupported ALPS version {version}')
+
+        alps = Alps(version=version)
+        alps.set_title(get_if_exists(data, 'title', None))
+        return alps

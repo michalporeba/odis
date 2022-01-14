@@ -57,10 +57,10 @@
         },
         "diogi": {
             "hashes": [
-                "sha256:d553fbc9a7e6ba4c505192eda0b3148a35fd81b156b2092a2cffbcdb38abd070"
+                "sha256:0e0f3aaaf8f34f8901009e7893d60dbdab4a60b500cc4925a9de17bf35a63077"
             ],
             "index": "pypi",
-            "version": "==0.0.4"
+            "version": "==0.0.7"
         },
         "docutils": {
             "hashes": [
