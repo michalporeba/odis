@@ -36,6 +36,17 @@ def test_get_if_exists():
     assert 'abc' == gie(T, 'property')
     assert 123 == gie(T(), 'value')
 
+def test_get_if_exists_with_default():
+    class T:
+        def __init__(self):
+            self.value = 123
+        property = 'abc'
+
+    assert 'a' == gie(None, None, 'a')
+    assert 'b' == gie({}, None, 'b')
+    assert 'c' == gie(None, 'key', 'c')
+    assert 'd' == gie({'a': 2}, 'wrong', 'd')
+
 def test_list_is_optional_function():
     assert None == lio(None)
     assert None == lio([])
