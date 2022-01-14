@@ -7,7 +7,7 @@ def long_description():
 setup(
     name='alps-py',
     packages=find_packages(include=['alps']),
-    version='0.1.0',
+    version='0.1.1',
     author='Michal Poreba',
     license='MIT',
     description='An ALPS library for python',
@@ -22,7 +22,7 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development'
     ],
-    install_requires=[],
+    install_requires=['diogi'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     test_suite='tests'

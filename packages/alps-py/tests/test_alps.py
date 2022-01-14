@@ -1,7 +1,6 @@
 import pytest
-from alps.alps import *
-from alps.docs import *
-from alps.descriptors import *
+import json
+from alps import *
 from alps.schemaorg import SchemaOrg
 from diogi.conventions import to_data
 
@@ -21,7 +20,9 @@ def test_there_are_no_unnecessary_attributes_by_default(attribute: str):
 
 @pytest.mark.parametrize('alps_title', ['Sample API', 'Another API'])
 def test_title_from_constructor(alps_title: str):
-    data = to_data(Alps(alps_title))['alps']
+    alps = Alps()
+    alps.set_title(alps_title)
+    data = to_data(alps)['alps']
     assert alps_title == data['title']
 
 @pytest.mark.parametrize('text', ['abc', 'def'])
@@ -71,3 +72,28 @@ def test_nested_descriptor_with_docs():
     alps.add_descriptor(desc)
     data = to_data(alps)['alps']['descriptor']
     assert 'test documentation' == data['doc']['value']
+
+def test_alps_can_parse_an_empty_or_invalid_dictionary(caplog):
+    with open(f'tests/data/empty.json') as f:
+        data = json.load(f)
+
+    alps = Alps.parse(data)
+    assert Alps == type(alps)
+    assert None == alps.title
+    assert None == alps.version
+    assert 'does not contain ALPS' in caplog.text
+
+@pytest.mark.parametrize("data", [None, ''])   
+def test_alps_does_not_chocke_on_invalid_input(data, caplog):
+    alps = Alps.parse(None)
+    assert Alps == type(alps)
+    assert None == alps.title
+    assert None == alps.version
+    assert 'does not contain ALPS' in caplog.text
+
+
+def test_alps_json_parsing_on_sample_1():
+    with open(f'tests/data/sample1.json') as f:
+        data = json.load(f)
+
+    #alps = Alps.parse(data)

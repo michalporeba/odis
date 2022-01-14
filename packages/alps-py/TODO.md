@@ -1,5 +1,7 @@
 # TODO:
 
+[ ] invalid alps don't throw random messagres
+
 descriptor
 [ ] id or href (could be both but must have one)
 [ ] href allows inheritance
