@@ -22,6 +22,10 @@ def test_always_a_list_function():
     assert [None] == aal([None])
     assert [1,2,3] == aal([1,2,3])
 
+def test_default_if_none():
+    assert 1 == din(1, 2)
+    assert 2 == din(None, 2)
+
 def test_get_if_exists():
     class T:
         def __init__(self):

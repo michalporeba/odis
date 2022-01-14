@@ -24,6 +24,13 @@ def always_a_list(obj: any) -> list:
     else:
         return [obj]
 
+    
+def default_if_none(obj: any, default: any) -> any: 
+    if obj is None: 
+        return default
+    return obj 
+
+
 def get_if_exists(obj: any, key: str, default: any=None) -> any:
     if obj is None or key is None:
         return default
@@ -36,6 +43,7 @@ def get_if_exists(obj: any, key: str, default: any=None) -> any:
 
     attr = getattr(obj, key, default) 
     return attr
+
 
 def list_is_optional(obj: any) -> any:
     """
