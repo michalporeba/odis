@@ -14,6 +14,12 @@ I'd rather not. I'm lazy.
 takes any object and if it isn't a list already, it wraps it up in one.
 It is also available as `@always_a_list` decorator. 
 
+`default_if_none(obj: any, default: any) -> any:` with alias `din`
+acts as a null coalescence.
+
+`get_if_exists(obj: any, key: str, default: any=None) -> any` with alias `gie`. 
+attempts to get a property of a dictionary or an attribute of an object, and if it doesn't exist or is None the default value is returned.
+
 `list_is_optional(obj: any) -> any` with alias `lio`
 takes any object and if it is a list with a single element
 then it returns just the element, otherwise the list is returned. 
