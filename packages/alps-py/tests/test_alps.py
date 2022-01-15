@@ -5,6 +5,9 @@ from alps import *
 from alps.schemaorg import SchemaOrg
 from diogi.conventions import to_data
 
+def noon_resolver(href: str) -> dict:
+    pass
+
 def test_root_is_alps():
     root = to_data(Alps())
     assert 1 == len(root.keys())
@@ -78,7 +81,7 @@ def test_alps_can_parse_an_empty_or_invalid_dictionary(caplog):
     with open(f'tests/data/empty.json') as f:
         data = json.load(f)
 
-    alps = Alps.parse(data)
+    alps = Alps.parse(data, Alps.default_resolver(data))
     assert Alps == type(alps)
     assert None == alps.title
     assert None == alps.version
@@ -86,7 +89,7 @@ def test_alps_can_parse_an_empty_or_invalid_dictionary(caplog):
 
 @pytest.mark.parametrize("data", [None, ''])   
 def test_alps_does_not_chocke_on_invalid_input(data, caplog):
-    alps = Alps.parse(None)
+    alps = Alps.parse(None, Alps.default_resolver(data))
     assert Alps == type(alps)
     assert None == alps.title
     assert None == alps.version
@@ -97,7 +100,7 @@ def test_alps_parsing_defaults_on_minimal(caplog):
     with open(f'tests/data/minimal.json') as f:
         data = json.load(f)
 
-    alps = Alps.parse(data)
+    alps = Alps.parse(data, Alps.default_resolver(data))
     assert '1.0' == alps.version
     assert None == alps.title
     assert [] == alps.docs
@@ -109,7 +112,7 @@ def test_alps_parsing_defaults_on_minimal(caplog):
 def test_alps_parsing_on_sample_1():
     with open(f'tests/data/sample1.json') as f:
         data = json.load(f)
-    alps = Alps.parse(data)
+    alps = Alps.parse(data, Alps.default_resolver(data))
 
     assert '1.0' == alps.version
     assert None == alps.title 
@@ -130,6 +133,11 @@ def test_alps_parsing_on_sample_1():
     assert Semantic == type(value)
     assert TextDoc('input for search') == value.docs[0]
 
+    nestedRef = search.get_descriptor('resultType')
+    assert Semantic == type(nestedRef)
+    assert 'resultType' == nestedRef.id 
+    assert TextDoc('results format') == nestedRef.docs[0]
+
     resultType = alps.get_descriptor('resultType')
     assert resultType == alps.descriptors[1]
     assert 'resultType' == resultType.id 
@@ -140,7 +148,7 @@ def test_alps_parsing_on_sample_1():
 def test_alps_parsing_on_sample_2():
     with open(f'tests/data/sample2.json') as f:
         data = json.load(f)
-    alps = Alps.parse(data)
+    alps = Alps.parse(data, Alps.default_resolver(data))
 
     assert '1.0' == alps.version
     assert None == alps.title 
@@ -162,11 +170,12 @@ def test_alps_parsing_on_sample_2():
     assert 0 == len(results.docs)
     assert 0 == len(results.descriptors)
 
+
 def test_alps_parsing_the_future(caplog):
     with open(f'tests/data/future.json') as f:
         data = json.load(f)
 
-    alps = Alps.parse(data)
+    alps = Alps.parse(data, Alps.default_resolver(data))
     assert '2.0' == alps.version
     assert 'future, not fully supported version' == alps.title
     assert 'unsupported ALPS version' in caplog.text

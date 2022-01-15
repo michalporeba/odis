@@ -1,7 +1,7 @@
 import logging 
 from .descriptors import DescriptorBase
 from diogi.conventions import to_data
-from diogi.functions import get_if_exists, always_a_list
+from diogi.functions import get_if_exists, always_a_list, default_if_none
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,23 @@ class Alps(DescriptorBase):
     def as_data(self):
         return { 'alps': to_data(super()) }
 
-    def parse(obj: dict): 
+    def default_resolver(data: dict):
+        def resolver(href: str):
+            if str != type(href) or len(href) < 2: 
+                # TODO: warn in logs? 
+                return {}
+        
+            if href[0:1] == '#':
+                descriptors = always_a_list(get_if_exists(data['alps'], 'descriptor', []))
+                matches = [d for d in descriptors if d['id'] == href[1::]]
+                if len(matches)>0:
+                    return matches[0]
+                return {}
+                
+        return resolver 
+
+
+    def parse(obj: dict, href_resolver: callable): 
         if obj is None or \
             not dict == type(obj) or \
             not 'alps' in obj.keys():
@@ -41,12 +57,13 @@ class Alps(DescriptorBase):
             logger.warning(f'The document is in unsupported ALPS version {version}')
 
         alps = Alps(version=version)
+        alps.source = obj
         alps.set_title(get_if_exists(data, 'title', None))
 
         for d in always_a_list(get_if_exists(data, 'doc', [])):
             alps.add_doc(d)
 
         for d in always_a_list(get_if_exists(data, 'descriptor', [])):
-            alps.add_descriptor(d)
+            alps.add_descriptor(d, href_resolver)
 
         return alps

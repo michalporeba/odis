@@ -2,9 +2,15 @@ from diogi.functions import *
 from diogi.conventions import to_data
 from .docs import WithDocsMixin
 
+def noop_resolver(href: str) -> dict: 
+    pass 
+
 class Descriptor: 
-    def parse(obj: any):
+    def parse(obj: any, resolver: callable):
         if dict == type(obj):
+            href = get_if_exists(obj, 'href', None)
+            if href: 
+                obj = {**default_if_none(resolver(href), {}), **obj}
             desc_type = get_if_exists(obj, 'type', 'semantic')
             docs = get_if_exists(obj, 'doc', None)
 
@@ -31,7 +37,7 @@ class Descriptor:
                 add_doc(docs)
 
         for d in always_a_list(get_if_exists(obj, 'descriptor', [])):
-            desc.add_descriptor(d)
+            desc.add_descriptor(d, resolver)
 
         return desc
  
@@ -52,9 +58,12 @@ class DescriptorBase(WithDocsMixin):
     def descriptors(self):
         return always_a_list(get_if_exists(self.contents, 'descriptor', []))
 
-    def add_descriptor(self, descriptor: Descriptor):
+    def add_descriptor(self, 
+        descriptor: Descriptor,
+        resolver: callable = noop_resolver
+    ):
         if not isinstance(descriptor, Descriptor):
-            descriptor = Descriptor.parse(descriptor)
+            descriptor = Descriptor.parse(descriptor, resolver)
 
         append_if_not_none(self.contents, descriptor, 'descriptor')
         return self

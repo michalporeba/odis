@@ -7,6 +7,6 @@ descriptor
 [ ] href allows inheritance
 [ ] doc's contentType should override format if present
 [ ] link element - sample2
-[ ]
+[ ] noop resolvers should warn in logs
 [ ]
 [ ]
