@@ -1,0 +1,20 @@
+{
+    "wstl": {
+        "data": {
+            "alps": {
+                "title": "ALPS document - part of WSTL",
+                "descriptor": [
+                    { "id": "get-with-alps", "type": "safe",
+                        "descriptor": [
+                            { 
+                                "id": "q", 
+                                "name": "query parameter",
+                                "doc": { "value": "a query parameter"}
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -11,6 +11,7 @@ flask = "*"
 requests = "*"
 responses = "*"
 twine = "*"
+alps-py = "*"
 
 [dev-packages]
 

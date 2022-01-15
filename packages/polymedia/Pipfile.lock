@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8ebc2acffee61ca3044feec0ad1b142dbf2692f652fbec29583916103f9f2a40"
+            "sha256": "18b2040f3515593e3014bef44ba0dc1d71f153268170bdfdc463efe99011f823"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,13 @@
         ]
     },
     "default": {
+        "alps-py": {
+            "hashes": [
+                "sha256:8f0ba9a2c5b40065dace986df7c5090a8d79a749456e4b2eb456806988d9c07e"
+            ],
+            "index": "pypi",
+            "version": "==0.1.3"
+        },
         "attrs": {
             "hashes": [
                 "sha256:2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4",
@@ -72,10 +79,10 @@
         },
         "diogi": {
             "hashes": [
-                "sha256:7ff4516591527f64c9727f3549ff6c9a3d9808ac67a7ec6cfe00055817141213"
+                "sha256:13a270e8ec3a10bfc6906efedcfc6b06e992b133cae985a802501c98eea81cd3"
             ],
             "index": "pypi",
-            "version": "==0.0.6"
+            "version": "==0.0.9"
         },
         "docutils": {
             "hashes": [

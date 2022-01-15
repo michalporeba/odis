@@ -1,0 +1,9 @@
+{ 
+    "wstl": {
+        "title": "get without alps",
+        "actions": [
+            { "name": "home", "url": "https://localhost.tests/wstl/test-with-alps"}
+        ],
+        "data": "value from get-without-alps"
+    }
+}
