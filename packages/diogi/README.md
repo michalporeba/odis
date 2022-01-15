@@ -17,6 +17,9 @@ It is also available as `@always_a_list` decorator.
 `default_if_none(obj: any, default: any) -> any:` with alias `din`
 acts as a null coalescence.
 
+`first_or_default(lst: list, default: any=None) -> any:` with alias `fod` returns the first element of a list
+if there is at least one element, or the default value.
+
 `get_if_exists(obj: any, key: str, default: any=None) -> any` with alias `gie`. 
 attempts to get a property of a dictionary or an attribute of an object, and if it doesn't exist or is None the default value is returned.
 

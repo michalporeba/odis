@@ -26,6 +26,13 @@ def test_default_if_none():
     assert 1 == din(1, 2)
     assert 2 == din(None, 2)
 
+def test_first_or_default():
+    assert None == fod([])
+    assert None == fod(None)
+    assert 9 == fod([], 9)
+    assert 9 == fod(None, 9)
+    assert 1 == fod([1,2], 9)
+
 def test_get_if_exists():
     class T:
         def __init__(self):

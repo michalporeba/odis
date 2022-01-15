@@ -7,7 +7,7 @@ def long_description():
 setup(
     name='diogi',
     packages=find_packages(include=['diogi']),
-    version='0.0.8',
+    version='0.0.9',
     author='Michal Poreba',
     license='MIT',
     description='A library of tiny little functions to make development that little bit easier.',

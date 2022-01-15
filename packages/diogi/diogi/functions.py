@@ -31,6 +31,17 @@ def default_if_none(obj: any, default: any) -> any:
     return obj 
 
 
+def first_or_default(lst: list, default: any=None) -> any:
+    if lst is None: 
+        return default 
+    if list == type(lst):
+        if 0 == len(lst):
+            return default 
+        else: 
+            return lst[0]
+    return None 
+
+
 def get_if_exists(obj: any, key: str, default: any=None) -> any:
     if obj is None or key is None:
         return default
