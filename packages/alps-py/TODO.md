@@ -12,3 +12,4 @@ descriptor
 [ ] noop resolvers should warn in logs
 [ ] ext elements
 [ ] link element
+[ ] examples from https://github.com/alps-io/profiles/tree/master/json

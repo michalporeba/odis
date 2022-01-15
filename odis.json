@@ -1,0 +1,44 @@
+{
+    "alps": {
+        "version": "1.0",
+        "title": "Open Distributed Information Sharing",
+        "doc": {
+            "type": "html",
+            "href": "https://github.com/michalporeba/odis/"
+        },
+        "descriptor": [
+            { "id": "describe", "type": "safe", "text": "get the service description"},
+            { "id": "home", "type": "safe", "text": "go to ODIS service home"},
+            { "id": "self", "type": "safe", "text": "get the same resource again"},
+            { "id": "node", "type": "safe", "text": "show the odis node's information"},
+            { "id": "ping", "type": "safe", "text": "check if the service is alive"},
+            { "id": "healthcheck", "type": "safe", "text": "check the health of the node"},
+            { "id": "services", "type": "safe", "text": "list known services"},
+            { "id": "service.connect", "type": "idempotent", "text": "request connection",
+                "descriptor": [
+                    { "id": "id" }
+                ]
+            },
+            { "id": "service.approve", "type": "idempotent", "text": "request connection",
+                "descriptor": [
+                    { "id": "id" }
+                ]
+            },
+            { "id": "service.deny", "type": "idempotent", "text": "request connection",
+                "descriptor": [
+                    { "id": "id" }
+                ]
+            },
+            { "id": "service.resume", "type": "idempotent", "text": "request connection",
+                "descriptor": [
+                    { "id": "id" }
+                ]
+            },
+            { "id": "service.suspend", "type": "idempotent", "text": "request connection",
+                "descriptor": [
+                    { "id": "id" }
+                ]
+            }
+        ]
+    }
+}

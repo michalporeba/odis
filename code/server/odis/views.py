@@ -7,16 +7,15 @@ from .wstl_django import DjangoWstlContext
 from .models import Connection
 from django_kinder_settings import settings
 from .apps import Odis 
-from alps.alps import Alps
-from alps.docs import MarkDownDoc
-from alps.schemaorg import SchemaOrg
+import json
 
 class Hello(APIView):
   def get(self, request): 
     wstl = Wstl('ODIS - Hello')
     wstl = wstl.with_get_action('self', 'odis-home')
     wstl = wstl.with_get_action('home', 'odis-home')
-    wstl = wstl.with_get_action('service', 'odis-service')
+    wstl = wstl.with_get_action('node', 'odis-node')
+    wstl = wstl.with_get_action('alps', 'odis-alps')
 
     return Response(wstl.to_data())
 
@@ -46,9 +45,8 @@ class Connections(APIView):
 class Service(APIView):
   def get(self, request):
     wstl = Wstl("ODIS - Service Node Information")
-    wstl = wstl.with_get_action('self', 'odis-service')
+    wstl = wstl.with_get_action('self', 'odis-node')
     wstl = wstl.with_get_action('home', 'odis-home')
-    wstl = wstl.with_get_action('alps', 'odis-alps')
     wstl = wstl.add_data_item({
       "id": settings.ODIS_SERVICE_ID,
       "service": settings.ODIS_SERVICE_NAME,
@@ -61,13 +59,14 @@ class Service(APIView):
 
 class ServiceDescription(APIView):
   def get(self, request):
-    alps = Alps()
-    alps.add_doc(MarkDownDoc('Open Distributed Information Service API'))
-    alps.add_descriptor(SchemaOrg.IDENTIFIER)
+    # TODO: load from the web, or based on settings
+    with open('../../odis.json', 'r') as f:
+      alps_data = json.load(f)
+
     wstl = Wstl("Data Exchange Network - ALPS")
     wstl = wstl.with_get_action('self', 'odis-alps')
     wstl = wstl.with_get_action('home', 'odis-home')
-    wstl = wstl.add_data_item(alps.to_data())
+    wstl = wstl.add_data_item(alps_data)
     return Response(wstl.to_data())
 
 class Target(APIView):

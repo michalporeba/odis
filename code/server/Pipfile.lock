@@ -18,10 +18,10 @@
     "default": {
         "alps-py": {
             "hashes": [
-                "sha256:fa91be7ee7b3e2af40193944fd519a770847b51134fb51a70076c3bff29a365a"
+                "sha256:8f0ba9a2c5b40065dace986df7c5090a8d79a749456e4b2eb456806988d9c07e"
             ],
             "index": "pypi",
-            "version": "==0.1.0"
+            "version": "==0.1.3"
         },
         "asgiref": {
             "hashes": [
@@ -62,6 +62,12 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==8.0.3"
+        },
+        "diogi": {
+            "hashes": [
+                "sha256:b3ffa7f22d852023ce4e37dadec5723ab986413c1a2ebbc8582cf25bcf7f266b"
+            ],
+            "version": "==0.0.8"
         },
         "django": {
             "hashes": [
