@@ -123,9 +123,18 @@ def test_alps_parsing_on_sample_1():
     assert 'search' == search.id
     assert TextDoc('A search form with a two inputs') == search.docs[0]
     
+    assert 2 == len(search.descriptors)
+    value = search.get_descriptor('value')
+    assert 'value' == value.id
+    assert 'search' == value.name
+    assert Semantic == type(value)
+    assert TextDoc('input for search') == value.docs[0]
+
     resultType = alps.get_descriptor('resultType')
     assert resultType == alps.descriptors[1]
     assert 'resultType' == resultType.id 
+    assert TextDoc('results format') == resultType.docs[0]
+    assert 0 == len(resultType.descriptors)
 
 
 def test_alps_parsing_on_sample_2():
@@ -144,11 +153,14 @@ def test_alps_parsing_on_sample_2():
     search = alps.get_descriptor('search')
     assert search == alps.descriptors[0]
     assert 'search' == search.id
+    assert 0 == len(search.docs)
+    assert 0 == len(search.descriptors)
 
     results = alps.get_descriptor('profile-results')
     assert results == alps.descriptors[1]
     assert 'profile-results' == results.id
-
+    assert 0 == len(results.docs)
+    assert 0 == len(results.descriptors)
 
 def test_alps_parsing_the_future(caplog):
     with open(f'tests/data/future.json') as f:

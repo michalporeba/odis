@@ -6,20 +6,32 @@ class Descriptor:
     def parse(obj: any):
         if dict == type(obj):
             desc_type = get_if_exists(obj, 'type', 'semantic')
-            docs = get_if_exists(obj, 'doc')
+            docs = get_if_exists(obj, 'doc', None)
+
         else: 
             return None
 
+        desc = None 
+
         if desc_type == 'semantic':
-            desc = Semantic(id=get_if_exists(obj, 'id'))
+            desc = Semantic(
+                id=get_if_exists(obj, 'id'),
+                name=get_if_exists(obj, 'name')
+            )
 
         if desc_type == 'safe':
-            desc = Safe(id=get_if_exists(obj, 'id'))
+            desc = Safe(
+                id=get_if_exists(obj, 'id'), 
+                name=get_if_exists(obj, 'name')
+            )
 
         if docs: 
             add_doc = getattr(desc, 'add_doc', None) 
             if add_doc: 
                 add_doc(docs)
+
+        for d in always_a_list(get_if_exists(obj, 'descriptor', [])):
+            desc.add_descriptor(d)
 
         return desc
  
@@ -33,6 +45,10 @@ class DescriptorBase(WithDocsMixin):
         return get_if_exists(self.contents, 'id', None)
 
     @property 
+    def name(self):
+        return get_if_exists(self.contents, 'name', None)
+
+    @property 
     def descriptors(self):
         return always_a_list(get_if_exists(self.contents, 'descriptor', []))
 
@@ -44,7 +60,7 @@ class DescriptorBase(WithDocsMixin):
         return self
 
     def get_descriptor(self, id: str) -> Descriptor:
-        return list_is_optional([d for d in self.descriptors if d.id == id])
+        return list_is_optional([d for d in get_if_exists(self.contents, 'descriptor', []) if d.id == id])
 
     def as_data(self): 
         data = {}
@@ -65,11 +81,18 @@ class DescriptorBase(WithDocsMixin):
 
 
 class SimpleDescriptor(Descriptor, DescriptorBase):
-    def __init__(self, id: str, text: str=None, ref: str=None, *args, **kwargs):
+    def __init__(self, 
+        id: str, 
+        text: str=None, 
+        ref: str=None, 
+        name: str=None,
+        *args, **kwargs
+    ):
         super().__init__(*args, **kwargs)
         self.contents['id'] = id
         self.contents['text'] = text 
         self.contents['ref'] = ref 
+        self.contents['name'] = name
 
 
 class Safe(SimpleDescriptor):
