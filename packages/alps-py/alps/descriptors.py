@@ -104,19 +104,31 @@ class SimpleDescriptor(Descriptor, DescriptorBase):
         self.contents['name'] = name
 
 
+class Idempotent():
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.contents['type'] = 'idempotent'
+
+
+class ReferencingDescriptor(SimpleDescriptor):
+    def __init__(self, ref: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.contents['ref'] = ref
+
+
 class Safe(SimpleDescriptor):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.contents['type'] = 'safe'
+        self.contents['type'] = 'safe'    
 
 
 class Semantic(SimpleDescriptor):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.contents['type'] = 'semantic'
-        
 
-class ReferencingDescriptor(SimpleDescriptor):
-    def __init__(self, ref: str, *args, **kwargs):
+
+class Unsafe(SimpleDescriptor):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.contents['ref'] = ref
+        self.contents['type'] = 'unsafe'

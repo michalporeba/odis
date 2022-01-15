@@ -22,6 +22,26 @@ def test_href_descriptor():
     assert 'test://source.io' == to_data(desc)['ref']
 
 
+def test_safe_descriptor():
+    desc = Idempotent()
+    assert 'idempotent' == to_data(desc)['type']
+
+
+def test_safe_descriptor():
+    desc = Safe()
+    assert 'safe' == to_data(desc)['type']
+
+
+def test_semantic_descriptor():
+    desc = Semantic()
+    assert 'semantic' == to_data(desc)['type']
+
+
+def test_safe_descriptor():
+    desc = Unsafe()
+    assert 'unsafe' == to_data(desc)['type']
+
+
 def test_descriptors_are_semantic_by_default():
     desc = Descriptor.parse({'id': 'sample'}, noop_resolver)
     assert Semantic(id='sample') == desc
