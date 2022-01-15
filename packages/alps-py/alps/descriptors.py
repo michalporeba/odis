@@ -91,7 +91,7 @@ class DescriptorBase(WithDocsMixin):
 
 class SimpleDescriptor(Descriptor, DescriptorBase):
     def __init__(self, 
-        id: str, 
+        id: str=None, 
         text: str=None, 
         ref: str=None, 
         name: str=None,
@@ -115,3 +115,8 @@ class Semantic(SimpleDescriptor):
         super().__init__(*args, **kwargs)
         self.contents['type'] = 'semantic'
         
+
+class ReferencingDescriptor(SimpleDescriptor):
+    def __init__(self, ref: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.contents['ref'] = ref
