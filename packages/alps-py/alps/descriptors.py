@@ -3,15 +3,39 @@ from diogi.conventions import to_data
 from .docs import WithDocsMixin
 
 class Descriptor: 
-    pass 
+    def parse(obj: any):
+        if dict == type(obj):
+            desc_type = get_if_exists(obj, 'type', 'semantic')
+
+        if desc_type == 'semantic':
+            return Semantic(id=get_if_exists(obj, 'id'))
+
+        if desc_type == 'safe':
+            return Safe(id=get_if_exists(obj, 'id'))
+
+ 
 
 class DescriptorBase(WithDocsMixin):
     def __init__(self):
         self.contents = {}
 
+    @property
+    def id(self):
+        return get_if_exists(self.contents, 'id', None)
+
+    @property 
+    def descriptors(self):
+        return always_a_list(get_if_exists(self.contents, 'descriptor', []))
+
     def add_descriptor(self, descriptor: Descriptor):
+        if not isinstance(descriptor, Descriptor):
+            descriptor = Descriptor.parse(descriptor)
+
         append_if_not_none(self.contents, descriptor, 'descriptor')
         return self
+
+    def get_descriptor(self, id: str) -> Descriptor:
+        return list_is_optional([d for d in self.descriptors if d.id == id])
 
     def as_data(self): 
         data = {}
@@ -19,6 +43,16 @@ class DescriptorBase(WithDocsMixin):
             set_if_not_none(data, to_data(list_is_optional(v)), k)
 
         return data
+
+    def __eq__(self, other):
+        if type(other) is type(self):
+            return self.contents == other.contents
+        else:
+            return False
+
+    def __hash__(self):
+        return hash((self.contents, self.contents))
+
 
 
 class SimpleDescriptor(Descriptor, DescriptorBase):

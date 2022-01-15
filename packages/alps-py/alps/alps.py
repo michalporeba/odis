@@ -46,4 +46,7 @@ class Alps(DescriptorBase):
         for d in always_a_list(get_if_exists(data, 'doc', [])):
             alps.add_doc(d)
 
+        for d in always_a_list(get_if_exists(data, 'descriptor', [])):
+            alps.add_descriptor(d)
+
         return alps

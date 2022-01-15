@@ -5,10 +5,8 @@
 descriptor
 [ ] id or href (could be both but must have one)
 [ ] href allows inheritance
+[ ] doc's contentType should override format if present
 [ ]
 [ ]
 [ ]
 [ ]
-[ ]
-[ ] what is the latest on the doc format? 
-[ ] scrape schema.org to produce constant values for descriptions
