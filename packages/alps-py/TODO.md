@@ -6,7 +6,7 @@ descriptor
 [ ] id or href (could be both but must have one)
 [ ] href allows inheritance
 [ ] doc's contentType should override format if present
-[ ]
+[ ] link element - sample2
 [ ]
 [ ]
 [ ]

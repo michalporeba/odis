@@ -49,6 +49,18 @@ class Doc:
 
         return TextDoc()
 
+    def __eq__(self, other):
+        if type(other) is type(self):
+            return self.format == other.format and \
+                self.href == other.href and \
+                self.tag == other.tag and \
+                self.value == other.value 
+        else:
+            return False
+
+    def __hash__(self):
+        return hash((self.format, self.href, self.tag, self.value))
+
 
 class WithDocsMixin:
     def __init__(self, *args, **kwargs):

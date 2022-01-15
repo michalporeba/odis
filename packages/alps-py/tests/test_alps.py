@@ -1,3 +1,4 @@
+from unittest import result
 import pytest
 import json
 from alps import *
@@ -120,6 +121,11 @@ def test_alps_parsing_on_sample_1():
     search = alps.get_descriptor('search')
     assert search == alps.descriptors[0]
     assert 'search' == search.id
+    assert TextDoc('A search form with a two inputs') == search.docs[0]
+    
+    resultType = alps.get_descriptor('resultType')
+    assert resultType == alps.descriptors[1]
+    assert 'resultType' == resultType.id 
 
 
 def test_alps_parsing_on_sample_2():
@@ -135,6 +141,13 @@ def test_alps_parsing_on_sample_2():
     assert 'profile' == alps.docs[1].tag
 
     assert 2 == len(alps.descriptors)
+    search = alps.get_descriptor('search')
+    assert search == alps.descriptors[0]
+    assert 'search' == search.id
+
+    results = alps.get_descriptor('profile-results')
+    assert results == alps.descriptors[1]
+    assert 'profile-results' == results.id
 
 
 def test_alps_parsing_the_future(caplog):

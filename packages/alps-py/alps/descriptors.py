@@ -6,13 +6,22 @@ class Descriptor:
     def parse(obj: any):
         if dict == type(obj):
             desc_type = get_if_exists(obj, 'type', 'semantic')
+            docs = get_if_exists(obj, 'doc')
+        else: 
+            return None
 
         if desc_type == 'semantic':
-            return Semantic(id=get_if_exists(obj, 'id'))
+            desc = Semantic(id=get_if_exists(obj, 'id'))
 
         if desc_type == 'safe':
-            return Safe(id=get_if_exists(obj, 'id'))
+            desc = Safe(id=get_if_exists(obj, 'id'))
 
+        if docs: 
+            add_doc = getattr(desc, 'add_doc', None) 
+            if add_doc: 
+                add_doc(docs)
+
+        return desc
  
 
 class DescriptorBase(WithDocsMixin):
