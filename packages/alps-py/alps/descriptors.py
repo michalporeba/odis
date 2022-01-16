@@ -21,15 +21,18 @@ class Descriptor:
         else:
             return None
 
-        desc = None
+        # desc = None
+        id = get_if_exists(resolved, "id")
+        name = get_if_exists(resolved, "name")
 
         if desc_type == "semantic":
-            desc = Semantic(
-                id=get_if_exists(resolved, "id"), name=get_if_exists(resolved, "name")
-            )
-
-        if desc_type == "safe":
-            desc = Safe(id=get_if_exists(resolved, "id"), name=get_if_exists(resolved, "name"))
+            desc = Semantic(id=id, name=name)
+        elif desc_type == "safe":
+            desc = Safe(id=id, name=name)
+        elif desc_type == "unsafe":
+            desc = Unsafe(id=id, name=name)
+        elif desc_type == "idempotent":
+            desc = Idempotent(id=id, name=name)
 
         if docs:
             add_doc = getattr(desc, "add_doc", None)

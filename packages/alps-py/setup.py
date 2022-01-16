@@ -9,7 +9,7 @@ def long_description():
 setup(
     name="alps-py",
     packages=find_packages(include=["alps"]),
-    version="0.1.3",
+    version="0.1.4",
     author="Michal Poreba",
     license="MIT",
     description="An ALPS library for python",

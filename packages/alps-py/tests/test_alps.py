@@ -188,6 +188,28 @@ def test_alps_parsing_on_sample_2():
     assert 0 == len(results.descriptors)
 
 
+def test_alps_parsing_on_sample_3():
+    with open(f"tests/data/sample3.json") as f:
+        data = json.load(f)
+    sut = Alps.parse(data, Alps.default_resolver(data))
+
+    assert "1.0" == sut.version
+    assert "ALPS document" == sut.title
+    assert 3 == len(sut.descriptors)
+
+    one = sut.get_descriptor("doPostOne")
+    assert 1 == len(one.descriptors)
+    size = one.get_descriptor("size")
+    assert "size of something" == size.name
+
+    two = sut.get_descriptor("doPostTwo")
+    assert 2 == len(two.descriptors)
+    width = two.get_descriptor("width")
+    assert "width of something" == width.name
+    height = two.get_descriptor("height")
+    assert "height of something" == height.name
+
+
 def test_alps_parsing_the_future(caplog):
     with open(f"tests/data/future.json") as f:
         data = json.load(f)
