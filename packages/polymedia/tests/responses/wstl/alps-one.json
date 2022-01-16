@@ -12,6 +12,26 @@
                                 "doc": { "value": "a query parameter"}
                             }
                         ]
+                    },
+                    { "id": "doPostOne", "type": "unsafe",
+                        "descriptor": [
+                            {
+                                "id": "size",
+                                "name": "size of something"
+                            }
+                        ]
+                    },
+                    { "id": "doPostTwo", "type": "unsafe",
+                        "descriptor": [
+                            {
+                                "id": "width",
+                                "name": "width of something"
+                            },
+                            {
+                                "id": "height",
+                                "name": "height of something"
+                            }
+                        ]
                     }
                 ]
             }

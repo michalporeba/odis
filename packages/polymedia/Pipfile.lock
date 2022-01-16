@@ -18,10 +18,10 @@
     "default": {
         "alps-py": {
             "hashes": [
-                "sha256:8f0ba9a2c5b40065dace986df7c5090a8d79a749456e4b2eb456806988d9c07e"
+                "sha256:7479a1d8301b608e41731ced2a4a1573997063ef6c8fc8c72f4003ad18074539"
             ],
             "index": "pypi",
-            "version": "==0.1.3"
+            "version": "==0.1.4"
         },
         "attrs": {
             "hashes": [

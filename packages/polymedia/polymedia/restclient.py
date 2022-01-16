@@ -1,13 +1,14 @@
 import requests
-from requests.models import Response
-from alps import Alps
+from alps import Alps, Unsafe
 from .poly import Poly 
 from .wstl import Wstl 
 from .hal import Hal 
 from diogi.functions import first_or_default
 
+
 def get_alps():
     pass
+
 
 class RestClient: 
     def __init__(self):
@@ -38,39 +39,38 @@ class RestClient:
 
         return self.poly
 
-    
-    def get(self, action: str, resolver: callable=None) -> dict: 
-        headers = {
-            'Accept': self._accepted_types
-        }
-
+    def get(self, action: str, resolver: callable = None) -> dict:
         params = self._resolve_params(action, resolver)
-
         url = [a for a in self.poly.actions if a.name == action][0].url
-        response = requests.get(url, headers=headers, params=params)
-        
+        response = None
+
+        if self.alps is not None:
+            descriptor = self.alps.get_descriptor(action)
+            if descriptor is not None:
+                if isinstance(descriptor, Unsafe):
+                    headers = {'Accept': 'application/json'}
+                    response = requests.post(url, headers=headers, json=params)
+        if response is None:
+            headers = {'Accept': self._accepted_types}
+            response = requests.get(url, headers=headers, params=params)
+
         return self.formatter.parse(response.json())
 
-        
-    def do(self, action: str, resolver: callable=None) -> Poly: 
+    def do(self, action: str, resolver: callable = None) -> Poly:
         self.poly = self.get(action, resolver)
         self._detect_and_set_alps()
         return self.poly 
 
-
     @property 
-    def alps(self) -> Alps|None:
+    def alps(self) -> Alps | None:
         return self._alps
-
 
     @property
     def actions(self) -> list:
         return [a.name for a in self.poly.actions]
 
-
     def can_do(self, action: str) -> bool: 
         return 0 < len([a for a in self.poly.actions if a.name == action])
-
 
     def _detect_and_set_alps(self):
         if self.can_do('alps'):
@@ -79,7 +79,7 @@ class RestClient:
             self._alps = Alps.parse(alps_data, Alps.default_resolver(alps_data))
 
     def _resolve_params(self, action: str, resolver: callable) -> dict:
-        if resolver == None or self.alps == None: 
+        if resolver is None or self.alps is None:
             return {}
         
         descriptor = self.alps.get_descriptor(action)

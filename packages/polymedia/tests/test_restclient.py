@@ -17,7 +17,7 @@ NONE_WSTL_PATH = 'none/wstl'
 NONE_WSTL_URL = 'https://localhost.tests/none/wstl'
 
 
-def add_get_response(path: str, params: dict=None): 
+def add_response(method, path: str, params: dict | None = None, body: dict = None):
     with open(f'tests/responses/{path}.json') as f:
         data = json.load(f)
 
@@ -29,23 +29,19 @@ def add_get_response(path: str, params: dict=None):
     if 'none/' in path: 
         accepted_type = None
 
-    if params == None: 
-        responses.add(
-            responses.GET, 
-            f'https://localhost.tests/{path}', 
-            json=data, 
-            status=200,
-            headers= None if accepted_type is None else {'Content-Type': accepted_type}
-        )
-    else:
-        responses.add(
-            responses.GET, 
-            f'https://localhost.tests/{path}', 
-            json=data, 
-            status=200,
-            headers= None if accepted_type is None else {'Content-Type': accepted_type},
-            match=[matchers.query_param_matcher(params)]
-        ) 
+    responses.add(
+        method,
+        f'https://localhost.tests/{path}',
+        json=data,
+        status=200,
+        headers=None if accepted_type is None else {'Content-Type': accepted_type},
+        match=[] if body is None else [matchers.json_params_matcher(body)] +
+            [] if params is None else [matchers.query_param_matcher(params)]
+    )
+
+
+def add_get_response(path: str, params: dict | None = None):
+    add_response(responses.GET, path, params)
 
 
 def setup_alps_tests():
@@ -54,6 +50,8 @@ def setup_alps_tests():
     add_get_response('wstl/get-with-alps', params={'q': 'value-of-q'})
     add_get_response('wstl/get-without-alps')
     add_get_response('wstl/test-with-alps')
+    add_response(responses.POST, 'wstl/post-one', body={'size': 123})
+    add_response(responses.POST, 'wstl/post-two', body={'width': 12, 'height': 34})
     rc = RestClient()
     rc.connect('https://localhost.tests/wstl/test-with-alps')
     return rc
@@ -178,9 +176,22 @@ def test_wstl_get_parameters_using_alps():
     def value_resolver(descriptor: Descriptor) -> any: 
         if descriptor.id == 'q':
             return 'value-of-q'
+        elif descriptor.id == 'size':
+            return 123
+        elif descriptor.id == 'width':
+            return 12
+        elif descriptor.id == 'height':
+            return 34
         else: 
             return 'something else'
 
     poly = rc.do('get-with-alps', value_resolver)
     assert 'value from get-with-alps' == poly.data[0]
-
+    rc.do('home')
+    # to succeed it will have to automatically resolve size
+    poly = rc.do('doPostOne', value_resolver)
+    assert 'response to post one' == poly.data[0]
+    rc.do('home')
+    # to succeed it will have to resolve width and height
+    poly = rc.do('doPostTwo', value_resolver)
+    assert 'response to post two' == poly.data[0]

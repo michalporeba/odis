@@ -6,7 +6,9 @@
             { "name": "home", "url": "https://localhost.tests/wstl/test-with-alps"},
             { "name": "alps", "url": "https://localhost.tests/wstl/alps-one"},
             { "name": "get-without-alps", "url": "https://localhost.tests/wstl/get-without-alps"},
-            { "name": "get-with-alps", "url": "https://localhost.tests/wstl/get-with-alps"}
+            { "name": "get-with-alps", "url": "https://localhost.tests/wstl/get-with-alps"},
+            { "name": "doPostOne", "url": "https://localhost.tests/wstl/post-one"},
+            { "name": "doPostTwo", "url": "https://localhost.tests/wstl/post-two"}
         ]
     }
 }

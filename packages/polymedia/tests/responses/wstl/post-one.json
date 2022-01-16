@@ -1,0 +1,9 @@
+{
+    "wstl": {
+        "title": "get with alps",
+        "actions": [
+            { "name": "home", "url": "https://localhost.tests/wstl/test-with-alps"}
+        ],
+        "data": "response to post one"
+    }
+}
