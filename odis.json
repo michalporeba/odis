@@ -10,7 +10,10 @@
             { "id": "describe", "type": "safe", "text": "get the service description"},
             { "id": "home", "type": "safe", "text": "go to ODIS service home"},
             { "id": "self", "type": "safe", "text": "get the same resource again"},
-            { "id": "node", "type": "safe", "text": "show the odis node's information"},
+            { "id": "node", "type": "safe", "text": "show the odis node's information", 
+                "descriptor": [
+                    { "id": "id" }, { "id": "name" }
+                ]},
             { "id": "ping", "type": "safe", "text": "check if the service is alive"},
             { "id": "healthcheck", "type": "safe", "text": "check the health of the node"},
             { "id": "services", "type": "safe", "text": "list known services"},

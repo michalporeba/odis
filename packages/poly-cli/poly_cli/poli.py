@@ -1,7 +1,9 @@
 from cmd import Cmd
 from polymedia import RestClient
 from alps import Descriptor
+from diogi.functions import get_if_exists
 import argparse
+import json
 
 parser = argparse.ArgumentParser(description='')
 parser.add_argument('-o', '--odis',
@@ -10,16 +12,14 @@ parser.add_argument('-k', '--knowledge',
                     help='file containing the knowledge')
 
 
-def parameter_resolver(descriptor: Descriptor) -> any:
-    print(f'  need {descriptor.id}')
-
-
 class WstlCli(Cmd):
     prompt = '> '
     current_alps = None
+    knowledge = None
 
     def __init__(self):
         super().__init__()
+        self.new_request = True
         self.rest_client = None
 
     def preloop(self):
@@ -34,9 +34,9 @@ class WstlCli(Cmd):
 
     def do_exit(self, args):
         print('Hwyl')
-        return True 
+        return True
 
-    do_EOF = do_exit 
+    do_EOF = do_exit
 
     def default(self, args):
         if args == 'x' or args == 'q':
@@ -56,9 +56,9 @@ class WstlCli(Cmd):
                 print(d)
 
         self._show_actions()
-        
+
     def do_do(self, args):
-        poly = self.rest_client.do(args, resolver=parameter_resolver)
+        poly = self.rest_client.do(args, resolver=self._parameter_resolver)
         print()
         if 0 == len(poly.data) or (1 == len(poly.data) and poly.data[0] is None):
             print('Action returned non data')
@@ -67,6 +67,7 @@ class WstlCli(Cmd):
             for d in poly.data:
                 print(d)
 
+        self.new_request = True
         self._show_actions()
 
     def _check_alps(self, new_alps):
@@ -80,8 +81,29 @@ class WstlCli(Cmd):
         for a in self.rest_client.poly.actions:
             print(f"  {a.name}")
 
+    def _parameter_resolver(self, descriptor: Descriptor) -> any:
+        if self.new_request:
+            print('Request parameters:', )
+            self.new_request = False
+        print((' ' * 20 + f'  {descriptor.id} = ')[-20:], end='')
+        value = self._check_knowledge(descriptor.id)
+        if value is None:
+            return input()
+        else:
+            print(value)
+            return value
+
+    def _check_knowledge(self, key: str) -> any:
+        if self.knowledge is None and args.knowledge is not None:
+            try:
+                with open(args.knowledge, 'r') as f:
+                    self.knowledge = json.load(f)
+            except:
+                print(f'ERROR: unable to open {args.knowledge} : ', end='')
+
+        return get_if_exists(self.knowledge, key, None)
+
 
 if __name__ == '__main__':
     args = parser.parse_args()
     WstlCli().cmdloop()
-
