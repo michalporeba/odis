@@ -7,7 +7,7 @@ def long_description():
 setup(
     name='polymedia',
     packages=find_packages(include=['polymedia']),
-    version='0.1.6',
+    version='0.1.9',
     author='Michal Poreba',
     license='MIT',
     description='A polyglot hypermedia library for python ReSTful services',
@@ -22,7 +22,7 @@ setup(
         'Intended Audience :: Developers',
         'Topic :: Software Development'
     ],
-    install_requires=['requests', 'diogi', 'callouts'],
+    install_requires=['requests', 'diogi', 'callouts', 'alps-py'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'responses'],
     test_suite='tests'

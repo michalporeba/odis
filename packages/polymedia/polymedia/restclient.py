@@ -82,10 +82,10 @@ class RestClient:
         if resolver is None or self.alps is None:
             return {}
         
-        descriptor = self.alps.get_descriptor(action)
-        
         params = {}
-        for d in descriptor.descriptors:
-            params[d.id] = resolver(d)
+        descriptor = self.alps.get_descriptor(action)
+        if descriptor is not None:     
+            for d in descriptor.descriptors:
+                params[d.id] = resolver(d)
 
         return params

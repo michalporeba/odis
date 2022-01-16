@@ -160,12 +160,18 @@ def test_action_dropping_accept_header():
 
 @responses.activate
 def test_automatic_alps_from_wstl():
+    def noop_resolver():
+        # important to test behaviour when alps exists and 
+        # can be used - because there is a resolver
+        # without it an error mode cannot be tested
+        pass 
+
     rc = setup_alps_tests()
     assert Alps == type(rc.alps)
     assert 'part of WSTL' in rc.alps.title 
 
     # ensure actions not defined in ALPS can be still performed
-    poly = rc.do('get-without-alps')
+    poly = rc.do('get-without-alps', noop_resolver)
     assert 'value from get-without-alps' == poly.data[0]
 
 

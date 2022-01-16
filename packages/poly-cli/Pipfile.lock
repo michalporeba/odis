@@ -16,6 +16,12 @@
         ]
     },
     "default": {
+        "alps-py": {
+            "hashes": [
+                "sha256:7479a1d8301b608e41731ced2a4a1573997063ef6c8fc8c72f4003ad18074539"
+            ],
+            "version": "==0.1.4"
+        },
         "attrs": {
             "hashes": [
                 "sha256:2d27e3784d7a565d36ab851fe94887c5eccd6a463168875832a1be79c82828b4",
@@ -47,9 +53,9 @@
         },
         "diogi": {
             "hashes": [
-                "sha256:7ff4516591527f64c9727f3549ff6c9a3d9808ac67a7ec6cfe00055817141213"
+                "sha256:13a270e8ec3a10bfc6906efedcfc6b06e992b133cae985a802501c98eea81cd3"
             ],
-            "version": "==0.0.6"
+            "version": "==0.0.9"
         },
         "idna": {
             "hashes": [
@@ -84,10 +90,10 @@
         },
         "polymedia": {
             "hashes": [
-                "sha256:1cbed3345fe28a00a7ca2ca063666ed6ebd2f94a08a12d81c323e40e56800fcd"
+                "sha256:43879579cf260ff53a2355a558cc0665443545836d7f7b8ab448ade77498315e"
             ],
             "index": "pypi",
-            "version": "==0.1.6"
+            "version": "==0.1.9"
         },
         "py": {
             "hashes": [
