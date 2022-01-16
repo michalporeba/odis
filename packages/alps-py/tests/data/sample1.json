@@ -3,7 +3,7 @@
     "alps" : {
       "version" : "1.0",
         "doc" : {
-            "href" : "http://example.org/samples/full/doc.html"
+            "href" : "https://example.org/samples/full/doc.html"
         },
       "descriptor" : [
         {
@@ -28,7 +28,7 @@
           "doc" : { "value" : "results format"},
           "ext" : [
             {
-              "href" : "http://alps.io/ext/range",
+              "href" : "https://alps.io/ext/range",
               "value" : "summary,detail"
             }
           ]

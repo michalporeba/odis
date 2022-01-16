@@ -4,11 +4,11 @@
       "version" : "1.0",
       "link" : {
         "rel" : "tag-doc",
-        "href" : "http://example.org/tags/index.html"
+        "href" : "https://example.org/tags/index.html"
       },
       "doc" : [
-        {"href" : "http://example.org/samples/full/doc.html"},
-        {"href" : "http://example.org/samples/profile/doc.html",
+        {"href" : "https://example.org/samples/full/doc.html"},
+        {"href" : "https://example.org/samples/profile/doc.html",
           "tag" : "profile"
         }
       ],
