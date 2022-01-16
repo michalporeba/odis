@@ -1,7 +1,7 @@
-def append_if_not_none(obj: any, value: any, key: str=None) -> any:
-    if value is None: 
+def append_if_not_none(obj: any, value: any, key: str = None) -> any:
+    if value is None:
         return obj
-    
+
     if key is None and list == type(obj):
         obj.append(value)
 
@@ -9,50 +9,50 @@ def append_if_not_none(obj: any, value: any, key: str=None) -> any:
         if key not in obj.keys():
             obj[key] = []
         obj[key].append(value)
-    
+
     return obj
 
 
-def always_a_list(obj: any) -> list: 
+def always_a_list(obj: any) -> list:
     """
-    returns a list nomatter what is in the input. 
+    returns a list no matter what is in the input.
     if the argument is a list already it gets returned verbatim
-    but if it is not, it is wrapped into a list 
+    but if it is not, it is wrapped into a list
     """
     if list == type(obj):
         return obj
     else:
         return [obj]
 
-    
-def default_if_none(obj: any, default: any) -> any: 
-    if obj is None: 
+
+def default_if_none(obj: any, default: any) -> any:
+    if obj is None:
         return default
-    return obj 
+    return obj
 
 
-def first_or_default(lst: list, default: any=None) -> any:
-    if lst is None: 
-        return default 
+def first_or_default(lst: list | None, default: any = None) -> any:
+    if lst is None:
+        return default
     if list == type(lst):
         if 0 == len(lst):
-            return default 
-        else: 
+            return default
+        else:
             return lst[0]
-    return None 
+    return None
 
 
-def get_if_exists(obj: any, key: str, default: any=None) -> any:
+def get_if_exists(obj: any, key: str | None, default: any = None) -> any:
     if obj is None or key is None:
         return default
 
     if dict == type(obj):
         if key in obj.keys():
             return obj[key]
-        else: 
-            return default 
+        else:
+            return default
 
-    attr = getattr(obj, key, default) 
+    attr = getattr(obj, key, default)
     return attr
 
 
@@ -74,7 +74,7 @@ def list_without_nones(lst: list) -> list:
     return [e for e in lst if e is not None]
 
 
-def none_if_empty(obj: any) -> any: 
+def none_if_empty(obj: any) -> any:
     if list == type(obj) and len(obj) == 0:
         return None
     if dict == type(obj) and len(obj.keys()) == 0:
@@ -82,8 +82,8 @@ def none_if_empty(obj: any) -> any:
     return obj
 
 
-def set_if_not_none(obj: any, value: any, key: str=None) -> any:
-    if value is None: 
+def set_if_not_none(obj: any, value: any, key: str = None) -> any:
+    if value is None:
         return obj
 
     if key is None and list == type(obj):
