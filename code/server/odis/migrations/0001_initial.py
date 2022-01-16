@@ -8,22 +8,43 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Connection',
+            name="Connection",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('uuid', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('cts', models.DateTimeField(auto_now_add=True)),
-                ('uts', models.DateTimeField(auto_now=True)),
-                ('url', models.CharField(editable=False, max_length=256, unique=True)),
-                ('state', models.CharField(choices=[('R', 'Requested'), ('C', 'Connected'), ('D', 'Denied')], default='R', max_length=1)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "uuid",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                ("cts", models.DateTimeField(auto_now_add=True)),
+                ("uts", models.DateTimeField(auto_now=True)),
+                ("url", models.CharField(editable=False, max_length=256, unique=True)),
+                (
+                    "state",
+                    models.CharField(
+                        choices=[
+                            ("R", "Requested"),
+                            ("C", "Connected"),
+                            ("D", "Denied"),
+                        ],
+                        default="R",
+                        max_length=1,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

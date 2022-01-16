@@ -5,13 +5,13 @@ name = "pypi"
 
 [packages]
 django = "*"
-black = "*"
 isort = "*"
 callouts = {path = "./../../packages/callouts/dist/callouts-0.1.0-py3-none-any.whl"}
 autologging = "*"
 django-kinder-settings = "*"
 django-rest-framework = "*"
 alps-py = "*"
+pytest = "*"
 
 [dev-packages]
 

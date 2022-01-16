@@ -23,7 +23,7 @@ sys.path.append(str(BASE_DIR / "datanode"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-#DEFAULT_ROOT_URL = "https://127.0.0.1:8001/"
+# DEFAULT_ROOT_URL = "https://127.0.0.1:8001/"
 ALLOWED_HOSTS = []
 
 
@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework',
-    'odis'
+    "rest_framework",
+    "odis",
 ]
 
 MIDDLEWARE = [
@@ -80,17 +80,17 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     },
     "demo1": {
-         "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db1.sqlite3",
     },
     "demo2": {
-         "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db2.sqlite3",
     },
     "demo3": {
-         "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db3.sqlite3",
-    }
+    },
 }
 
 
