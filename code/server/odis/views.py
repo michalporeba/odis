@@ -47,11 +47,12 @@ class Connections(APIView):
         return Response(wstl.to_data())
 
 
-class Service(APIView):
+class Node(APIView):
     def get(self, request):
         wstl = Wstl("ODIS - Service Node Information")
         wstl = wstl.with_get_action("self", "odis-node")
         wstl = wstl.with_get_action("home", "odis-home")
+        wstl = wstl.with_get_action("odis:connect", "odis-node-connect")
         wstl = wstl.add_data_item(
             {
                 "id": settings.ODIS_SERVICE_ID,
@@ -62,6 +63,14 @@ class Service(APIView):
             }
         )
 
+        return Response(wstl.to_data())
+
+
+class NodeConnect(APIView):
+    def post(self, request, format=None): 
+        wstl = Wstl("ODIS - Connection Request")
+        wstl = wstl.with_get_action("home", "odis-home")
+        wstl = wstl.add_data_item("ConnectionRequest with " + str(request.data))
         return Response(wstl.to_data())
 
 
@@ -76,66 +85,3 @@ class ServiceDescription(APIView):
         wstl = wstl.with_get_action("home", "odis-home")
         wstl = wstl.add_data_item(alps_data)
         return Response(wstl.to_data())
-
-
-class Target(APIView):
-    def get(self, request):
-        return Response(
-            {
-                "wstl": {
-                    "actions": [],
-                    "data": [],
-                }
-            }
-        )
-
-
-# Create your views here.
-class WstlSample(APIView):
-    def get(self, request, format="not-provider"):
-        return Response(
-            {
-                "wstl": {
-                    "actions": [
-                        {
-                            "name": "homeLink",
-                            "description": "View the home page",
-                            "type": "safe",
-                            "action": "read",
-                            "kind": "",
-                            "target": "list menu",
-                            "prompt": "Home",
-                        },
-                        {
-                            "name": "searchForm",
-                            "description": "Search for content",
-                            "type": "safe",
-                            "action": "read",
-                            "kind": "search",
-                            "target": "list form",
-                            "prompt": "Search",
-                            "inputs": [
-                                {
-                                    "name": "text",
-                                    "prompt": "Search Text",
-                                    "value": "Danny",
-                                    "required": True,
-                                },
-                                {
-                                    "name": "external",
-                                    "prompt": "External Search?",
-                                    "value": "",
-                                    "required": True,
-                                    "suggest": [{"value": "true"}, {"value": "false"}],
-                                },
-                            ],
-                        },
-                    ],
-                    "data": [
-                        {"id": "1a14qx7qc81", "title": "Danny Boy"},
-                        {"id": "1q2w3e43r", "title": "Danny Tremane"},
-                        {"id": "azsxdcfvgb", "title": "Danny Two-Shoes"},
-                    ],
-                }
-            }
-        )

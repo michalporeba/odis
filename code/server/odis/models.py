@@ -17,9 +17,10 @@ class DisModel(models.Model):
 
 class Connection(DisModel):
     class ConnectionStates(models.TextChoices):
-        REQUESTED = ("R", "Requested")
         CONNECTED = ("C", "Connected")
         DENIED = ("D", "Denied")
+        REQUESTED = ("R", "Requested")
+        SUSPENDED = ("S", "Suspended")
 
     url = models.CharField(
         max_length=MAX_URL_LENGTH, unique=True, editable=False, blank=False, null=False
