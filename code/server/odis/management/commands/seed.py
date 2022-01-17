@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from odis.models import Service, Organisation
 from django_kinder_settings import settings
-
+import uuid 
 
 class Command(BaseCommand):
     help = "seed data"
@@ -32,8 +32,9 @@ python ./manage.py flush --settings=config.settings.<service>"""
 
     def seed(self):
         default_organisation = Organisation(
-            name="Distributed Information Organisation (DIO)",
-            url="github.com/michalporeba/odis/",
+            uuid=settings.ODIS_ORG_ID,
+            name=settings.ODIS_ORG_NAME,
+            url=settings.ODIS_ORG_URL,
         )
         default_organisation.save()
         self.stdout.write(f"created organisation with id {default_organisation.id}")

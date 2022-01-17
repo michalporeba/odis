@@ -4,9 +4,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .wstl import Wstl, WstlClient
 from .wstl_django import DjangoWstlContext
-from .models import Connection
+from .models import Connection, Organisation, Service
 from django_kinder_settings import settings
 from .apps import Odis
+from .serializers import OrganisationSerlializer, ServiceSerializer
 import json
 
 
@@ -17,7 +18,8 @@ class Hello(APIView):
         wstl = wstl.with_get_action("home", "odis-home")
         wstl = wstl.with_get_action("node", "odis-node")
         wstl = wstl.with_get_action("alps", "odis-alps")
-
+        wstl = wstl.with_get_action("odis:service", "odis-service")
+        wstl = wstl.with_get_action("odis:owner", "odis-node-owner")
         return Response(wstl.to_data())
 
 
@@ -85,3 +87,16 @@ class ServiceDescription(APIView):
         wstl = wstl.with_get_action("home", "odis-home")
         wstl = wstl.add_data_item(alps_data)
         return Response(wstl.to_data())
+
+
+class ThisOrganisation(APIView):
+    def get(self, request): 
+        service = Organisation.objects.get(uuid=settings.ODIS_ORG_ID)
+        return Response(OrganisationSerlializer(service).data)
+
+
+class ThisService(APIView):
+    def get(self, request): 
+        service = Service.objects.get(uuid=settings.ODIS_SERVICE_ID)
+        return Response(ServiceSerializer(service).data)
+
