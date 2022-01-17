@@ -54,6 +54,7 @@ class Node(APIView):
         wstl = Wstl("ODIS - Service Node Information")
         wstl = wstl.with_get_action("self", "odis-node")
         wstl = wstl.with_get_action("home", "odis-home")
+        wstl = wstl.with_get_action("odis:connections", "odis-connections")
         wstl = wstl.with_get_action("odis:connect", "odis-node-connect")
         wstl = wstl.add_data_item(
             {
@@ -70,8 +71,13 @@ class Node(APIView):
 
 class NodeConnect(APIView):
     def post(self, request, format=None): 
+        Connection(
+            url=request.data['url'],
+        ).save()
+
         wstl = Wstl("ODIS - Connection Request")
         wstl = wstl.with_get_action("home", "odis-home")
+        wstl = wstl.with_get_action("odis:connections", "odis-connections")
         wstl = wstl.add_data_item("ConnectionRequest with " + str(request.data))
         return Response(wstl.to_data())
 

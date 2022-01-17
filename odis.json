@@ -16,7 +16,7 @@
             { "id": "services", "type": "safe", "text": "list known services"},
             { "id": "odis:connect", "type": "unsafe", "text": "request connection",
                 "descriptor": [
-                    { "id": "id" }
+                    { "id": "url" }
                 ]
             },
             { "id": "service.approve", "type": "idempotent", "text": "request connection",
