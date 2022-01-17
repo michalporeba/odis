@@ -4,15 +4,13 @@ To monitor and control the progress of the project I'm using an approach based o
 
 [More details](#project-details) below the chart. 
 
-## Week 5 - 2022-01-10 - 2022-01-16
+## Week 6 - 2022-01-17 - 2022-01-23
 
 ![Progress](progress.png)
 
 ## Summary
 
-The development is going rather slowly, but steady progress is made daily. 
-A few problems with technical details of the implementation clearly resulted in less progress than I hoped for in week 4,
-but those have now been resolved. 
+The few technical problems from previous week have been resolved. 
 
 The 'scope creep' is almost exactly x1.3 as predicted so everything appears to be on track. 
 

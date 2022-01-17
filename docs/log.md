@@ -73,4 +73,21 @@ reduce burden further down the line, I have started a number of standalone packa
 * ALPS-PY
 * Callout
 * Django-Kinder-Settings
-* WSTL-PY
+* Polymedia
+
+## Week 5 - ending 2022-01-16
+
+*Working on the supporting packages*
+
+### Features completed: 
+
+* ALPS
+* Polymedia package
+
+To help with development and testing of the ideas I have developed
+* ALPS-PY - a package to create, parse and manage ALPS service descriptions
+* Callout - a way to modularise odis without dependencies
+* Diogi - a collection of functions to make my life easier
+* Django-Kinder-Settings - a more developer friendly settings for django
+* Polymedia - a client to communicate with hypermedia using ALPS 
+* Poly-CLI - a command line interface for Polymedia - for testing
