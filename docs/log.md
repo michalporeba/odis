@@ -91,3 +91,8 @@ To help with development and testing of the ideas I have developed
 * Django-Kinder-Settings - a more developer friendly settings for django
 * Polymedia - a client to communicate with hypermedia using ALPS 
 * Poly-CLI - a command line interface for Polymedia - for testing
+
+
+## Week 6 - ending 2022-01-23
+
+Engagements, no feature complete. 
