@@ -50,3 +50,16 @@ Could result in aggregated results, but feedback would be difficult to show.
 ## Packaging 
 
 https://medium.com/analytics-vidhya/how-to-create-a-python-library-7d5aea80cc3f
+
+
+
+&nbsp;
+# Common questions that need answering
+
+## What problems does service to service negotiation sovle? 
+Typically, as a developer, I know exactly what API I need, which one I want to use
+and might as well read the documentation and use it. 
+
+The above question shows only half of the problem, how to consume APIs. 
+The other half of the problem is how to provide a service through an API. 
+How to offer those services on the scale of decades without tight coupling. 
