@@ -96,3 +96,7 @@ To help with development and testing of the ideas I have developed
 ## Week 6 - ending 2022-01-23
 
 Engagements, no feature complete. 
+
+## Week 7 - ending 2022-01-31
+
+Many more discussions both inside and outside of the organisation, but the only material progress is the proxy setup with mitmproxy to help with validation of the protocol.
