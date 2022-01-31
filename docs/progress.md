@@ -4,13 +4,13 @@ To monitor and control the progress of the project I'm using an approach based o
 
 [More details](#project-details) below the chart. 
 
-## Week 7 - 2022-01-24 - 2022-01-31
+## Week 8 - 2022-01-31 - 2022-02-06
 
 ![Progress](progress.png)
 
 ## Summary
 
-Slow problem, but good engagement with potential stakeholders in sample implementation. 
+No more progress, too many distractions. But a number of bigger tasks became more obviou (shown by the raise of the blue line).
 
 ## Project Details
 I have started the project on the 2021-12-09 and will have to finish by 2022-07-04. Phase 1 covers the first 14 weeks until the progress report, and Phase 2 covers the rest.
