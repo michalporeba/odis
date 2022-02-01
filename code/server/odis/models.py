@@ -16,7 +16,7 @@ class DisModel(models.Model):
 
 
 class Connection(DisModel):
-    class ConnectionStates(models.TextChoices):
+    class States(models.TextChoices):
         ACTIVE = ("A", "Active")
         DENIED = ("D", "Denied")
         FAILED = ("F", "Failed")
@@ -30,11 +30,25 @@ class Connection(DisModel):
     )
     state = models.CharField(
         max_length=1,
-        choices=ConnectionStates.choices,
-        default=ConnectionStates.REQUESTED,
+        choices=States.choices,
+        default=States.REQUESTED,
         blank=False,
         null=False,
     )
+
+    def approve(self):
+        if self.state == Connection.States.ACTIVE:
+            return 
+        if self.state != Connection.States.REQUESTED:
+            raise RuntimeError
+        self.state = Connection.States.ACTIVE
+
+    def reject(self):
+        if self.state == Connection.States.DENIED:
+            return 
+        if self.state != Connection.States.REQUESTED:
+            raise RuntimeError
+        self.state = Connection.States.DENIED
 
 
 class Membership(DisModel):

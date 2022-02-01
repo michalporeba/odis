@@ -1,6 +1,7 @@
 from typing import Dict
-from django.http import Http404
+from django.http import  HttpResponseBadRequest, Http404, HttpResponse
 from django.shortcuts import render
+from http import HTTPStatus
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .wstl import Wstl, WstlClient
@@ -10,6 +11,9 @@ from django_kinder_settings import settings
 from .apps import Odis
 from .serializers import OrganisationSerlializer, ServiceSerializer, ConnectionSerializer, MembershipSerializer
 import json
+
+class HttpResponseBadTransition(HttpResponse):
+    status_code = 409
 
 
 class Hello(APIView):
@@ -71,6 +75,33 @@ class NodeConnection(APIView):
         except Connection.DoesNotExist:
             raise Http404
 
+    def approve(connection: Connection):
+        connection.approve()
+
+    def reject(connection: Connection):
+        connection.reject()
+
+    def post(self, request, id, action):
+        try:
+            connection = Connection.objects.get(uuid=id)
+        except Connection.DoesNotExist:
+            raise Http404
+
+        implementation = {
+            'approve': NodeConnection.approve,
+            'reject': NodeConnection.reject
+        }.get(action.lower(), None)
+        
+        if not implementation: 
+            raise HttpResponseBadRequest() 
+
+        try: 
+            implementation(connection)
+            connection.save()
+        except RuntimeError:
+            raise HttpResponseBadTransition()
+    
+        return Response(ConnectionSerializer(connection).data)
 
 
 class NodeMemberships(APIView):
