@@ -1,4 +1,5 @@
 from typing import Dict
+from django.http import Http404
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -60,6 +61,16 @@ class NodeConnections(APIView):
             wstl.add_data_item(ConnectionSerializer(c).data)
 
         return Response(wstl.to_data())
+
+
+class NodeConnection(APIView):
+    def get(self, request, id):
+        try:
+            connection = Connection.objects.get(uuid=id)
+            return Response(ConnectionSerializer(connection).data)
+        except Connection.DoesNotExist:
+            raise Http404
+
 
 
 class NodeMemberships(APIView):

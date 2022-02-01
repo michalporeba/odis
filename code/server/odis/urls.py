@@ -6,6 +6,7 @@ urlpatterns = [
     path("", Hello.as_view(), name="odis-home"),
     path("node/", Node.as_view(), name="odis-node"),
     path("node/connect/", NodeConnect.as_view(), name="odis-node-connect"),
+    path("node/connections/<uuid:id>/", NodeConnection.as_view(), name="odis-node-connection"),
     path("node/connections/", NodeConnections.as_view(), name="odis-node-connections"),
     path("node/memberships/", NodeMemberships.as_view(), name="odis-node-memberships"),
     path("node/owner/", ThisOrganisation.as_view(), name="odis-node-owner"),
