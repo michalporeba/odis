@@ -81,6 +81,12 @@ class NodeConnection(APIView):
     def reject(connection: Connection):
         connection.reject()
 
+    def disconnect(connection: Connection):
+        connection.disconnect()
+
+    def connect(connection: Connection):
+        connection.connect()
+
     def post(self, request, id, action):
         try:
             connection = Connection.objects.get(uuid=id)
@@ -89,9 +95,11 @@ class NodeConnection(APIView):
 
         implementation = {
             'approve': NodeConnection.approve,
-            'reject': NodeConnection.reject
+            'reject': NodeConnection.reject,
+            'disconnect': NodeConnection.disconnect,
+            'connect': NodeConnection.connect,
         }.get(action.lower(), None)
-        
+
         if not implementation: 
             raise HttpResponseBadRequest() 
 

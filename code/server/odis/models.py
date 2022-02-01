@@ -50,6 +50,26 @@ class Connection(DisModel):
             raise RuntimeError
         self.state = Connection.States.DENIED
 
+    def disconnect(self):
+        if self.state == Connection.States.DISCONNECTED:
+            return 
+        if self.state in [
+            Connection.States.ACTIVE, 
+            Connection.States.FAILED,
+            Connection.States.SUSPENDED,
+            Connection.States.UNAVAILABLE
+            ]:
+            self.state = Connection.States.DISCONNECTED
+        else: 
+            raise RuntimeError
+
+    def connect(self):
+        if self.state == Connection.States.ACTIVE:
+            return 
+        if self.state in [Connection.States.DISCONNECTED]:
+            self.state = Connection.States.ACTIVE
+        else: 
+            raise RuntimeError
 
 class Membership(DisModel):
     class MembershipStates(models.TextChoices):
