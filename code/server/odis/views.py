@@ -4,10 +4,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .wstl import Wstl, WstlClient
 from .wstl_django import DjangoWstlContext
-from .models import Connection, Organisation, Service
+from .models import Connection, Organisation, Service, Membership
 from django_kinder_settings import settings
 from .apps import Odis
-from .serializers import OrganisationSerlializer, ServiceSerializer
+from .serializers import OrganisationSerlializer, ServiceSerializer, ConnectionSerializer, MembershipSerializer
 import json
 
 
@@ -29,32 +29,13 @@ class Client(APIView):
         return Response(client.hello().to_data())
 
 
-class Connections(APIView):
-    def get(self, request):
-        wstl = Wstl("Data Exchange Network - Connections")
-        wstl = wstl.with_get_action("self", "odis-connections")
-        wstl = wstl.with_get_action("home", "odis-home")
-
-        for c in Connection.objects.all():
-            wstl.add_data_item(
-                {
-                    "uuid": c.uuid,
-                    "cts": c.cts,
-                    "uts": c.uts,
-                    "url": c.url,
-                    "state": c.state,
-                }
-            )
-
-        return Response(wstl.to_data())
-
-
 class Node(APIView):
     def get(self, request):
         wstl = Wstl("ODIS - Service Node Information")
         wstl = wstl.with_get_action("self", "odis-node")
         wstl = wstl.with_get_action("home", "odis-home")
-        wstl = wstl.with_get_action("odis:connections", "odis-connections")
+        wstl = wstl.with_get_action("odis:connections", "odis-node-connections")
+        wstl = wstl.with_get_action("odis:memberships", "odis-node-memberships")
         wstl = wstl.with_get_action("odis:connect", "odis-node-connect")
         wstl = wstl.add_data_item(
             {
@@ -69,16 +50,46 @@ class Node(APIView):
         return Response(wstl.to_data())
 
 
+class NodeConnections(APIView):
+    def get(self, request):
+        wstl = Wstl("ODIS - Node's Connections")
+        wstl = wstl.with_get_action("self", "odis-node-connections")
+        wstl = wstl.with_get_action("home", "odis-home")
+
+        for c in Connection.objects.all():
+            wstl.add_data_item(ConnectionSerializer(c).data)
+
+        return Response(wstl.to_data())
+
+
+class NodeMemberships(APIView):
+    def get(self, request):
+        wstl = Wstl("ODIS - Node's Memberships")
+        wstl = wstl.with_get_action("self", "odis-node-memberships")
+        wstl = wstl.with_get_action("home", "odis-home")
+
+        for m in Membership.objects.all():
+            wstl.add_data_item(MembershipSerializer(m).data)
+
+        return Response(wstl.to_data())
+
+
+
 class NodeConnect(APIView):
     def post(self, request, format=None): 
-        Connection(
-            url=request.data['url'],
-        ).save()
+        url = request.data['url']
+        try:
+            connection = Connection.objects.get(url=url)
+        except Connection.DoesNotExist: 
+            connection = Connection(
+                url=request.data['url'],
+            )
+            connection.save()
 
         wstl = Wstl("ODIS - Connection Request")
         wstl = wstl.with_get_action("home", "odis-home")
-        wstl = wstl.with_get_action("odis:connections", "odis-connections")
-        wstl = wstl.add_data_item("ConnectionRequest with " + str(request.data))
+        wstl = wstl.with_get_action("odis:connections", "odis-node-connections")
+        wstl = wstl.add_data_item(ConnectionSerializer(connection).data)
         return Response(wstl.to_data())
 
 

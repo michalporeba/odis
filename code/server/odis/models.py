@@ -17,10 +17,13 @@ class DisModel(models.Model):
 
 class Connection(DisModel):
     class ConnectionStates(models.TextChoices):
-        CONNECTED = ("C", "Connected")
+        ACTIVE = ("A", "Active")
         DENIED = ("D", "Denied")
+        FAILED = ("F", "Failed")
         REQUESTED = ("R", "Requested")
         SUSPENDED = ("S", "Suspended")
+        UNAVAILABLE = ("U", "Unavailable")
+        DISCONNECTED = ("X", "Disconnected")
 
     url = models.CharField(
         max_length=MAX_URL_LENGTH, unique=True, editable=False, blank=False, null=False
@@ -29,6 +32,33 @@ class Connection(DisModel):
         max_length=1,
         choices=ConnectionStates.choices,
         default=ConnectionStates.REQUESTED,
+        blank=False,
+        null=False,
+    )
+
+
+class Membership(DisModel):
+    class MembershipStates(models.TextChoices):
+        ACTIVE = ("A", "Active")
+        DENIED = ("D", "Denied")
+        REQUESTED = ("R", "Requested")
+        SUSPENDED = ("S", "Suspended")
+        DISCONNECTED = ("X", "Disconnected")
+
+    url = models.CharField(
+        max_length=MAX_URL_LENGTH, unique=True, editable=False, blank=False, null=False
+    )
+    current_state = models.CharField(
+        max_length=1,
+        choices=MembershipStates.choices,
+        default=MembershipStates.REQUESTED,
+        blank=False,
+        null=False,
+    )
+    expected_state = models.CharField(
+        max_length=1,
+        choices=MembershipStates.choices,
+        default=MembershipStates.ACTIVE,
         blank=False,
         null=False,
     )
