@@ -5,7 +5,7 @@ from .models import Connection, Organisation, Service, Membership
 class ConnectionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Connection
-        fields = ["uuid", "cts", "uts", "url", "state"]
+        fields = ['uuid', 'cts', 'uts', 'url', 'state', 'type']
 
 
 class MembershipSerializer(serializers.HyperlinkedModelSerializer):

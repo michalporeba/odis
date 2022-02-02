@@ -84,8 +84,8 @@ class NodeConnection(APIView):
     def disconnect(connection: Connection):
         connection.disconnect()
 
-    def connect(connection: Connection):
-        connection.connect()
+    def reconnect(connection: Connection):
+        connection.reconnect()
 
     def post(self, request, id, action):
         try:
@@ -97,7 +97,7 @@ class NodeConnection(APIView):
             'approve': NodeConnection.approve,
             'reject': NodeConnection.reject,
             'disconnect': NodeConnection.disconnect,
-            'connect': NodeConnection.connect,
+            'reconnect': NodeConnection.reconnect,
         }.get(action.lower(), None)
 
         if not implementation: 
@@ -124,17 +124,28 @@ class NodeMemberships(APIView):
         return Response(wstl.to_data())
 
 
+class NodeConnection(APIView):
+    def get(self, request, id):
+        try:
+            connection = Membership.objects.get(uuid=id)
+            return Response(MembershipSerializer(connection).data)
+        except Membership.DoesNotExist:
+            raise Http404
+
 
 class NodeConnect(APIView):
     def post(self, request, format=None): 
         url = request.data['url']
+        type = request.data['type']
         try:
             connection = Connection.objects.get(url=url)
         except Connection.DoesNotExist: 
             connection = Connection(
                 url=request.data['url'],
             )
-            connection.save()
+
+        connection.type = type
+        connection.save()
 
         wstl = Wstl("ODIS - Connection Request")
         wstl = wstl.with_get_action("home", "odis-home")

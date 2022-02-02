@@ -35,6 +35,11 @@ class Connection(DisModel):
         blank=False,
         null=False,
     )
+    type = models.CharField(
+        max_length = 16,
+        blank = False, 
+        null = False
+    )
 
     def approve(self):
         if self.state == Connection.States.ACTIVE:
@@ -63,7 +68,7 @@ class Connection(DisModel):
         else: 
             raise RuntimeError
 
-    def connect(self):
+    def reconnect(self):
         if self.state == Connection.States.ACTIVE:
             return 
         if self.state in [Connection.States.DISCONNECTED]:
