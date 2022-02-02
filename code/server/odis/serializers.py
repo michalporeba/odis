@@ -1,12 +1,6 @@
 from rest_framework import serializers
-from .models import Connection, Organisation, Service, Membership
-
-
-class ConnectionSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Connection
-        fields = ['uuid', 'cts', 'uts', 'url', 'state', 'type']
-
+from .models import Organisation, Service, Membership
+from .entities.connection import ConnectionSerializer
 
 class MembershipSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

@@ -6,11 +6,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .wstl import Wstl, WstlClient
 from .wstl_django import DjangoWstlContext
-from .models import Connection, Organisation, Service, Membership
+from .models import Organisation, Service, Membership
 from django_kinder_settings import settings
 from .apps import Odis
-from .serializers import OrganisationSerlializer, ServiceSerializer, ConnectionSerializer, MembershipSerializer
+from .serializers import OrganisationSerlializer, ServiceSerializer, MembershipSerializer
 import json
+from .entities.connection import *
+
 
 class HttpResponseBadTransition(HttpResponse):
     status_code = 409

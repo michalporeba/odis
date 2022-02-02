@@ -1,82 +1,11 @@
 import uuid
 from django.db import models
 from django.db.models.deletion import CASCADE
-
-# Create your models here.
-MAX_URL_LENGTH = 256
-
-
-class DisModel(models.Model):
-    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
-    cts = models.DateTimeField(auto_now_add=True)
-    uts = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
+from .entities.base import OdisModel, MAX_URL_LENGTH
+from .entities.connection import Connection
 
 
-class Connection(DisModel):
-    class States(models.TextChoices):
-        ACTIVE = ("A", "Active")
-        DENIED = ("D", "Denied")
-        FAILED = ("F", "Failed")
-        REQUESTED = ("R", "Requested")
-        SUSPENDED = ("S", "Suspended")
-        UNAVAILABLE = ("U", "Unavailable")
-        DISCONNECTED = ("X", "Disconnected")
-
-    url = models.CharField(
-        max_length=MAX_URL_LENGTH, unique=True, editable=False, blank=False, null=False
-    )
-    state = models.CharField(
-        max_length=1,
-        choices=States.choices,
-        default=States.REQUESTED,
-        blank=False,
-        null=False,
-    )
-    type = models.CharField(
-        max_length = 16,
-        blank = False, 
-        null = False
-    )
-
-    def approve(self):
-        if self.state == Connection.States.ACTIVE:
-            return 
-        if self.state != Connection.States.REQUESTED:
-            raise RuntimeError
-        self.state = Connection.States.ACTIVE
-
-    def reject(self):
-        if self.state == Connection.States.DENIED:
-            return 
-        if self.state != Connection.States.REQUESTED:
-            raise RuntimeError
-        self.state = Connection.States.DENIED
-
-    def disconnect(self):
-        if self.state == Connection.States.DISCONNECTED:
-            return 
-        if self.state in [
-            Connection.States.ACTIVE, 
-            Connection.States.FAILED,
-            Connection.States.SUSPENDED,
-            Connection.States.UNAVAILABLE
-            ]:
-            self.state = Connection.States.DISCONNECTED
-        else: 
-            raise RuntimeError
-
-    def reconnect(self):
-        if self.state == Connection.States.ACTIVE:
-            return 
-        if self.state in [Connection.States.DISCONNECTED]:
-            self.state = Connection.States.ACTIVE
-        else: 
-            raise RuntimeError
-
-class Membership(DisModel):
+class Membership(OdisModel):
     class MembershipStates(models.TextChoices):
         ACTIVE = ("A", "Active")
         DENIED = ("D", "Denied")
@@ -104,7 +33,7 @@ class Membership(DisModel):
 
 
 # https://schema.org/Organization
-class Organisation(DisModel):
+class Organisation(OdisModel):
     name = models.CharField(max_length=128, unique=True, blank=False, null=False)
     url = models.CharField(
         max_length=MAX_URL_LENGTH, unique=True, blank=False, null=False
@@ -113,7 +42,7 @@ class Organisation(DisModel):
 
 
 # https://schema.org/Service
-class Service(DisModel):
+class Service(OdisModel):
     name = models.CharField(max_length=128, unique=True, blank=False, null=False)
     url = models.CharField(
         max_length=MAX_URL_LENGTH, unique=True, blank=False, null=False
