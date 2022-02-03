@@ -13,14 +13,14 @@ class Connection(OdisModel):
         DISCONNECTED = ("X", "Disconnected")
 
         @classmethod
-        def get_valid_transitions() -> list:
+        def get_valid_transitions(cls) -> list:
             return [
-                (Connection.States.REQUESTED, Connection.States.ACTIVE),
-                (Connection.States.REQUESTED, Connection.States.DENIED),
-                (Connection.States.DENIED, Connection.States.ACTIVE),
-                (Connection.States.ACTIVE, Connection.States.DISCONNECTED),
-                (Connection.States.ACTIVE, Connection.States.SUSPENDED),
-                (Connection.States.ACTIVE, Connection.States.UNAVAILABLE)
+                (Connection.States.REQUESTED, Connection.States.ACTIVE, 'approve'),
+                (Connection.States.REQUESTED, Connection.States.DENIED, 'reject'),
+                (Connection.States.DENIED, Connection.States.ACTIVE, 'approve'),
+                (Connection.States.ACTIVE, Connection.States.DISCONNECTED, 'disconnect'),
+                (Connection.States.ACTIVE, Connection.States.SUSPENDED, 'suspend'),
+                (Connection.States.ACTIVE, Connection.States.UNAVAILABLE, 'mark_unavailable')
             ]
 
     url = models.CharField(
@@ -42,9 +42,13 @@ class Connection(OdisModel):
     def approve(self):
         if self.state == Connection.States.ACTIVE:
             return 
-        if self.state != Connection.States.REQUESTED:
+        if self.state in [
+            Connection.States.REQUESTED,
+            Connection.States.DENIED
+        ]:
+            self.state = Connection.States.ACTIVE
+        else: 
             raise RuntimeError
-        self.state = Connection.States.ACTIVE
 
     def reject(self):
         if self.state == Connection.States.DENIED:
@@ -66,6 +70,16 @@ class Connection(OdisModel):
         else: 
             raise RuntimeError
 
+    def mark_unavailable(self):
+        if self.state == Connection.States.UNAVAILABLE:
+            return
+        if self.state in [
+            Connection.States.ACTIVE
+            ]:
+            self.state = Connection.States.UNAVAILABLE
+        else:
+            raise RuntimeError
+
     def reconnect(self):
         if self.state == Connection.States.ACTIVE:
             return 
@@ -74,6 +88,8 @@ class Connection(OdisModel):
         else: 
             raise RuntimeError
 
+    def suspend(self):
+        self.state = Connection.States.SUSPENDED
 
 class ConnectionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
