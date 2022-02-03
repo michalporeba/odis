@@ -12,6 +12,17 @@ class Connection(OdisModel):
         UNAVAILABLE = ("U", "Unavailable")
         DISCONNECTED = ("X", "Disconnected")
 
+        @classmethod
+        def get_valid_transitions() -> list:
+            return [
+                (Connection.States.REQUESTED, Connection.States.ACTIVE),
+                (Connection.States.REQUESTED, Connection.States.DENIED),
+                (Connection.States.DENIED, Connection.States.ACTIVE),
+                (Connection.States.ACTIVE, Connection.States.DISCONNECTED),
+                (Connection.States.ACTIVE, Connection.States.SUSPENDED),
+                (Connection.States.ACTIVE, Connection.States.UNAVAILABLE)
+            ]
+
     url = models.CharField(
         max_length=MAX_URL_LENGTH, unique=True, editable=False, blank=False, null=False
     )

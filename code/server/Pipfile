@@ -12,6 +12,7 @@ django-kinder-settings = "*"
 django-rest-framework = "*"
 alps-py = "*"
 pytest = "*"
+pytest-django = "*"
 
 [dev-packages]
 
