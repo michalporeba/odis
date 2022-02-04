@@ -13,10 +13,12 @@ http://snap.stanford.edu/data/ - a collection of data. There are online reviews 
 Searching for physical locations in public datasets https://data.gov.uk/
 Could result in aggregated results, but feedback would be difficult to show. 
 
-## API Designß
+## API Design
 
 * [Mike Amundsen - Twelve Patterns for Evolvable Web APIs](https://www.youtube.com/watch?v=qolWrn7hNro) - a lot of good ideas how to design interactions
 *TBC*
+
+* UCAN Check (is it really a JWT for distributed systems?)
 
 ## Python / Django techniques
 
