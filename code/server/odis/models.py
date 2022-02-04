@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from django.db.models.deletion import CASCADE
-from .entities.base import OdisModel, MAX_URL_LENGTH
+from .entities import OdisModel, MAX_URL_LENGTH
 from .entities.connection import Connection
 
 
@@ -11,7 +11,7 @@ class Membership(OdisModel):
         DENIED = ("D", "Denied")
         REQUESTED = ("R", "Requested")
         SUSPENDED = ("S", "Suspended")
-        DISCONNECTED = ("X", "Disconnected")
+        DISCONNECTED = ("X", "Disconnected")    
 
     url = models.CharField(
         max_length=MAX_URL_LENGTH, unique=True, editable=False, blank=False, null=False

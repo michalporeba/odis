@@ -1,4 +1,4 @@
-from odis.entities.base import TextState
+from odis.entities import TextState
 
 class Sut(TextState):
     FIRST = ('one', 'the first state', [])
