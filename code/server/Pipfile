@@ -13,6 +13,8 @@ django-rest-framework = "*"
 alps-py = "*"
 pytest = "*"
 pytest-django = "*"
+requests = "*"
+diogi = "*"
 
 [dev-packages]
 
