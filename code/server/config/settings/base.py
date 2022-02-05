@@ -24,12 +24,7 @@ sys.path.append(str(BASE_DIR / "datanode"))
 DEBUG = False
 
 # DEFAULT_ROOT_URL = "https://127.0.0.1:8001/"
-ALLOWED_HOSTS = [
-    "localhost.charlesproxy.com",
-    "localhost",
-    "local.test",
-    "self"
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "odis",
+    "odis_search"
 ]
 
 MIDDLEWARE = [

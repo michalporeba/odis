@@ -16,6 +16,8 @@ they want to offer their users.
 
 ## How to run the service
 
+Ensure your `hosts` file has `local.test` pointing at `127.0.0.1`.
+
 Clone the repository and copy the template settings to `local.py`. 
 
 ```shell
