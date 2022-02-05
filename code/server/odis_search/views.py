@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
-# Create your views here.
+from odis.odiscomponents import OdisComponent
 
 
 class SearchHelp(APIView):
@@ -12,4 +11,11 @@ class SearchHelp(APIView):
 
 class Search(APIView):
     def get(self, request):
-        return Response('')
+        connections = OdisComponent.get_usable_connections_for('demo:simple-search')
+        if connections is None:
+            return Response('there are no connections')
+        
+        response = {}
+        for (id, type, url) in connections: 
+            response[str(id)] = f'{url}'
+        return Response(response)

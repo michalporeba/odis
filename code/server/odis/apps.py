@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 from django_kinder_settings import settings
+#from .entities.connection import Connection
 
 
 class DenConfig(AppConfig):

@@ -2,6 +2,7 @@ from typing import Dict
 from django.http import  HttpResponseBadRequest, Http404, HttpResponse
 from django.shortcuts import render
 from http import HTTPStatus
+from .entities import StateTransitionError, UndefinedActionError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .wstl import Wstl, WstlClient
@@ -57,60 +58,41 @@ class Node(APIView):
         return Response(wstl.to_data())
 
 
+
+
 class NodeConnections(APIView):
-    def get(self, request):
-        wstl = Wstl("ODIS - Node's Connections")
-        wstl = wstl.with_get_action("self", "odis-node-connections")
-        wstl = wstl.with_get_action("home", "odis-home")
+    def get(self, request, id=None):
+        if id is None:
+            wstl = Wstl("ODIS - Node's Connections")
+            wstl = wstl.with_get_action("self", "odis-node-connections")
+            wstl = wstl.with_get_action("home", "odis-home")
 
-        for c in Connection.objects.all():
-            wstl.add_data_item(ConnectionSerializer(c).data)
+            for c in Connection.objects.all():
+                wstl.add_data_item(ConnectionSerializer(c).data)
 
-        return Response(wstl.to_data())
-
-
-class NodeConnection(APIView):
-    def get(self, request, id):
-        try:
-            connection = Connection.objects.get(uuid=id)
-            return Response(ConnectionSerializer(connection).data)
-        except Connection.DoesNotExist:
-            raise Http404
-
-    def approve(connection: Connection):
-        connection.approve()
-
-    def reject(connection: Connection):
-        connection.reject()
-
-    def disconnect(connection: Connection):
-        connection.disconnect()
-
-    def reconnect(connection: Connection):
-        connection.reconnect()
+            return Response(wstl.to_data())
+        else: 
+            try:
+                connection = Connection.objects.get(uuid=id)
+                return Response(ConnectionSerializer(connection).data)
+            except Connection.DoesNotExist:
+                raise Http404
 
     def post(self, request, id, action):
+        conneciton = None
         try:
             connection = Connection.objects.get(uuid=id)
         except Connection.DoesNotExist:
-            raise Http404
+            return Http404
 
-        implementation = {
-            'approve': NodeConnection.approve,
-            'reject': NodeConnection.reject,
-            'disconnect': NodeConnection.disconnect,
-            'reconnect': NodeConnection.reconnect,
-        }.get(action.lower(), None)
-
-        if not implementation: 
-            raise HttpResponseBadRequest() 
-
-        try: 
-            implementation(connection)
+        try:
+            connection.do(action)
             connection.save()
-        except RuntimeError:
-            raise HttpResponseBadTransition()
-    
+        except StateTransitionError:
+            return HttpResponseBadTransition()
+        except UndefinedActionError:
+            return HttpResponseBadRequest()
+        
         return Response(ConnectionSerializer(connection).data)
 
 
