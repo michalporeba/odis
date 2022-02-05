@@ -16,6 +16,7 @@ class OdisModel(models.Model):
 class StateTransitionError(RuntimeError):
     pass
 
+
 class UndefinedActionError(RuntimeError):
     pass
 
@@ -29,7 +30,7 @@ def guard_state_transition(transitions: dict, action: str, state: any, *args, **
     if action_transitions is None:
         raise UndefinedActionError
 
-    if action_transitions is callable:
+    if callable(action_transitions):
         implementation = action_transitions
     elif isinstance(action_transitions, list) : 
         for initial_states in action_transitions:

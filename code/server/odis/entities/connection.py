@@ -1,8 +1,6 @@
-from pkgutil import ImpLoader
-from sys import implementation
 from rest_framework import serializers
 from django.db import models
-from . import OdisModel, MAX_URL_LENGTH
+from . import OdisModel, MAX_URL_LENGTH, guard_state_transition
 
 class Connection(OdisModel):
     class States(models.TextChoices):
@@ -31,75 +29,44 @@ class Connection(OdisModel):
     )
 
     def approve(self):
-        print('testing')
-        next = Connection.States.ACTIVE
-        if self.state == next:
-            return 
-        if Connection.States.is_valid_transition(self.state, next):
-            raise RuntimeError
-        self.state = next
-
+        self.state = Connection.States.ACTIVE
+        
     def reject(self):
-        next = Connection.States.DENIED
-        if self.state == next:
-            return 
-        if Connection.States.is_valid_transition(self.state, next):
-            raise RuntimeError
-        self.state = next
-
+        self.state = Connection.States.DENIED
+        
     def disconnect(self):
-        next = Connection.States.DISCONNECTED
-        if self.state == next:
-            return 
-        if not Connection.States.is_valid_transition(self.state, next):
-            raise RuntimeError
-        self.state = next
-
+        self.state = Connection.States.DISCONNECTED
+        
     def mark_unavailable(self):
-        next = Connection.States.UNAVAILABLE
-        if self.state == next:
-            return
-        if not Connection.States.is_valid_transition(self.state, next):
-            raise RuntimeError
         self.state = Connection.States.UNAVAILABLE
-
+        
     def reconnect(self):
-        next = Connection.States.ACTIVE
-        if self.state == next:
-            return 
-        if not Connection.States.is_valid_transition(self.state, next):
-            raise RuntimeError
         self.state = Connection.States.ACTIVE
             
     def suspend(self):
-        next = Connection.States.SUSPENDED
-        if self.state == next:
-            return 
-        Connection.States.check_transition(self.state, next)
         self.state = Connection.States.SUSPENDED
-
+        
     def do(self, action: str, *args, **kwargs) -> None: 
-        implementation = {
+        transitions = {
             'approve': [[
                 Connection.States.REQUESTED,
+                Connection.States.DENIED,
                 self.approve
             ]],
-            'reject': [
+            'reject': [[
                 Connection.States.REQUESTED,
                 self.reject
-            ],
+            ]],
             'disconnect': [
                 self.disconnect
             ],
             'reconnect': self.reconnect,
             'mark_unavailable': self.mark_unavailable,
-            'suspend': self.suspend 
-        }.get(action.lower(), None)
-
-        if (implementation is None):
-            raise RuntimeError
-
-        implementation() 
+            'suspend': [[
+                Connection.States.ACTIVE, self.suspend
+            ]]
+        }
+        guard_state_transition(transitions, action, self.state, *args, **kwargs)
 
 
 class ConnectionSerializer(serializers.HyperlinkedModelSerializer):

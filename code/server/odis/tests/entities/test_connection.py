@@ -2,10 +2,6 @@ import pytest
 from odis.entities import StateTransitionError
 from odis.entities.connection import Connection
 
-def test_test():
-    import pathlib
-    pathlib.Path().resolve()
-    assert 1 == 1
 
 @pytest.mark.parametrize('fromtoaction', [
     (Connection.States.REQUESTED, Connection.States.DENIED, 'reject'),
@@ -22,7 +18,6 @@ def test_valid_state_transitions(fromtoaction):
     
 
 def test_state_transition_error_on_invalid_transition():
-    print (Connection.States.get_valid_transitions())
     with pytest.raises(StateTransitionError):
         sut = Connection()
         sut.state = Connection.States.REQUESTED
