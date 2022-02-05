@@ -1,45 +1,63 @@
-from odis.entities import TextState
+import pytest 
+from odis.entities import *
+from django.db import models
+import enum 
 
-class Sut(TextState):
-    FIRST = ('one', 'the first state', [])
-    SECOND = ('two', 'the second state', ['one'])
-    THIRD = ('three', 'the third state', ['one','two','three'])
-    SHORTER = ('s', 'two part tuple')
 
-def test_states_are_reduced_to_two_element_tuples():
-    assert Sut.FIRST == ('one', 'the first state')
-    assert Sut.SECOND == ('two', 'the second state')
-    assert Sut.THIRD == ('three', 'the third state')
-    assert Sut.SHORTER == ('s', 'two part tuple')
+class Sut():
+    class States(models.TextChoices):
+        FIRST = ('one', 'the first state')
+        SECOND = ('two', 'the second state')
+        THIRD = ('three', 'the third state')
+        SHORTER = ('s', 'two part tuple')
 
-def test_valid_transitions_collection():
-    assert (Sut.FIRST, Sut.SECOND) in Sut.get_valid_transitions()
-    assert (Sut.FIRST, Sut.THIRD) in Sut.get_valid_transitions()
-    assert (Sut.SECOND, Sut.THIRD) in Sut.get_valid_transitions()
-    assert (Sut.THIRD, Sut.THIRD) in Sut.get_valid_transitions()
+    state = None
+
+    def to_second(self, *args, **kwargs):
+        self.state = Sut.States.SECOND
+    def to_third(self, *args, **kwargs):
+        self.state = Sut.States.THIRD
+
+    def do(self, action: str, *args, **kwargs):
+        transitions = {
+            'progress': [
+                [Sut.States.FIRST, self.to_second],
+                [Sut.States.SECOND, self.to_third]
+            ],
+            'third': [[
+                Sut.States.FIRST,
+                Sut.States.SECOND,
+                self.to_third
+            ], [
+                Sut.States.THIRD,
+                None #NoOp
+            ]]
+        }
+
+        guard_state_transition(transitions, action, self.state)
+
+def test_progress_action():
+    sut = Sut()
+    sut.state = Sut.States.FIRST 
+    sut.do('progress')
+    assert sut.state == Sut.States.SECOND
+    sut.do('progress')
+    assert sut.state == Sut.States.THIRD
+    with pytest.raises(StateTransitionError):
+        sut.do('progress')
+   
+def test_third_action():
+    sut = Sut()
+    sut.state = Sut.States.FIRST 
+    sut.do('third')
+    assert sut.state == Sut.States.THIRD
+    sut.do('third')
+    assert sut.state == Sut.States.THIRD
     
-def test_validation_of_transitions():
-    assert True == Sut.is_valid_transition(Sut.FIRST, Sut.SECOND)
-    assert True == Sut.is_valid_transition(Sut.FIRST, Sut.THIRD)
-    assert True == Sut.is_valid_transition(Sut.SECOND, Sut.THIRD)
-    assert True == Sut.is_valid_transition(Sut.THIRD, Sut.THIRD)
-    assert False == Sut.is_valid_transition(Sut.FIRST, Sut.FIRST)
-    assert False == Sut.is_valid_transition(Sut.SECOND, Sut.SECOND)
-    assert False == Sut.is_valid_transition(Sut.SECOND, Sut.FIRST)
-    assert False == Sut.is_valid_transition(Sut.THIRD, Sut.FIRST)
-    assert False == Sut.is_valid_transition(Sut.SHORTER, Sut.FIRST)
-    assert False == Sut.is_valid_transition(Sut.SHORTER, Sut.SECOND)
-    assert False == Sut.is_valid_transition(Sut.SHORTER, Sut.THIRD)
 
-def test_get_states():
-    assert Sut.FIRST in Sut.get_states()
-    assert Sut.SECOND in Sut.get_states()
-    assert Sut.THIRD in Sut.get_states()
-    assert Sut.SHORTER in Sut.get_states()
+def test_invalid_operation():
+    sut = Sut()
+    sut.state = Sut.States.FIRST 
+    with pytest.raises(UndefinedActionError):
+        sut.do('undefined')
 
-def test_invlid_transitions():
-    assert (Sut.FIRST, Sut.FIRST) in Sut.get_invalid_transitions()
-    assert (Sut.SECOND, Sut.SECOND) in Sut.get_invalid_transitions()
-    assert (Sut.SECOND, Sut.FIRST) in Sut.get_invalid_transitions()
-    assert (Sut.SHORTER, Sut.SHORTER) in Sut.get_invalid_transitions()
-    assert (Sut.SHORTER, Sut.FIRST) in Sut.get_invalid_transitions()

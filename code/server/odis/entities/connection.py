@@ -2,17 +2,17 @@ from pkgutil import ImpLoader
 from sys import implementation
 from rest_framework import serializers
 from django.db import models
-from . import OdisModel, MAX_URL_LENGTH, TextState
+from . import OdisModel, MAX_URL_LENGTH
 
 class Connection(OdisModel):
-    class States(TextState, models.enums.Choices):
-        ACTIVE = ('A', 'Active', ['R', 'D', 'S', 'U', 'X'])
-        DENIED = ('D', 'Denied', ['R'])
-        FAILED = ('F', 'Failed', ['R'])
+    class States(models.TextChoices):
+        ACTIVE = ('A', 'Active')
+        DENIED = ('D', 'Denied')
+        FAILED = ('F', 'Failed')
         REQUESTED = ('R', 'Requested')
-        SUSPENDED = ('S', 'Suspended', ['A'])
-        UNAVAILABLE = ('U', 'Unavailable', ['A'])
-        DISCONNECTED = ('X', 'Disconnected', ['A'])
+        SUSPENDED = ('S', 'Suspended')
+        UNAVAILABLE = ('U', 'Unavailable')
+        DISCONNECTED = ('X', 'Disconnected')
 
     url = models.CharField(
         max_length=MAX_URL_LENGTH, unique=True, editable=False, blank=False, null=False
@@ -78,11 +78,19 @@ class Connection(OdisModel):
         Connection.States.check_transition(self.state, next)
         self.state = Connection.States.SUSPENDED
 
-    def do(self, action: str) -> None: 
+    def do(self, action: str, *args, **kwargs) -> None: 
         implementation = {
-            'approve': self.approve,
-            'reject': self.reject,
-            'disconnect': self.disconnect,
+            'approve': [[
+                Connection.States.REQUESTED,
+                self.approve
+            ]],
+            'reject': [
+                Connection.States.REQUESTED,
+                self.reject
+            ],
+            'disconnect': [
+                self.disconnect
+            ],
             'reconnect': self.reconnect,
             'mark_unavailable': self.mark_unavailable,
             'suspend': self.suspend 
