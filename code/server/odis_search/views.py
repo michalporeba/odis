@@ -2,8 +2,9 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from odis.odiscomponents import OdisComponent
-import requests 
 from diogi.functions import always_a_list
+from .plugins.odis import search_in_odis_node
+from .plugins.simple_demo import search_in_simple_demo
 
 class SearchHelp(APIView):
     def get(self, request):
@@ -12,16 +13,23 @@ class SearchHelp(APIView):
 
 class Search(APIView):
     def get(self, request):
-        connections = OdisComponent.get_usable_connections_for('demo:simple-search')
+        connections = OdisComponent.get_usable_connections_for('search')
         if connections is None:
-            return Response('there are no connections')
+            return Response(None)
         
-        headers = {
-            'Accept': f'application/json'
-        }
-
         results = []
         for (id, type, url) in connections: 
-            response = requests.get(url, headers=headers, params = request.query_params)
-            results = results+always_a_list(response.json())
+            implementation = {
+                'odis': search_in_odis_node,
+                'search:simple-demo': search_in_simple_demo
+            }.get(type.lower(), None)
+
+            if implementation is None: 
+                # TODO: log unsupported type
+                continue 
+
+            query = request.query_params.get('q', '')
+            # TODO: this should be done in parallel 
+            results = results+always_a_list(implementation(url, query))
+
         return Response(results)

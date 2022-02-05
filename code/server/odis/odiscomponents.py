@@ -1,4 +1,5 @@
 from .entities.connection import Connection
+from django.db.models import Q
 import callouts 
 
 @callouts.base
@@ -13,7 +14,11 @@ class CoreOdisComponent(OdisComponent):
         return [
             (c.uuid, c.type, c.url) 
             for c 
-            in Connection.objects.filter(state=Connection.States.ACTIVE, type=action)
+            in Connection.objects.filter(
+                state=Connection.States.ACTIVE
+            ).filter(
+                Q(type__startswith=f'{action}:') | Q(type=action) | Q(type='odis')
+            )
         ]
     
      
