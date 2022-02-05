@@ -9,7 +9,7 @@ from .wstl_django import DjangoWstlContext
 from .models import Organisation, Service, Membership
 from django_kinder_settings import settings
 from .apps import Odis
-from .serializers import OrganisationSerlializer, ServiceSerializer, MembershipSerializer
+from .serializers import *
 import json
 from .entities.connection import *
 
