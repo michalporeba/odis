@@ -96,8 +96,29 @@ The most important element is how this network of services can be extended. Shou
 
 ![](images/crm-s2-3.png)
 
-## Bringing it all together
+# Bringing it all together
 
 While there might be some necessary reduction in detail of what is possible in CRM from the user experience point of view, we gain something else in the same regard. With very little effort on the CRM team (or the user) the functionality, the information the CRM can offer to the user, keeps growing offering user experience benefits. 
 
 ![](images/crm-start.png)
+
+
+## To make it work we will need
+
+Obviously, a working federation system, something like ODIS proposed in this repo. But that's not enough. 
+* We need to agree on a standard defining a set of well understood entities. [Schema.org](https://schema.org) can be a solution to this. 
+* It might be benefitial (if not necessary) to have a set of well defined and agreed upon standard actions. [Application Level Profile Semantics (ALPS)](http://alps.io/spec/) might be helpful here. 
+* A hypermedia format rich enough to allow implementation of simple, yet useful and dynamic UI in applications like the CRM, and a definition of a small standard big enough to present search results and some standardised highlights between services along the actions and operations. 
+
+
+## This proposal is not without challenges
+
+* There is an added complexity in the design, and potentially in the implementation. However, this needs to be done only once and then shared through documentation, training and software development kits. The bulk of the complexity would be concentrated in the ODIS node implementation. 
+* To get the most interesting benefits, there would need to be some level of trust established between organisations. The solution would have to be secure enough to support that trust building. 
+* The exact set of the standard functionality still needs to be defined. As with any interaction design there is a big challenge of finding the right balance between specificity that comes with easy of implementation, and flexibility that comes with complexity and cost. 
+
+## But there are benefits to be had
+
+* A way towards a single 'front door' for a group of entities optimised for each organisation, with access to services provided by a group of those organisations. 
+* Ability to benefit from new services without extra development work. 
+* Wider access to users for the development teams
