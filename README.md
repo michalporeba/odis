@@ -52,6 +52,8 @@ The increasing amount of data, gives rise to a growing number of possible search
 
 While I hope the use cases are of use, another way to look at what the search (or data exchange) network can offer, is to look at [possible interactions](./docs/interactions.md) within the system. 
 
+But the distributed systems can do more than just facilitate a search. [The CRM example](./docs/crm.md) illustrated how hypermedia approach to API design can help in building extensible distributed systems. 
+
 &nbsp;
 
 # Architecture
