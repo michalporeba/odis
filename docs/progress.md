@@ -10,7 +10,7 @@ To monitor and control the progress of the project I'm using an approach based o
 
 ## Summary
 
-No more progress, too many distractions. But a number of bigger tasks became more obviou (shown by the raise of the blue line).
+Good progress with search federation and discussions internally and with other organisations.
 
 ## Project Details
 I have started the project on the 2021-12-09 and will have to finish by 2022-07-04. Phase 1 covers the first 14 weeks until the progress report, and Phase 2 covers the rest.

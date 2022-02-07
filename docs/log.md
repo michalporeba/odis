@@ -107,3 +107,8 @@ Many more discussions both inside and outside of the organisation, but the only 
 Fission UCAN Check - a potentially interesting project dealing with
 distributed permissions by extending JWT. Interesting ideas on how to 
 pass on authorisation with a chain of proofs. Distributed identity(ION is another option)
+
+### Features completed: 
+
+* Simple search federation (without aggregation)
+* Open API considerations

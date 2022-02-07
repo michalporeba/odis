@@ -1,4 +1,4 @@
-# Interactions
+# Distributed Search - Interactions between systems
 
 I find it difficult to descrbie the possibilities of using the search topology
 as a context defining access, and perhaps scope of information available to searchers. 
