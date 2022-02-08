@@ -40,7 +40,9 @@ All the services and the CRM now depends on a small, well-defined protocol of OD
 
 ![](./images/crm-S0-3.png)
 
-## The interactions
+
+&nbsp;
+# The interactions
 
 To show how the hypermedia approach differs from the other two architectures, let's examine the ODIS interaction mechanics. 
 
@@ -100,6 +102,8 @@ The most significant advantage of the hypermedia approach is how the network of 
 
 ![](./images/crm-S2-3.png)
 
+&nbsp;
+&nbsp;
 # Bringing it all together
 
 While there might be some necessary reduction in detail of what is possible in CRM from the user experience point of view, we gain something else in the same regard. With minimal effort on the CRM team (or the user), the functionality of the CRM keeps growing.
