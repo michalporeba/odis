@@ -112,3 +112,9 @@ pass on authorisation with a chain of proofs. Distributed identity(ION is anothe
 
 * Simple search federation (without aggregation)
 * Open API considerations
+
+## Week 9 - ending 2022-02-13
+
+### Features completed: 
+
+* Engagement with x-gov community

@@ -9,8 +9,7 @@ To monitor and control the progress of the project I'm using an approach based o
 ![Progress](progress.png)
 
 ## Summary
-
-Good progress with search federation and discussions internally and with other organisations.
+Remaining slightly behind the curve. 
 
 ## Project Details
 I have started the project on the 2021-12-09 and will have to finish by 2022-07-04. Phase 1 covers the first 14 weeks until the progress report, and Phase 2 covers the rest.
