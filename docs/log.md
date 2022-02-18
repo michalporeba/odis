@@ -101,7 +101,6 @@ Engagements, no feature complete.
 
 Many more discussions both inside and outside of the organisation, but the only material progress is the proxy setup with mitmproxy to help with validation of the protocol.
 
-
 ## Week 8 - ending 2022-02-06
 
 Fission UCAN Check - a potentially interesting project dealing with
