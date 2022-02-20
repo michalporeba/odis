@@ -4,6 +4,7 @@ in the package root directory do the following
 
 ```
 pipenv shell
+pipenv install
 python setup.py pytest
 python setup.py bdist_wheel
 ```
