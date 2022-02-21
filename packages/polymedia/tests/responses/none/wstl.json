@@ -1,6 +1,0 @@
-{ 
-    "wstl": {
-        "title": "wstl with no header",
-        "actions": { "name": "home", "url": "https://localhost.tests/wstl/hello"}
-    }
-}
