@@ -117,3 +117,9 @@ pass on authorisation with a chain of proofs. Distributed identity(ION is anothe
 ### Features completed: 
 
 * Engagement with x-gov community
+
+## Week 10 - ending 2022-02-21
+
+### Features completed: 
+
+* Public packages - 4

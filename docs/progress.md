@@ -4,7 +4,7 @@ To monitor and control the progress of the project I'm using an approach based o
 
 [More details](#project-details) below the chart. 
 
-## Week 8 - 2022-01-31 - 2022-02-06
+## Week 10 - 2022-02-14 - 2022-02-21
 
 ![Progress](progress.png)
 
