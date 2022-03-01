@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+
+      {% block meta %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="robots" content="NONE,NOARCHIVE" />
+      {% endblock %}
+
+      <title>{% block title %}Django REST framework{% endblock %}</title>
+
+      {% block style %}
+        
+      {% endblock %}
+
+    {% endblock %}
+  </head>
+
+  {% block body %}
+    <body><h1>Just testing</h1></body>
+  {% endblock %}
+</html>
