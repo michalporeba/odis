@@ -14,8 +14,10 @@
       <title>{% block title %}Django REST framework{% endblock %}</title>
 
       {% block style %}
+        
         <link rel="stylesheet" type="text/css" href="{% static "odis/govuk-frontend-4.0.1.min.css" %}"/>
         <link rel="stylesheet" type="text/css" href="{% static "odis/govuk-frontend-ie8-4.0.1.min.css" %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static "odis/odis.css" %}"/>
       {% endblock %}
 
     {% endblock %}
@@ -46,9 +48,13 @@
                     </a>
                     </div>
                     <div class="app-site-search" data-module="app-search" data-search-index="/search-index-a2da751e279e2676163ddb112adc0512.json">
-                    <label class="govuk-visually-hidden" for="app-site-search__input">Search Design system</label>
+                    <label class="govuk-visually-hidden" for="app-site-search__input">Search Data and Services</label>
                     <a class="app-site-search__link govuk-link" href="/sitemap/">Sitemap</a>
-                    <div class="app-site-search__wrapper"><div style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; padding: 0px; position: absolute; white-space: nowrap; width: 1px;"><div id="app-site-search__input__status--A" role="status" aria-atomic="true" aria-live="polite"></div><div id="app-site-search__input__status--B" role="status" aria-atomic="true" aria-live="polite"></div></div><input aria-expanded="false" aria-owns="app-site-search__input__listbox" aria-autocomplete="both" aria-describedby="app-site-search__input__assistiveHint" autocomplete="off" class="app-site-search__input app-site-search__input--default" id="app-site-search__input" name="input-autocomplete" placeholder="Search Design System" type="text" role="combobox"><ul class="app-site-search__menu app-site-search__menu--overlay app-site-search__menu--hidden" id="app-site-search__input__listbox" role="listbox"></ul><span id="app-site-search__input__assistiveHint" style="display: none;">When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.</span></div></div>
+                    <div class="app-site-search__wrapper">
+                        
+                        <div style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin-bottom: -1px; margin-right: -1px; overflow: hidden; padding: 0px; position: absolute; white-space: nowrap; width: 1px;"><div id="app-site-search__input__status--A" role="status" aria-atomic="true" aria-live="polite"></div><div id="app-site-search__input__status--B" role="status" aria-atomic="true" aria-live="polite"></div></div><input aria-expanded="false" aria-owns="app-site-search__input__listbox" aria-autocomplete="both" aria-describedby="app-site-search__input__assistiveHint" autocomplete="off" class="app-site-search__input app-site-search__input--default" id="app-site-search__input" name="input-autocomplete" placeholder="Search for Data or Services" type="text" role="combobox"><ul class="app-site-search__menu app-site-search__menu--overlay app-site-search__menu--hidden" id="app-site-search__input__listbox" role="listbox"></ul><span id="app-site-search__input__assistiveHint" style="display: none;">When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.</span>
+                        </div>
+                    </div>
                     <div class="app-header-mobile-nav-toggler-wrapper">
                     <button id="app-mobile-nav-toggler" class="govuk-button app-header-mobile-nav-toggler js-app-mobile-nav-toggler" aria-controls="app-mobile-nav" aria-expanded="false">
                         Menu
