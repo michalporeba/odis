@@ -2,6 +2,7 @@ from typing import Dict
 from django.http import  HttpResponseBadRequest, Http404, HttpResponse
 from django.shortcuts import render
 from http import HTTPStatus
+
 from .entities import StateTransitionError, UndefinedActionError
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -13,6 +14,8 @@ from .apps import Odis
 from .serializers import *
 import json
 from .entities.connection import *
+from .custom.serializers import *
+from .entities.odis import *
 
 
 class HttpResponseBadTransition(HttpResponse):
@@ -21,6 +24,8 @@ class HttpResponseBadTransition(HttpResponse):
 
 class Hello(APIView):
     def get(self, request):
+        return Response(DemoServiceSerializer(DemoService()).data)
+
         wstl = Wstl("ODIS - Hello")
         wstl = wstl.with_get_action("self", "odis-home")
         wstl = wstl.with_get_action("home", "odis-home")
