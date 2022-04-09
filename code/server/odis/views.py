@@ -24,7 +24,7 @@ class HttpResponseBadTransition(HttpResponse):
 
 class Hello(APIView):
     def get(self, request):
-        return Response(DemoServiceSerializer(DemoService()).data)
+        #return Response(DemoServiceSerializer(DemoService(), request).data)
 
         wstl = Wstl("ODIS - Hello")
         wstl = wstl.with_get_action("self", "odis-home")
@@ -146,7 +146,7 @@ class NodeConnect(APIView):
 class ServiceDescription(APIView):
     def get(self, request):
         # TODO: load from the web, or based on settings
-        with open("../../odis.json", "r") as f:
+        with open("../../alps/odis.json", "r") as f:
             alps_data = json.load(f)
 
         wstl = Wstl("Data Exchange Network - ALPS")

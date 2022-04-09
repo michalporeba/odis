@@ -10,14 +10,25 @@ class DemoService(OdisNode):
     pass 
 
 
+class WstlSerializer:
+    pass
 
-class WstlServiceSerializer:
+
+class WstlServiceSerializer(WstlSerializer):
     def __init__(self, source, request=None):
-        pass
+        self.request = request
 
     @property
     def data(self):
+        return [
+            self.request.build_absolute_uri(),
+            self.request.get_full_path()
+        ]
         return Wstl("ODIS - Hello from WstlServiceSerializer").to_data()
+
+
+class WstlModelSerializer(WstlSerializer):
+    pass 
 
 
 class DemoServiceSerializer(WstlServiceSerializer):
