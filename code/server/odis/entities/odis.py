@@ -17,7 +17,8 @@ class WstlServiceSerializer:
 
     @property
     def data(self):
-        return Wstl("ODIS - Hello from WstlServiceSerializer")
+        return Wstl("ODIS - Hello from WstlServiceSerializer").to_data()
+
 
 class DemoServiceSerializer(WstlServiceSerializer):
     class Meta: 
