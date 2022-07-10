@@ -15,7 +15,7 @@ class CoreOdisComponent(OdisComponent):
             (c.uuid, c.type, c.url) 
             for c 
             in Connection.objects.filter(
-                state=Connection.States.ACTIVE
+                state=Connection.States.REQUESTED
             ).filter(
                 Q(type__startswith=f'{action}:') | Q(type=action) | Q(type='odis')
             )

@@ -13,15 +13,16 @@ class SearchHelp(APIView):
 
 class Search(APIView):
     def get(self, request):
-        connections = OdisComponent.get_usable_connections_for('search')
+        connections = OdisComponent.get_usable_connections_for('demo')
         if connections is None:
             return Response(None)
         
         results = []
         for (id, type, url) in connections: 
+            print(f'{type} {url}')
             implementation = {
                 'odis': search_in_odis_node,
-                'search:simple-demo': search_in_simple_demo
+                'demo:simple-search': search_in_simple_demo
             }.get(type.lower(), None)
 
             if implementation is None: 
