@@ -1,0 +1,12 @@
+There will be a scenario involving three departments and the STW window
+
+1. DIT wants to store information about exporters
+2. Companies house defines companies, but the model is not suitable for DIT
+3. DIT builds exporters service
+4. DIT builds importers service
+5. ESS+ISS to single list 
+6. ESS+ISS to single object 
+7. DEFRA creates a licencing service - they want to populate the data about the company
+8. Single Trade Window wants to see it all (linked actions -> search)
+9. Limit the above to DIT+DEFRA (linked constraints)
+10 Add HMRC (ODIS)
