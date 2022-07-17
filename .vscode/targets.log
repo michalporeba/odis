@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Thu Jul 14 21:41:49 2022
+# Make data base, printed on Sat Jul 16 10:33:11 2022
 
 # Variables
 
@@ -45,7 +45,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/cb/c072l2d97t9784hhpm2h47wh0000gp/T/vscode-ipc-acaad003-6537-443d-aaf8-7ccdac4af0bc.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/cb/c072l2d97t9784hhpm2h47wh0000gp/T/vscode-ipc-d269b61a-8449-4789-b75a-d77aa2a2e002.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -128,7 +128,6 @@ MFLAGS = -Rrqp
 NVM_DIR = /Users/michal/.nvm
 # environment
 XPC_SERVICE_NAME = application.com.microsoft.VSCode.28293355.28293361
- 
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -168,11 +167,12 @@ VSCODE_PID = 8573
 
 # No pattern-specific variable values.
 
+ 
 # Directories
 
-# . (device 16777233, inode 1504477): 16 files, no impossibilities.
+# . (device 16777233, inode 1504477): 17 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -182,7 +182,6 @@ VSCODE_PID = 8573
 
 # Not a target:
 all:
- 
 #  Command-line target.
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -245,6 +244,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Thu Jul 14 21:41:49 2022
+# Finished Make data base on Sat Jul 16 10:33:11 2022
 
  

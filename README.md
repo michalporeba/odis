@@ -10,6 +10,8 @@ Now let me tell you more about the ODIS idea…
 
 # The Problem
 
+A much fuller description of the problem that motivated the project is available in the [Search for a Better Search](./docs/A%20Search%20for%20a%20Better%20Search.pdfs) paper, but in short...
+
 We have increasing amounts of data all around us. Discoverability is a challenge. It is especially true in systems where fine-grained access controls are necessary across organisational boundaries.
 
 Public crawling and indexing are not possible. Centralisation of data in data warehouses and lakes is currently the go-to solution. But that means the data governance has to be centralised. While it works in some organisations, it poses significant challenges in heterogeneous systems, and searches across multiple organisations.
