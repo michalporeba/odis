@@ -1,0 +1,14 @@
+{
+    "exporters": [
+        {
+            "name": "Pinafal",
+            "exports": [
+                "Pinacolada"
+            ]
+        },
+        {
+            "name": "Pwmpen",
+            "exports": [ "Financial Services" ]
+        }
+    ]
+}

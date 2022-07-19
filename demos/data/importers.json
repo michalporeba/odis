@@ -1,0 +1,12 @@
+{
+    "importers": [
+        {
+            "importer": "Pinafal",
+            "goods": [ "Pinapples" ]
+        },
+        {
+            "importer": "Melon",
+            "goods": [ "Bananas", "Apples" ]
+        }
+    ]
+}

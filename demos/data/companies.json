@@ -1,0 +1,16 @@
+{
+    "companies": [
+        {
+            "CompanyName": "Melon",
+            "CompanyNumber": "05457207"
+        },
+        {
+            "CompanyName": "Pinafal",
+            "CompanyNumber": "10013084"
+        },
+        {
+            "CompanyName": "Pwmpen",
+            "CompanyNumber": "04253502"
+        }
+    ]
+}

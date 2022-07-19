@@ -1,0 +1,6 @@
+{
+    "name": "Pinafal",
+    "exports": [
+        "Pinacolada"
+    ]
+}

@@ -4,7 +4,8 @@ from rdflib import Graph
 g = Graph()
 
 # Parse in an RDF file hosted on the Internet
-g.parse("http://www.w3.org/People/Berners-Lee/card")
+#g.parse("http://business.data.gov.uk/id/company/10013084.rdf")
+g.parse("../data/exporters/pinafal.json")
 
 # Loop through each triple in the graph (subj, pred, obj)
 for subj, pred, obj in g:

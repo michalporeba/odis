@@ -1,0 +1,9 @@
+
+URI: index
+
+URI: index.html
+Content-Type: text/html
+Content-Language: en
+
+URI: index.json
+Content-Type: application/json
