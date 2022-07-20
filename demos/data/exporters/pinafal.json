@@ -1,4 +1,8 @@
 {
+    "@context": {
+        "name": "https://schema.org/name",
+        "exports": { "@type": "@set" }
+    },
     "name": "Pinafal",
     "exports": [
         "Pinacolada"

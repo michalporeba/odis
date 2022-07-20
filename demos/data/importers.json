@@ -1,12 +1,16 @@
-{
-    "importers": [
-        {
-            "importer": "Pinafal",
-            "goods": [ "Pinapples" ]
-        },
-        {
-            "importer": "Melon",
-            "goods": [ "Bananas", "Apples" ]
-        }
-    ]
-}
+[
+    {
+        "@context": "importer.jsonld",
+        "@type": "dit.schema.gov.uk/importer",
+        "@id": "http://business.data.gov.uk/id/company/10013084",
+        "importer": "Pinafal",
+        "goods": [ "Pinapples" ]
+    },
+    {
+        "@context": "importer.jsonld",
+        "@type": "dit.schema.gov.uk/importer",
+        "@id": "http://business.data.gov.uk/id/company/05457207",
+        "importer": "Melon",
+        "goods": [ "Bananas", "Apples" ]
+    }
+]

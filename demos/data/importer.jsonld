@@ -1,0 +1,8 @@
+{
+    "@context": {
+        "@id": "importer",
+        "@version": 1.1,
+        "schema": "https://schema.org/",
+        "importer": "schema:name"
+    }
+}

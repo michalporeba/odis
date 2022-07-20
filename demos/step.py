@@ -1,12 +1,38 @@
-import json 
+from rdflib import Graph
+from pyld import jsonld
 
-exporters = json.load(open('data/exporters.json'))['exporters']
-importers = json.load(open('data/importers.json'))['importers']
+g = Graph()
+g.parse("data/exporters.json")
+g.parse("data/importers.json")
+print(g.serialize(format="turtle"))
 
-exporter_names = [e['name'] for e in exporters]
-importer_names = [i['importer'] for i in importers]
+query = """
+select ?name ?type
+where {
+    ?org rdf:type ?type
+}
+"""
 
-companies = [name for name in set(exporter_names + importer_names)]
+qres = g.query(query)
 
-for company in companies:
-    print(company)
+for row in qres:
+    print(f"{row.name} is an {row.type}")
+
+print('------')
+
+jld = g.serialize(format="json-ld")
+print(jld)
+
+framed = jsonld.frame(g, { 
+    "type": "array",
+    "items": { "name": "https://schema.org/name" }
+})
+
+framed = jsonld.frame(g, {
+         '@context': {
+             '@vocab': 'http://www.bbc.co.uk/ontologies/webmodules/'
+         },
+         '@type': 'WebModule'
+     })
+print(framed)
+print(g.toPython())

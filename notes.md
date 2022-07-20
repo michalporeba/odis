@@ -65,3 +65,17 @@ and might as well read the documentation and use it.
 The above question shows only half of the problem, how to consume APIs. 
 The other half of the problem is how to provide a service through an API. 
 How to offer those services on the scale of decades without tight coupling. 
+
+
+## Starting the local apache server for working with static data
+
+```
+docker run --name httpd -p 80:80 -v $(pwd):/usr/local/apache2/htdocs -d httpd
+```
+
+Get original config 
+
+```
+docker run --rm httpd cat /usr/local/apache2/conf/httpd.conf > httpd.conf
+```
+

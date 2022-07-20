@@ -1,14 +1,18 @@
-{
-    "exporters": [
-        {
-            "name": "Pinafal",
-            "exports": [
-                "Pinacolada"
-            ]
-        },
-        {
-            "name": "Pwmpen",
-            "exports": [ "Financial Services" ]
-        }
-    ]
-}
+[   
+    {
+        "@context": "exporter.jsonld",
+        "@type": "dit.schema.gov.uk/exporter",
+        "@id": "http://business.data.gov.uk/id/company/10013084",
+        "name": "Pinafal",
+        "exports": [
+            "Pinacolada"
+        ]
+    },
+    {
+        "@context": "exporter.jsonld",
+        "@type": "dit.schema.gov.uk/exporter",
+        "@id": "http://business.data.gov.uk/id/company/04253502",
+        "name": "Pwmpen",
+        "exports": [ "Financial Services" ]
+    }
+]
