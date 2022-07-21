@@ -4,6 +4,7 @@ from pyld import jsonld
 g = Graph()
 g.parse("data/exporters.json")
 g.parse("data/importers.json")
+g.parse("data/companies.json")
 print(g.serialize(format="turtle"))
 
 print('------')
@@ -27,18 +28,21 @@ framed = jsonld.frame({
          'i': 'importer'
      })
 
-print(framed)
-print(g.commit())
+
 print('====')
 for (_,value) in g[:term.URIRef('https://schema.org/name')]:
     print(value)
 print('+++++')
 qres = g.query("""
-select ?name
+select ?name ?number
 where {
-    ?s <https://schema.org/name> ?name 
+    ?s <https://schema.org/name> ?name .
+    optional {
+        ?s <https://schema.gov.uk/companynumber> ?number
+    }
 }
 """)
 
 for row in qres:
-    print(row.name)
+    number = getattr(row, 'number', 'UNKNOWN')
+    print(f'{row.name} ({number})')

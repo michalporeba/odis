@@ -1,16 +1,23 @@
-{
-    "companies": [
-        {
-            "CompanyName": "Melon",
-            "CompanyNumber": "05457207"
-        },
-        {
-            "CompanyName": "Pinafal",
-            "CompanyNumber": "10013084"
-        },
-        {
-            "CompanyName": "Pwmpen",
-            "CompanyNumber": "04253502"
-        }
-    ]
-}
+[
+    {
+        "@context": "company.jsonld",
+        "@type": "schema.gov.uk/company",
+        "@id": "http://business.data.gov.uk/id/company/05457207",
+        "CompanyName": "Melon",
+        "CompanyNumber": "05457207"
+    },
+    {
+        "@context": "company.jsonld",
+        "@type": "schema.gov.uk/company",
+        "@id": "http://business.data.gov.uk/id/company/10013084",
+        "CompanyName": "Pinafal",
+        "CompanyNumber": "10013084"
+    },
+    {
+        "@context": "company.jsonld",
+        "@type": "schema.gov.uk/company",
+        "@id": "http://business.data.gov.uk/id/company/04253502",
+        "CompanyName": "Pwmpen",
+        "CompanyNumber": "04253502"
+    }
+]
