@@ -1,4 +1,4 @@
-from rdflib import Graph
+from rdflib import Graph, term
 from pyld import jsonld
 
 g = Graph()
@@ -6,33 +6,39 @@ g.parse("data/exporters.json")
 g.parse("data/importers.json")
 print(g.serialize(format="turtle"))
 
-query = """
-select ?name ?type
-where {
-    ?org rdf:type ?type
-}
-"""
-
-qres = g.query(query)
-
-for row in qres:
-    print(f"{row.name} is an {row.type}")
-
 print('------')
 
-jld = g.serialize(format="json-ld")
-print(jld)
-
-framed = jsonld.frame(g, { 
-    "type": "array",
-    "items": { "name": "https://schema.org/name" }
-})
-
-framed = jsonld.frame(g, {
+framed = jsonld.frame({
+    "@graph": {
+        "https://schema.org/name": "Dewi"
+    }
+}, {
+         '@id': 'https://exmaple.com/1',
          '@context': {
-             '@vocab': 'http://www.bbc.co.uk/ontologies/webmodules/'
+             '@vocab': 'http://www.bbc.co.uk/ontologies/webmodules/',
+             'hello': 'helo'
          },
-         '@type': 'WebModule'
+         "contains": {
+             "a": "1"
+         },
+         '@type': 'WebModule',
+         'type': 'hello',
+         'importer': 'imp',
+         'i': 'importer'
      })
+
 print(framed)
-print(g.toPython())
+print(g.commit())
+print('====')
+for (_,value) in g[:term.URIRef('https://schema.org/name')]:
+    print(value)
+print('+++++')
+qres = g.query("""
+select ?name
+where {
+    ?s <https://schema.org/name> ?name 
+}
+""")
+
+for row in qres:
+    print(row.name)

@@ -39,6 +39,32 @@ for company in companies:
     print(company)
 ```
 
+Using linked data
+```python
+from rdflib import Graph, term
+from pyld import jsonld
+
+g = Graph()
+g.parse("data/exporters.json")
+g.parse("data/importers.json")
+
+for (_,value) in g[:term.URIRef('https://schema.org/name')]:
+    print(value)
+```
+
+Query
+```python
+qres = g.query("""
+select ?name
+where {
+    ?s <https://schema.org/name> ?name 
+}
+""")
+
+for row in qres:
+    print(row.name)
+
+```
 # notes
 An example of company URI from CH Basic Data
 
