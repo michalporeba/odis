@@ -65,6 +65,52 @@ for row in qres:
     print(row.name)
 
 ```
+
+
+```python
+qres = g.query("""
+select ?name ?number
+where {
+    ?s <https://schema.org/name> ?name .
+    optional {
+        ?s <https://schema.gov.uk/companynumber> ?number
+    }
+}
+""")
+
+for row in qres:
+    number = getattr(row, 'number', 'UNKNOWN')
+    print(f'{row.name} ({number})')
+```
+
+And with alternative name by companies house
+
+```python
+qres = g.query("""
+select ?name ?number
+where {
+    ?s <https://schema.org/name> ?name .
+    optional {
+        ?s (<https://schema.gov.uk/companynumber>|<https://companieshouse.gov.uk/scheme/companynumber>) ?number
+    }
+}
+""")
+```
+
+
+```python
+qres = g.query("""
+select ?name ?number
+where {
+    ?s <https://schema.org/name> ?name .
+    optional {
+        <https://schema.gov.uk/companynumber> owl:sameAs ?cna .
+        ?s ?cna ?number
+    }
+}
+""")
+```
+
 # notes
 An example of company URI from CH Basic Data
 

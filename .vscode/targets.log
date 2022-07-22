@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Jul 16 10:33:11 2022
+# Make data base, printed on Fri Jul 22 12:39:09 2022
 
 # Variables
 
@@ -45,7 +45,7 @@ __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/cb/c072l2d97t9784hhpm2h47wh0000gp/T/vscode-ipc-d269b61a-8449-4789-b75a-d77aa2a2e002.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/cb/c072l2d97t9784hhpm2h47wh0000gp/T/vscode-ipc-cdaf6ef6-72e5-4a9d-a5c6-f5b2a6bd94af.sock
 # environment
 VSCODE_CWD = /
 # environment
@@ -167,7 +167,6 @@ VSCODE_PID = 8573
 
 # No pattern-specific variable values.
 
- 
 # Directories
 
 # . (device 16777233, inode 1504477): 17 files, no impossibilities.
@@ -244,6 +243,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Sat Jul 16 10:33:11 2022
+# Finished Make data base on Fri Jul 22 12:39:09 2022
 
  
