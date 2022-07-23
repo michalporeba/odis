@@ -27,8 +27,8 @@ Print both, and then try to combine the list to get all the companies and types
 ```python
 import json 
 
-exporters = json.load(open('data/exporters.json'))['exporters']
-importers = json.load(open('data/importers.json'))['importers']
+exporters = json.load(open('data/exporters.json'))
+importers = json.load(open('data/importers.json'))
 
 exporter_names = [e['name'] for e in exporters]
 importer_names = [i['importer'] for i in importers]
@@ -117,5 +117,6 @@ An example of company URI from CH Basic Data
 http://business.data.gov.uk/id/company/10013084
 
 
-
+There are plenty of examples where bits of this have been done but never pushed far enough. Presenting the data in linked format is one format. Doing it right is another. Then there is the challenge of maintaining that data and finally 
+having others use it. 
 

@@ -6,10 +6,7 @@
         "sguk": "https://schema.gov.uk/",
         "ComapnyName": "schema:name",
         "Gwybodaeth": {
-            "@type": "object",
-            "properties": {
-                "RhifCwmni": "https://companieshouse.gov.uk/schema/companynumber"
-            }
+            "@context": "gwybodaeth.jsonld"
         }
     }
 }

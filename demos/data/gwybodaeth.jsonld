@@ -1,0 +1,6 @@
+{
+    "@context": {
+        "@type": "GwybodaethCwmni",
+        "RhifCwmni": "https://companieshouse.gov.uk/schema/companynumber"
+    }
+}

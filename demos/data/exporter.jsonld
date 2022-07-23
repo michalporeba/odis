@@ -4,6 +4,8 @@
         "@version": 1.1,
         "@type": "dit.schema.gov.uk/exporter",
         "schema": "https://schema.org/",
-        "name": "schema:name"
+        "dit": "https://dit.schema.gov.uk/",
+        "name": "schema:name",
+        "exportedProducts": "dit:numberOfExports"
     }
 }
