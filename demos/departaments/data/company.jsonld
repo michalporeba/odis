@@ -3,13 +3,12 @@
         "@version": 1.1,
         "@id": "http://schema.gov.uk/company",
         "@type": [
-            "http://schema.gov.uk/ch/company",
             "http://schema.gov.uk/company",
             "http://schema.org/Organization"
         ],
         "sorg": "http://schema.org/",
         "guk": "http://schema.gov.uk/",
         "CompanyName": "sorg:name",
-        "CompanyNumber": "guk:ch/officialCompanyNumber"
+        "CompanyNumber": "guk:/ch/officialCompanyNumber"
     }
 }

@@ -1,8 +1,6 @@
 [   
     {
-        "@context": "exporter.jsonld",
-        "@type": "dit.schema.gov.uk/exporter",
-        "@id": "http://business.data.gov.uk/id/company/10013084",
+        "@context": "http://schema.gov.uk/dit/exporter.jsonld",
         "name": "Pinafal",
         "exportedProducts": "5",
         "exports": [
@@ -10,9 +8,7 @@
         ]
     },
     {
-        "@context": "exporter.jsonld",
-        "@type": "dit.schema.gov.uk/exporter",
-        "@id": "http://business.data.gov.uk/id/company/04253502",
+        "@context": "http://schema.gov.uk/dit/exporter.jsonld",
         "name": "Pwmpen",
         "exportedProducts": "3",
         "exports": [ "Financial Services" ]

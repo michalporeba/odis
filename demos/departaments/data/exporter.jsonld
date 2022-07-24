@@ -1,15 +1,15 @@
 {
     "@context": {
         "@version": 1.1,
-        "@id": "http://schema.gov.uk/company",
+        "@id": "http://schema.gov.uk/dit/exporter",
         "@type": [
-            "http://schema.gov.uk/ch/company",
+            "http://schema.gov.uk/dit/exporter",
             "http://schema.gov.uk/company",
             "http://schema.org/Organization"
         ],
         "sorg": "http://schema.org/",
         "guk": "http://schema.gov.uk/",
-        "CompanyName": "sorg:name",
-        "CompanyNumber": "guk:ch/officialCompanyNumber"
+        "name": "sorg:name",
+        "exportedProducts": "guk:dit/numberOfExportedProducts"
     }
 }

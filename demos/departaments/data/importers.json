@@ -1,0 +1,14 @@
+[
+    {
+        "@context": "http://schema.gov.uk/dit/importer.jsonld",
+        "@id": "http://business.data.gov.uk/id/company/10013084",
+        "name": "Pinafal LTD",
+        "importedProducts": "2"
+    },
+    {
+        "@context": "http://schema.gov.uk/dit/importer.jsonld",
+        "@id": "http://business.data.gov.uk/id/company/05457207",
+        "name": "Melon",
+        "importedProducts": "1"
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "@context": "http://schema.gov.uk/dit/exporter.jsonld",
+        "@id": "http://business.data.gov.uk/id/company/10013084",
+        "id": "1",
+        "name": "Pinafal",
+        "exportedProducts": "5"
+    },
+    {
+        "@context": "http://schema.gov.uk/dit/exporter.jsonld",
+        "@id": "http://business.data.gov.uk/id/company/04253502",
+        "id": "2",
+        "name": "Pwmpen.co.uk",
+        "exportedProducts": "3"
+    }
+]
