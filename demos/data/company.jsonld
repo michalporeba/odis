@@ -1,12 +1,12 @@
 {
     "@context": {
-        "@id": "company",
+        "@id": "https://schema.gov.uk/company",
         "@version": 1.1,
         "schema": "https://schema.org/",
         "sguk": "https://schema.gov.uk/",
         "ComapnyName": "schema:name",
         "Gwybodaeth": {
-            "@context": "gwybodaeth.jsonld"
+            "RhifCwmni": "https://schema.gov.uk/companynumber"
         }
     }
 }

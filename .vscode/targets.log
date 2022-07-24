@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Fri Jul 22 12:39:09 2022
+# Make data base, printed on Sun Jul 24 12:55:08 2022
 
 # Variables
 
@@ -18,8 +18,6 @@ make: *** No rule to make target `all'.  Stop.
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
 ?F = $(notdir $?)
-# environment
-VSCODE_LOG_NATIVE = false
 # environment
 NVM_INC = /Users/michal/.nvm/versions/node/v16.11.0/include/node
 # automatic
@@ -39,23 +37,15 @@ _ = /usr/bin/make
 # makefile
 MAKEFILE_LIST := 
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
 INFOPATH = /opt/homebrew/share/info:
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/cb/c072l2d97t9784hhpm2h47wh0000gp/T/vscode-ipc-cdaf6ef6-72e5-4a9d-a5c6-f5b2a6bd94af.sock
 # environment
 VSCODE_CWD = /
 # environment
 PATH = /Users/michal/.nvm/versions/node/v16.11.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/users/michal/DevTools/flutter/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin
 # environment
 NVM_BIN = /Users/michal/.nvm/versions/node/v16.11.0/bin
-# environment
-LaunchInstanceID = 4A1C0196-4EAC-422D-B65D-3F17A53D2C50
-# environment
-VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # default
@@ -64,8 +54,6 @@ ELECTRON_RUN_AS_NODE = 1
 SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.hsp2EbGIVZ/Listeners
 # automatic
 %F = $(notdir $%)
-# environment
-VSCODE_PIPE_LOGGING = true
 # environment
 PWD = /Users/michal/Documents/Dev/odis
 # environment
@@ -81,7 +69,7 @@ HOME = /Users/michal
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/michal/Library/Application Support/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+VSCODE_CODE_CACHE_PATH = /Users/michal/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
 LOGNAME = michal
 # environment
@@ -117,7 +105,9 @@ TMPDIR = /var/folders/cb/c072l2d97t9784hhpm2h47wh0000gp/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/michal/Library/Application Support/Code/1.67.2-main.sock
+VSCODE_IPC_HOOK = /Users/michal/Library/Application Support/Code/1.69.2-main.sock
+# environment
+MallocNanoZone = 0
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -127,7 +117,7 @@ MFLAGS = -Rrqp
 # environment
 NVM_DIR = /Users/michal/.nvm
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.28293355.28293361
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.29216611.29216617
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -146,8 +136,6 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186ac
 # automatic
 ^F = $(notdir $^)
 # default
@@ -159,9 +147,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 8573
+VSCODE_PID = 23917
 # variable set hash-table stats:
-# Load=73/1024=7%, Rehash=0, Collisions=1/94=1%
+# Load=67/1024=7%, Rehash=0, Collisions=1/88=1%
 
 # Pattern-specific Variable Values
 
@@ -243,6 +231,6 @@ GNUmakefile:
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
 # strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
 
-# Finished Make data base on Fri Jul 22 12:39:09 2022
+# Finished Make data base on Sun Jul 24 12:55:08 2022
 
  

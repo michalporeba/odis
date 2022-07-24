@@ -1,14 +1,10 @@
 [
     {
-        "@context": "http://schema.gov.uk/company.jsonld",
-        "@type": "schema.gov.uk/ch/company",
         "@id": "http://business.data.gov.uk/id/company/05457207",
         "CompanyName": "Melon",
         "RhifCwmni": "05457207"
     },
     {
-        "@context": "http://schema.gov.uk/company.jsonld",
-        "@type": "schema.gov.uk/ch/company",
         "@id": "http://business.data.gov.uk/id/company/10013084",
         "CompanyName": "Pinafal",
         "Gwybodaeth": {
@@ -16,9 +12,8 @@
         }
     },
     {
-        "@context": "http://schema.gov.uk/company.jsonld",
-        "@type": "schema.gov.uk/ch/company",
         "@id": "http://business.data.gov.uk/id/company/04253502",
+        "@type": "http://schema.gov.uk/company.jsonld",
         "CompanyName": "Pwmpen",
         "RhifCwmni": "04253502"
     }

@@ -2,9 +2,9 @@ from rdflib import Graph, term, OWL
 from pyld import jsonld
 
 g = Graph()
-g.parse("http://demo.gov.uk/exporters.json")
-#g.parse("data/importers.json")
-#g.parse("data/companies.json")
+g.parse("data/exporters.json")
+g.parse("data/importers.json")
+g.parse("data/companies.json")
 g.add((term.URIRef('https://schema.gov.uk/companynumber'), OWL.sameAs, term.URIRef('https://companieshouse.gov.uk/schema/companynumber')))
 g.add((term.URIRef('https://schema.gov.uk/companynumber'), OWL.sameAs, term.URIRef('https://schema.gov.uk/companynumber')))
 print(g.serialize(format="turtle"))
@@ -20,12 +20,15 @@ frame = jsonld.frame(g, {})
 
 print('+++++')
 qres = g.query("""
-select ?name ?number
+select ?name ?number ?exports
 where {
     ?s <https://schema.org/name> ?name .
     optional {
         <https://schema.gov.uk/companynumber> owl:sameAs ?cna .
         ?s ?cna ?number .
+        
+    } .
+    optional {
         ?s <https://dit.schema.gov.uk/numberOfExports> ?exports .
     }
 }
