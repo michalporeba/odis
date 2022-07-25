@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Vincent Willem van Gogh",
+        "dob": "1853-03-30",
+        "notableWork": [
+            "De Aardappeleters", 
+            "Tournesols",
+            "The Starry Night"
+        ]
+    },
+    {
+        "name": "Edvard Munch",
+        "dob": "1863-12-12",
+        "notableWork": [
+            "The Scream",
+            "Madonna",
+            "The Sick Child"
+        ]
+    }
+]
