@@ -13,9 +13,6 @@ g.update("""
 g.parse(connect_to_exporters_service2())
 g.parse(connect_to_importers_service2())
 
-print(g.serialize(format="turtle"))
-
-
 frame = jsonld.frame(g, {
     "@context": {
         "@version": 1.1

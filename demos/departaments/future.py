@@ -4,8 +4,7 @@ from rdflib import Graph, term, OWL
 term_name = term.URIRef('http://schema.org/name')
 
 g = Graph()
-addSameAs(g)
-
+add_same_as(g)
 g.parse(connect_to_companies_service())
 
 g.update('''
