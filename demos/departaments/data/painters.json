@@ -1,20 +1,22 @@
 [
     {
+        "@id": "http://painters.org/vanGogh",
         "name": "Vincent Willem van Gogh",
         "dob": "1853-03-30",
         "notableWork": [
-            "De Aardappeleters", 
-            "Tournesols",
-            "The Starry Night"
+            "http://the.art/DeAardappeleters", 
+            "http://ng.org.uk/Tournesols",
+            "http://the.art/the_starry_night"
         ]
     },
     {
+        "@id": "http://norwegians.no/EMunch",
         "name": "Edvard Munch",
         "dob": "1863-12-12",
         "notableWork": [
-            "The Scream",
-            "Madonna",
-            "The Sick Child"
+            "http://art.no/theScream",
+            "http://art.no/Madonna",
+            "http://art.no/TheSickChild"
         ]
     }
 ]

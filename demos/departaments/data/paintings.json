@@ -1,21 +1,22 @@
 [
     {   "http://www.w3.org/2000/01/rdf-schema#type": "https://schema.org/Painting",
+        "@id": "http://art.no/theScream",
         "http://schema.org/name": "The Scream",
         "http://schema.org/author": "http://norwegians.no/EMunch",
         "http://schema.org/dateCreated": "http://calendar.com/1893"
     },
     {   "http://www.w3.org/2000/01/rdf-schema#type": "https://schema.org/Painting",
+        "@id": "http://the.art/sunflowers",
         "http://schema.org/name": "Sunflowers",
         "http://schema.org/author": "http://painters.org/vanGogh",
         "http://schema.org/dateCreated": "http://calendar.1889"
     },
     {   "http://www.w3.org/2000/01/rdf-schema#type": "https://schema.org/Painting",
+        "@id": "http://the.art/the_starry_night",
         "http://schema.org/name": "The Starry Night",
         "http://schema.org/author": "http://painters.org/vanGogh",
         "http://schema.org/dateCreated": "http://calendar.1889"
     }
 ]
-
-
 
 
